@@ -82,7 +82,7 @@
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 1, 1, 1 ],
       "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.1, 0.1, 0.1 ]
+      "collisionboxsize": [ 0.2, 0.2, 0.2 ]
 
     }
 

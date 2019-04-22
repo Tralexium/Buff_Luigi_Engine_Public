@@ -1,0 +1,49 @@
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Stone_Wall_007_COLOR.jpg
+disp Stone_Wall_007_NORM.jpg
+bump  -bm 3.0 Stone_Wall_007_DISP.png
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Shingles_Wood_Stylized_001_baseColor.jpg
+disp Shingles_Wood_Stylized_001_normal.jpg
+bump  -bm 3.0 Shingles_Wood_Stylized_001_height.png
+Ni 1.00
+newmtl lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Stone_Wall_008_COLOR.jpg
+disp Stone_Wall_008_NORM.jpg
+bump  -bm 3.0 Stone_Wall_008_DISP.png
+Ni 1.03
+newmtl phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Terracotta_Tiles_002_Base_Color.jpg
+disp Terracotta_Tiles_002_Normal.jpg
+bump  -bm 3.0 Terracotta_Tiles_002_Height.png
+Ni 1.00
+Ks 0.03 0.03 0.03
+Ns 18.00
+newmtl phong2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_Wall_010_COLOR.jpg
+disp Brick_Wall_010_NORM.jpg
+bump  -bm 3.0 Brick_Wall_010_DISP.png
+Ni 1.00
+Ks 0.03 0.03 0.03
+Ns 18.00

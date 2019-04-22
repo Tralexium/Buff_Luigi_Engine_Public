@@ -1,0 +1,13 @@
+{
+  "GameObjects": 
+  [
+    {
+      "name": "CossackFull",
+      "PlayerPosition": [ 0, -2.5, 0 ],
+      "PlayerOrientation": [ 1, 0, 0, 0 ],
+      "CameraPosition": [ 0, -2.5, 0 ],
+      "CameraOrientation": [ 1, 0, 0, 0 ],
+      "scale": [ 0.8, 0.8, 0.8 ]
+    }
+  ]
+}

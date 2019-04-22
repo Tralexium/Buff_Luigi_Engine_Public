@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BasicDemo\BasicExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BasicDemo\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BasicDemo\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\build3\bullet.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EC80BDDE-BA26-3838-9B78-ACCE8D4049F5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

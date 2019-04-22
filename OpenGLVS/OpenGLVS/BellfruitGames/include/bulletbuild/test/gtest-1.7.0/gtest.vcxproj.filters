@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\src\gtest-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-death-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-param-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-printers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-spi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-test-part.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest-typed-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest_pred_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\gtest_prod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-death-test-internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-filepath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-linked_ptr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-param-util-generated.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-param-util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-port.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-tuple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\include\gtest\internal\gtest-type-util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\src\gtest-internal-inl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\gtest-1.7.0\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{A8F7E5DC-A981-37C9-96DB-C6B937B83F12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EC80BDDE-BA26-3838-9B78-ACCE8D4049F5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

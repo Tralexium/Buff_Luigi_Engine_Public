@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\collision\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btSphereShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btMultiSphereShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btPolyhedralConvexShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btConvexShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btConvexInternalShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btCollisionShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\CollisionShapes\btConvexPolyhedron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\test\collision\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{A8F7E5DC-A981-37C9-96DB-C6B937B83F12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EC80BDDE-BA26-3838-9B78-ACCE8D4049F5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

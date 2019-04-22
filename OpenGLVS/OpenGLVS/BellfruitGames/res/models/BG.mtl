@@ -1,0 +1,9 @@
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_Wall_014_COLOR.jpg
+bump  -bm 1 Brick_Wall_014_NORM.jpg
+disp Brick_Wall_014_DISP.png
+Ni 1.00

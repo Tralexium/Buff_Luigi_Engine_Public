@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{57935B3C-6500-3E4E-AFDD-BDCB72B2E30F}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>App_ExampleBrowser</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe -E copy_directory "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/data" "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/data"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Debug\BulletExampleBrowserLib_Debug.lib;..\..\lib\Debug\Bullet3Common_Debug.lib;..\..\lib\Debug\BulletSoftBody_Debug.lib;..\..\lib\Debug\BulletDynamics_Debug.lib;..\..\lib\Debug\BulletCollision_Debug.lib;..\..\lib\Debug\BulletInverseDynamicsUtils_Debug.lib;..\..\lib\Debug\BulletInverseDynamics_Debug.lib;..\..\lib\Debug\LinearMath_Debug.lib;..\..\lib\Debug\OpenGLWindow_Debug.lib;..\..\lib\Debug\gwen_Debug.lib;..\..\lib\Debug\BussIK_Debug.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/Debug/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/Debug/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe -E copy_directory "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/data" "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/data"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Release\BulletExampleBrowserLib.lib;..\..\lib\Release\Bullet3Common.lib;..\..\lib\Release\BulletSoftBody.lib;..\..\lib\Release\BulletDynamics.lib;..\..\lib\Release\BulletCollision.lib;..\..\lib\Release\BulletInverseDynamicsUtils.lib;..\..\lib\Release\BulletInverseDynamics.lib;..\..\lib\Release\LinearMath.lib;..\..\lib\Release\OpenGLWindow.lib;..\..\lib\Release\gwen.lib;..\..\lib\Release\BussIK.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/Release/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/Release/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe -E copy_directory "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/data" "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/data"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\lib\MinSizeRel\BulletExampleBrowserLib_MinsizeRel.lib;..\..\lib\MinSizeRel\Bullet3Common_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletSoftBody_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletDynamics_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletCollision_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletInverseDynamicsUtils_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletInverseDynamics_MinsizeRel.lib;..\..\lib\MinSizeRel\LinearMath_MinsizeRel.lib;..\..\lib\MinSizeRel\OpenGLWindow_MinsizeRel.lib;..\..\lib\MinSizeRel\gwen_MinsizeRel.lib;..\..\lib\MinSizeRel\BussIK_MinsizeRel.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/MinSizeRel/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/MinSizeRel/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\.;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\src;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\glad;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe -E copy_directory "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/data" "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/data"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\lib\RelWithDebInfo\BulletExampleBrowserLib_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\Bullet3Common_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletSoftBody_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletDynamics_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletCollision_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletInverseDynamicsUtils_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletInverseDynamics_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\LinearMath_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\OpenGLWindow_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\gwen_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BussIK_RelWithDebugInfo.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/RelWithDebInfo/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/RelWithDebInfo/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/examples/ExampleBrowser/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/examples/ExampleBrowser/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\main.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\ExampleEntries.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\ExampleEntries.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\Chain.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\Chain.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\Bridge.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\Bridge.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\RigidBodyFromObj.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\RigidBodyFromObj.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\SimpleBox.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\SimpleBox.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\MultipleBoxes.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\MultipleBoxes.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\CompoundBoxes.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\CompoundBoxes.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\SimpleCloth.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\SimpleCloth.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\SimpleJoint.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\SimpleJoint.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\NewtonsCradle.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\NewtonsCradle.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\InclinedPlane.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\InclinedPlane.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\MultiPendulum.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\MultiPendulum.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BulletRobotics\FixJointBoxes.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BulletRobotics\BoxStack.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BulletRobotics\JointLimit.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\TinyRenderer\geometry.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\TinyRenderer\model.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\TinyRenderer\tgaimage.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\TinyRenderer\our_gl.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\TinyRenderer\TinyRenderer.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\plugins\collisionFilterPlugin\collisionFilterPlugin.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\plugins\collisionFilterPlugin\collisionFilterPlugin.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\plugins\pdControlPlugin\pdControlPlugin.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\plugins\pdControlPlugin\pdControlPlugin.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\plugins\tinyRendererPlugin\tinyRendererPlugin.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\plugins\tinyRendererPlugin\TinyRendererVisualShapeConverter.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\IKTrajectoryHelper.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\IKTrajectoryHelper.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsServer.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsClientSharedMemory.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsClientSharedMemory_C_API.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsClient.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsClientC_API.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsServerExample.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsServerExampleBullet2.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsClientExample.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PosixSharedMemory.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\Win32SharedMemory.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\InProcessMemory.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsServerSharedMemory.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsDirect.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsDirect.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsDirectC_API.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsDirectC_API.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\SharedMemoryInProcessPhysicsC_API.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsLoopBack.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsLoopBack.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsLoopBackC_API.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsLoopBackC_API.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsServerCommandProcessor.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\PhysicsServerCommandProcessor.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\SharedMemoryCommands.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\SharedMemoryPublic.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\b3PluginManager.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\b3RobotSimulatorClientAPI_NoGUI.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\b3RobotSimulatorClientAPI_NoGUI.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\b3RobotSimulatorClientAPI_NoDirect.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\SharedMemory\b3RobotSimulatorClientAPI_NoDirect.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RobotSimulator\b3RobotSimulatorClientAPI.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RobotSimulator\b3RobotSimulatorClientAPI.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BasicDemo\BasicExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BasicDemo\BasicExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\InverseDynamics\InverseDynamicsExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\InverseDynamics\InverseDynamicsExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\InverseKinematics\InverseKinematicsExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\InverseKinematics\InverseKinematicsExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ForkLift\ForkLiftDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ForkLift\ForkLiftDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreadedDemo\MultiThreadedDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreadedDemo\MultiThreadedDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreadedDemo\CommonRigidBodyMTBase.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreadedDemo\CommonRigidBodyMTBase.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Heightfield\HeightfieldExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Heightfield\HeightfieldExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BlockSolver\btBlockSolver.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BlockSolver\btBlockSolver.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BlockSolver\BlockSolverExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BlockSolver\BlockSolverExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BlockSolver\RigidBodyBoxes.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\BlockSolver\RigidBodyBoxes.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Tutorial\Tutorial.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Tutorial\Tutorial.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Tutorial\Dof6ConstraintTutorial.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Tutorial\Dof6ConstraintTutorial.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Evolution\NN3DWalkers.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Evolution\NN3DWalkers.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Evolution\NN3DWalkersTimeWarpBase.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\NewtonsRopeCradle.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExtendedTutorials\NewtonsRopeCradle.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\CollisionSdkC_Api.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\CollisionSdkC_Api.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\CollisionTutorialBullet2.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\CollisionTutorialBullet2.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\Internal\Bullet2CollisionSdk.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\Internal\Bullet2CollisionSdk.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\Internal\CollisionSdkInterface.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\Internal\RealTimeBullet3CollisionSdk.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Collision\Internal\RealTimeBullet3CollisionSdk.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\GyroscopicDemo\GyroscopicSetup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\GyroscopicDemo\GyroscopicSetup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Planar2D\Planar2D.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Planar2D\Planar2D.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RollingFrictionDemo\RollingFrictionDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RollingFrictionDemo\RollingFrictionDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\FractureDemo\FractureDemo.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\FractureDemo\btFractureBody.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\FractureDemo\btFractureDynamicsWorld.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\FractureDemo\FractureDemo.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\FractureDemo\btFractureBody.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\FractureDemo\btFractureDynamicsWorld.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\DynamicControlDemo\MotorDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\DynamicControlDemo\MotorDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreading\MultiThreadingExample.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreading\b3PosixThreadSupport.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreading\b3Win32ThreadSupport.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiThreading\b3ThreadSupportInterface.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TinyRendererSetup.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TimeSeriesCanvas.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TimeSeriesCanvas.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TimeSeriesFontData.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TimeSeriesFontData.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\DynamicTexturedCubeDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\DynamicTexturedCubeDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TinyVRGui.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TinyVRGui.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RoboticsLearning\GripperGraspExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RoboticsLearning\GripperGraspExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RoboticsLearning\R2D2GraspExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RoboticsLearning\R2D2GraspExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RoboticsLearning\KukaGraspExample.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RoboticsLearning\KukaGraspExample.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\CoordinateSystemDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\CoordinateSystemDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\RaytracerSetup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\RaytracerSetup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\RenderInstancingDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\RenderInstancingDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RenderingExamples\TimeSeriesExample.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Benchmarks\BenchmarkDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Benchmarks\BenchmarkDemo.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Benchmarks\landscapeData.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Benchmarks\TaruData.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Raycast\RaytestDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBsp\BspConverter.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBullet\SerializeSetup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBullet\SerializeSetup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletWorldImporter\btMultiBodyWorldImporter.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletFileLoader\bChunk.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletFileLoader\bFile.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletFileLoader\bDNA.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\Extras\Serialize\BulletFileLoader\btBulletFile.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBsp\BspLoader.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBsp\ImportBspExample.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportColladaDemo\btMatrix4x4.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportColladaDemo\ColladaGraphicsInstance.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportColladaDemo\ImportColladaSetup.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportObjDemo\ImportObjExample.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportObjDemo\LoadMeshFromObj.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportSTLDemo\ImportSTLSetup.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportSTLDemo\LoadMeshFromSTL.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\ConvertRigidBodies2MultiBody.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\ImportURDFSetup.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\URDF2Bullet.h" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\urdf_samples.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportMJCFDemo\ImportMJCFSetup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportMJCFDemo\ImportMJCFSetup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBsp\BspConverter.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBsp\BspLoader.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportBsp\ImportBspExample.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportObjDemo\ImportObjExample.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportObjDemo\LoadMeshFromObj.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportSDFDemo\ImportSDFSetup.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\URDF2Bullet.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\UrdfParser.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Utils\RobotLoggingUtil.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Utils\RobotLoggingUtil.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\urdfStringSplit.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\urdfStringSplit.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Importers\ImportURDFDemo\BulletUrdfImporter.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\VoronoiFracture\VoronoiFractureDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\VoronoiFracture\VoronoiFractureDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\VoronoiFracture\btConvexConvexMprAlgorithm.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\VoronoiFracture\btConvexConvexMprAlgorithm.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Vehicles\Hinge2Vehicle.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Vehicles\Hinge2Vehicle.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\Pendulum.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\MultiBodySoftContact.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\TestJointTorqueSetup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\TestJointTorqueSetup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\InvertedPendulumPDControl.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\InvertedPendulumPDControl.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\MultiBodyConstraintFeedback.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\MultiDofDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\MultiBody\MultiDofDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\RigidBody\RigidBodySoftContact.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\TestHingeTorque.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\TestHingeTorque.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\ConstraintDemo.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\ConstraintDemo.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\Dof6Spring2Setup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\Dof6Spring2Setup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\ConstraintPhysicsSetup.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\Constraints\ConstraintPhysicsSetup.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\stb_image\stb_image.cpp" />
+    <ClInclude Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\stb_image\stb_image.h" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\stb_image\stb_image_write.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ThirdPartyLibs\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\examples\ExampleBrowser\InProcessExampleBrowser.cpp" />
+    <ResourceCompile Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\build3\bullet.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\ZERO_CHECK.vcxproj">
+      <Project>{BD733078-890F-39D6-946F-6D4BA304560C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3Common\Bullet3Common.vcxproj">
+      <Project>{512B3B3F-C147-3724-A98B-ACA1788A1A87}</Project>
+      <Name>Bullet3Common</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletCollision\BulletCollision.vcxproj">
+      <Project>{88E80494-7D8C-3323-AF37-5C7BCA88640F}</Project>
+      <Name>BulletCollision</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletDynamics\BulletDynamics.vcxproj">
+      <Project>{F5CD7840-272F-3CE8-BE06-A37DB8FC1D90}</Project>
+      <Name>BulletDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\BulletExampleBrowserLib.vcxproj">
+      <Project>{596E23E8-3E1E-392C-8674-F0E6A106A1E8}</Project>
+      <Name>BulletExampleBrowserLib</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletInverseDynamics\BulletInverseDynamics.vcxproj">
+      <Project>{11804EF0-37BB-3337-B0AD-7342937AFFC8}</Project>
+      <Name>BulletInverseDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\InverseDynamics\BulletInverseDynamicsUtils.vcxproj">
+      <Project>{6FCB07DC-9633-36A0-B243-F8C799E32E13}</Project>
+      <Name>BulletInverseDynamicsUtils</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletSoftBody\BulletSoftBody.vcxproj">
+      <Project>{6B929238-D1BB-38F2-BE97-8360F31B2BCD}</Project>
+      <Name>BulletSoftBody</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ThirdPartyLibs\BussIK\BussIK.vcxproj">
+      <Project>{1C00223E-E0E1-3455-B81B-DD7988994B32}</Project>
+      <Name>BussIK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\LinearMath\LinearMath.vcxproj">
+      <Project>{CD077E80-A8A7-30E5-8D95-34F3E3723110}</Project>
+      <Name>LinearMath</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\OpenGLWindow\OpenGLWindow.vcxproj">
+      <Project>{412A44DF-937C-35EC-8E52-3E28BA9C8FCC}</Project>
+      <Name>OpenGLWindow</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ThirdPartyLibs\Gwen\gwen.vcxproj">
+      <Project>{5D7FF484-ABE6-3CF0-8AE0-6308B3D3D3FD}</Project>
+      <Name>gwen</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

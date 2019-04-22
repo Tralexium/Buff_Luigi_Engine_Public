@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4CAE621A-4E36-4118-9F4B-B70DC7A7DDDA}</ProjectGuid>
+    <RootNamespace>BellfruitGames</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)/BellfruitGames/include;$(SolutionDir)/BellfruitGames/include/inc;$(SolutionDir)/BellfruitGames/include/bullet3-master;$(SolutionDir)/BellfruitGames/include/bullet3-master/src;$(SolutionDir)/BellfruitGames/include/bullet3-master/examples;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)/BellfruitGames/src;$(SourcePath)</SourcePath>
+    <LibraryPath>$(SolutionDir)/BellfruitGames/include/lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)/BellfruitGames/bin/</OutDir>
+    <IntDir>$(SolutionDir)/BellfruitGames/build/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)/BellfruitGames/include;$(SolutionDir)/BellfruitGames/include/inc;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)/BellfruitGames/src;$(SourcePath)</SourcePath>
+    <LibraryPath>$(SolutionDir)/BellfruitGames/include/lib;$(LibraryPath)</LibraryPath>
+    <ExcludePath>$(SolutionDir)/BellfruitGames/exclude;$(ExcludePath)</ExcludePath>
+    <OutDir>$(SolutionDir)/BellfruitGames/bin</OutDir>
+    <IntDir>$(SolutionDir)/BellfruitGames/build</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../External Resources/GLFW/include;$(SolutionDir)/BellfruitGames/include/glm;$(SolutionDir)/BellfruitGames/include/glad;$(SolutionDir)/BellfruitGames/include/stb_image;$(SolutionDir)/BellfruitGames/include/json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../../External Resources/GLFW/lib-vc2015;$(SolutionDir)/BellfruitGames/include/lib/x86;$(SolutionDir)/BellfruitGames/include/bulletbuild/lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-d.lib;fmod_vc.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../External Resources/GLFW/include;$(SolutionDir)/BellfruitGames/include/glm;$(SolutionDir)/BellfruitGames/include/glad;$(SolutionDir)/BellfruitGames/include/stb_image;$(SolutionDir)/BellfruitGames/include/json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../../External Resources/GLFW/lib-vc2015;$(SolutionDir)/BellfruitGames/include/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-d.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\BellfruitGame.cpp" />
+    <ClCompile Include="src\Bitmap.cpp" />
+    <ClCompile Include="src\EngineCore.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\glslprogram.cpp" />
+    <ClCompile Include="src\jsoncpp.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\Model.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\ShaderComponent.cpp" />
+    <ClCompile Include="src\SkyBox.cpp" />
+    <ClCompile Include="src\stb_image.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AudioComponent.h" />
+    <ClInclude Include="include\BellfruitGame.h" />
+    <ClInclude Include="include\Bitmap.h" />
+    <ClInclude Include="include\PhysicsBodyComponent.h" />
+    <ClInclude Include="include\CameraComponent.h" />
+    <ClInclude Include="include\Component.h" />
+    <ClInclude Include="include\Conversions.h" />
+    <ClInclude Include="include\EngineCore.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\glslprogram.h" />
+    <ClInclude Include="include\InputHandler.h" />
+    <ClInclude Include="include\Mesh.h" />
+    <ClInclude Include="include\Model.h" />
+    <ClInclude Include="include\ModelComponent.h" />
+    <ClInclude Include="include\ModelManager.h" />
+    <ClInclude Include="include\PhysicsWorld.h" />
+    <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\ShaderComponent.h" />
+    <ClInclude Include="include\SkyBox.h" />
+    <ClInclude Include="include\TransformComponent.h" />
+    <ClInclude Include="include\WindowSettings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\configs\keyconfig.json" />
+    <None Include="res\levels\Level0.json" />
+    <None Include="res\levels\Player0.json" />
+    <None Include="res\shaders\depthBufferShader.frag" />
+    <None Include="res\shaders\depthBufferShader.vert" />
+    <None Include="res\shaders\framebuffer.frag" />
+    <None Include="res\shaders\framebuffer.vert" />
+    <None Include="res\shaders\framebufferScreen.frag" />
+    <None Include="res\shaders\framebufferScreen.vert" />
+    <None Include="res\shaders\grayScaleShader.frag" />
+    <None Include="res\shaders\grayScaleShader.vert" />
+    <None Include="res\shaders\inverseColorShader.frag" />
+    <None Include="res\shaders\inverseColorShader.vert" />
+    <None Include="res\shaders\kernelShader.frag" />
+    <None Include="res\shaders\kernelShader.vert" />
+    <None Include="res\shaders\lampShader.frag" />
+    <None Include="res\shaders\lampShader.vert" />
+    <None Include="res\shaders\normalMapShader2.frag" />
+    <None Include="res\shaders\normalMapShader2.vert" />
+    <None Include="res\shaders\parallaxMapShader.frag" />
+    <None Include="res\shaders\parallaxMapShader.vert" />
+    <None Include="res\shaders\normalMapShader.frag" />
+    <None Include="res\shaders\normalMapShader.vert" />
+    <None Include="res\shaders\skyboxShader.frag" />
+    <None Include="res\shaders\skyboxShader.vert" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,14 @@
+{
+  "GameObjects": 
+  [
+    {
+      "name": "CossackFull",
+      "pos": [ 0, -2.5, 0 ],
+      "ori": [ 1, 0, 0, 0 ],
+      "CameraPosition": [ 0, -2.5, 0 ],
+      "CameraOrientation": [ 1, 0, 0, 0 ],
+      "sca": [ 0.8, 0.8, 0.8 ],
+      "mass": [0.0]
+    }
+  ]
+}

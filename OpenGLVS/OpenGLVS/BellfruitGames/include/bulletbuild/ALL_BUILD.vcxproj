@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AD73F757-54EE-3843-A93D-5EEAB835874B}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\BulletConfig.cmake.in;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCXXCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeRCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCXXInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeLanguageInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeRCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindOpenGL.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\BulletConfig.cmake.in;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCXXCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeRCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCXXInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeLanguageInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeRCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindOpenGL.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\BulletConfig.cmake.in;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCXXCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeRCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCXXInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeLanguageInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeRCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindOpenGL.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\bin\cmake.exe "-SC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master" "-BC:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild" --check-stamp-file "C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bulletbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/tazd1ngo/Desktop/Advanced Shaders P15232790/OpenGLVS/OpenGLVS/BellfruitGames/include/bullet3-master/CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\BulletConfig.cmake.in;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeCXXCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeRCCompiler.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\3.14.2\CMakeSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCXXInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeLanguageInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeRCInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Compiler\MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindOpenGL.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows-MSVC.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Users\tazd1ngo\Desktop\cmake-3.14.2-win64-x64\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bullet3-master\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\ZERO_CHECK.vcxproj">
+      <Project>{BD733078-890F-39D6-946F-6D4BA304560C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\BasicDemo\AppBasicExampleGui.vcxproj">
+      <Project>{7737EE8B-5CE0-3B5D-89AC-1D9DAF6A6E19}</Project>
+      <Name>AppBasicExampleGui</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\BasicDemo\App_BasicExample.vcxproj">
+      <Project>{1B16B89F-E785-3A07-B8E3-0E99A1050C23}</Project>
+      <Name>App_BasicExample</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\App_ExampleBrowser.vcxproj">
+      <Project>{57935B3C-6500-3E4E-AFDD-BDCB72B2E30F}</Project>
+      <Name>App_ExampleBrowser</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\RobotSimulator\App_HelloBulletRobotics.vcxproj">
+      <Project>{A645EE19-C7C4-31AF-91C2-E5579CD3BA4A}</Project>
+      <Name>App_HelloBulletRobotics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\HelloWorld\App_HelloWorld.vcxproj">
+      <Project>{C6848C1B-463D-366A-9B34-D7F88120CB1C}</Project>
+      <Name>App_HelloWorld</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\SharedMemory\App_PhysicsServer_SharedMemory.vcxproj">
+      <Project>{DBB4C0D7-EB07-345F-893F-ED33859D8ED9}</Project>
+      <Name>App_PhysicsServer_SharedMemory</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\SharedMemory\App_PhysicsServer_SharedMemory_GUI.vcxproj">
+      <Project>{CCDE9F8A-632B-37B3-9084-19736212F962}</Project>
+      <Name>App_PhysicsServer_SharedMemory_GUI</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\SharedMemory\App_PhysicsServer_SharedMemory_VR.vcxproj">
+      <Project>{E7C20A0A-2459-346B-9A4C-2AF550044AE8}</Project>
+      <Name>App_PhysicsServer_SharedMemory_VR</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\RobotSimulator\App_RobotSimulator.vcxproj">
+      <Project>{F1B2E0B0-3751-333F-90D5-532D9CA1202A}</Project>
+      <Name>App_RobotSimulator</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\RobotSimulator\App_RobotSimulator_NoGUI.vcxproj">
+      <Project>{C3A257FC-3BB6-3514-B121-1B64E5DEF5D5}</Project>
+      <Name>App_RobotSimulator_NoGUI</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\TwoJoint\App_TwoJoint.vcxproj">
+      <Project>{829A0F28-2ECC-3F8B-A693-86925D7B0109}</Project>
+      <Name>App_TwoJoint</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\obj2sdf\App_obj2sdf.vcxproj">
+      <Project>{30638FBC-CBDE-3948-B549-2C78B554668F}</Project>
+      <Name>App_obj2sdf</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3Serialize\Bullet2FileLoader\Bullet2FileLoader.vcxproj">
+      <Project>{363E2CC4-19B2-3B5B-99EE-F24DEB720139}</Project>
+      <Name>Bullet2FileLoader</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3Collision\Bullet3Collision.vcxproj">
+      <Project>{C13AF734-DDF9-3883-B89E-B0F2172D7033}</Project>
+      <Name>Bullet3Collision</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3Common\Bullet3Common.vcxproj">
+      <Project>{512B3B3F-C147-3724-A98B-ACA1788A1A87}</Project>
+      <Name>Bullet3Common</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3Dynamics\Bullet3Dynamics.vcxproj">
+      <Project>{FE0054DB-E9F3-3949-9780-318E04FE5A99}</Project>
+      <Name>Bullet3Dynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3Geometry\Bullet3Geometry.vcxproj">
+      <Project>{AD63C062-40C6-3D9B-9050-E406B4254BE7}</Project>
+      <Name>Bullet3Geometry</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\Bullet3OpenCL\Bullet3OpenCL_clew.vcxproj">
+      <Project>{E0704536-14C5-3823-AC93-2A9B8F1D4B64}</Project>
+      <Name>Bullet3OpenCL_clew</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletCollision\BulletCollision.vcxproj">
+      <Project>{88E80494-7D8C-3323-AF37-5C7BCA88640F}</Project>
+      <Name>BulletCollision</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletDynamics\BulletDynamics.vcxproj">
+      <Project>{F5CD7840-272F-3CE8-BE06-A37DB8FC1D90}</Project>
+      <Name>BulletDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ExampleBrowser\BulletExampleBrowserLib.vcxproj">
+      <Project>{596E23E8-3E1E-392C-8674-F0E6A106A1E8}</Project>
+      <Name>BulletExampleBrowserLib</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\Serialize\BulletFileLoader\BulletFileLoader.vcxproj">
+      <Project>{F26CA659-D0A8-3399-B6F5-01234B987C5B}</Project>
+      <Name>BulletFileLoader</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletInverseDynamics\BulletInverseDynamics.vcxproj">
+      <Project>{11804EF0-37BB-3337-B0AD-7342937AFFC8}</Project>
+      <Name>BulletInverseDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\InverseDynamics\BulletInverseDynamicsUtils.vcxproj">
+      <Project>{6FCB07DC-9633-36A0-B243-F8C799E32E13}</Project>
+      <Name>BulletInverseDynamicsUtils</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\BulletRobotics\BulletRobotics.vcxproj">
+      <Project>{F65E84BC-AB9F-379F-9C72-6ECF76444D05}</Project>
+      <Name>BulletRobotics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\BulletSoftBody\BulletSoftBody.vcxproj">
+      <Project>{6B929238-D1BB-38F2-BE97-8360F31B2BCD}</Project>
+      <Name>BulletSoftBody</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\Serialize\BulletWorldImporter\BulletWorldImporter.vcxproj">
+      <Project>{4C9BC0F5-D17D-31FD-9F33-F9DBDEFF2F2E}</Project>
+      <Name>BulletWorldImporter</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\Serialize\BulletXmlWorldImporter\BulletXmlWorldImporter.vcxproj">
+      <Project>{1DAF3E30-0E33-3A1E-883D-9BE304DAD325}</Project>
+      <Name>BulletXmlWorldImporter</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ThirdPartyLibs\BussIK\BussIK.vcxproj">
+      <Project>{1C00223E-E0E1-3455-B81B-DD7988994B32}</Project>
+      <Name>BussIK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\ConvexDecomposition\ConvexDecomposition.vcxproj">
+      <Project>{35390691-66BD-3DB1-AEBD-BC47D8F29EE4}</Project>
+      <Name>ConvexDecomposition</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\GIMPACTUtils\GIMPACTUtils.vcxproj">
+      <Project>{A48574F9-E732-3F0D-B65E-D445A929DC43}</Project>
+      <Name>GIMPACTUtils</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\Extras\HACD\HACD.vcxproj">
+      <Project>{3741ADDF-1CE1-3342-B7AC-D9BDB6DA5E50}</Project>
+      <Name>HACD</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\src\LinearMath\LinearMath.vcxproj">
+      <Project>{CD077E80-A8A7-30E5-8D95-34F3E3723110}</Project>
+      <Name>LinearMath</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\OpenGLWindow\OpenGLWindow.vcxproj">
+      <Project>{412A44DF-937C-35EC-8E52-3E28BA9C8FCC}</Project>
+      <Name>OpenGLWindow</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\BulletDynamics\pendulum\Test_BulletDynamics.vcxproj">
+      <Project>{17C45ABB-4C79-3639-BC52-40A05F884072}</Project>
+      <Name>Test_BulletDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\InverseDynamics\Test_BulletInverseDynamics.vcxproj">
+      <Project>{7668CCC6-E692-335D-8206-5B6C46B44762}</Project>
+      <Name>Test_BulletInverseDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\InverseDynamics\Test_BulletInverseDynamicsJacobian.vcxproj">
+      <Project>{B7DEBDFD-AB59-3E2C-80EA-6E7DD8D62BF8}</Project>
+      <Name>Test_BulletInverseDynamicsJacobian</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\InverseDynamics\Test_BulletInverseForwardDynamics.vcxproj">
+      <Project>{66A12580-189A-3CC3-8D68-4A255EF43D27}</Project>
+      <Name>Test_BulletInverseForwardDynamics</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\collision\Test_Collision.vcxproj">
+      <Project>{F8A01F16-5A09-3452-959C-F9A50A61A211}</Project>
+      <Name>Test_Collision</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\SharedMemory\Test_PhysicsClientServer.vcxproj">
+      <Project>{7A2A238B-4FB5-3305-9ED8-C850F18E5239}</Project>
+      <Name>Test_PhysicsClientServer</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\BulletDynamics\Test_btKinematicCharacterController.vcxproj">
+      <Project>{E4A7EC00-59F2-3B48-86D7-001D002AA2DD}</Project>
+      <Name>Test_btKinematicCharacterController</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ThirdPartyLibs\clsocket\clsocket.vcxproj">
+      <Project>{B028D93D-3C04-3FBE-ADFF-4987560CD8ED}</Project>
+      <Name>clsocket</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\test\gtest-1.7.0\gtest.vcxproj">
+      <Project>{8DC4678D-C17A-384E-8276-76781542C781}</Project>
+      <Name>gtest</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\tazd1ngo\Desktop\Advanced Shaders P15232790\OpenGLVS\OpenGLVS\BellfruitGames\include\bulletbuild\examples\ThirdPartyLibs\Gwen\gwen.vcxproj">
+      <Project>{5D7FF484-ABE6-3CF0-8AE0-6308B3D3D3FD}</Project>
+      <Name>gwen</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

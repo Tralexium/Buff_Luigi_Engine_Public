@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{3e893935-47c5-4a1c-a963-1ba3767d94f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shaders">
+      <UniqueIdentifier>{b9f0c617-8c7c-4070-9146-7b5aae8a52d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\levels">
+      <UniqueIdentifier>{0d990b96-a134-4d54-84a5-063c2bb6fc25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{b606934c-01a0-4463-9c39-8878453c59e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{c557b66c-b70d-47b5-bb7e-4bd83d14e98c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{4cd5b6bb-1f95-4dae-8715-cf0e80e2dbdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{81b1b95b-bba9-4b49-a334-ebd585ef6132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs">
+      <UniqueIdentifier>{8f79fb1c-3877-4e74-8631-b6257beef7b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\configs">
+      <UniqueIdentifier>{31c18433-1af2-4397-9c2d-529a6e0e4e9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{0d4751d1-fdd6-4795-a9ed-05c0e462a832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{44e30fee-2934-4da5-98b6-0e8245ec13c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\Players">
+      <UniqueIdentifier>{70c687e9-1628-4356-a876-70c6d5701734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs">
+      <UniqueIdentifier>{383c9c5d-6ce1-48e2-86cd-fdb8b8b6c137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renders">
+      <UniqueIdentifier>{79a9c372-52bb-4ef0-858a-2fee644aeee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renders">
+      <UniqueIdentifier>{922ec07d-9248-4864-a195-b232600a717e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jsoncpp.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb_image.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mesh.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bitmap.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BellfruitGame.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SkyBox.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glslprogram.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShaderComponent.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EngineCore.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Component.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TransformComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CameraComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ModelComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ModelManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputHandler.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EngineCore.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Model.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mesh.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bitmap.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BellfruitGame.h">
+      <Filter>Header Files\Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SkyBox.h">
+      <Filter>Header Files\Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glslprogram.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AudioComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene.h">
+      <Filter>Header Files\Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShaderComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Conversions.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsBodyComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowSettings.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsWorld.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\levels\Level0.json">
+      <Filter>res\levels</Filter>
+    </None>
+    <None Include="res\configs\keyconfig.json">
+      <Filter>res\configs</Filter>
+    </None>
+    <None Include="res\shaders\skyboxShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\skyboxShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\normalMapShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\normalMapShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\parallaxMapShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\parallaxMapShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\depthBufferShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\depthBufferShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\framebuffer.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\framebuffer.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\framebufferScreen.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\framebufferScreen.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\grayScaleShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\grayScaleShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\inverseColorShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\inverseColorShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\kernelShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\kernelShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\lampShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\lampShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\normalMapShader2.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\normalMapShader2.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\levels\Player0.json">
+      <Filter>res\Players</Filter>
+    </None>
+  </ItemGroup>
+</Project>

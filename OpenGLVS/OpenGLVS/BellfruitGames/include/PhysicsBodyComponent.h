@@ -29,15 +29,15 @@ private:
 	btVector3 m_scale;
 	btQuaternion m_rotation;
 	//btVector3 m_collisionShapeSize = btVector3(10.0, 10.0, 10.0);
+	btVector3 m_collisionBoxSize;
 
-	
 	//btTransform* m_currentTransform;
 
 	btCollisionShape* boxShape;
-	
+
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 
-	
+
 
 public:
 	PhysicsWorld& physicsworld = physicsworld.getInstance();
@@ -48,10 +48,10 @@ public:
 	btBroadphaseInterface* overlappingPairCache;
 	btSequentialImpulseConstraintSolver* solver;
 	btDiscreteDynamicsWorld* dynamicsWorld;
-	
+
 	//keep track of the shapes, we release memory at exit.
 	//make sure to re-use collision shapes among rigid bodies whenever possible!
-	
+
 	btTransform m_startTransform;
 
 
@@ -59,20 +59,20 @@ public:
 	PhysicsBodyComponent() {};
 
 	// Parameterized Constructor
-	PhysicsBodyComponent(const btVector3 pos,const btQuaternion rot, btVector3 sca, btScalar mass )
+	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize)
 	{
-		
-	
+
+		m_collisionBoxSize = colSize;
 		m_position = pos;
 		m_mass = mass;
 
 
 		m_startTransform = btTransform(btQuaternion(rot), btVector3(pos));
-		
+
 
 		// -> Create Rigid Body
 		createRigidBody();
-		
+
 	};
 
 
@@ -100,28 +100,28 @@ public:
 inline void PhysicsBodyComponent::createRigidBody()
 {
 	// Collision Shape
-	boxShape = new btBoxShape(btVector3(btScalar(1.), btScalar(1.), btScalar(1.)));
+	boxShape = new btBoxShape(m_collisionBoxSize);
 	m_collisionShapes.push_back(boxShape);
 
-	
+
 	//btTransform groundTransform;
 	// Create Dynamic Objects
 	//groundTransform.setIdentity();
-	
+
 
 
 	// Set rigidbody is dynamic if and only if mass is non zero, otherwise static
 	bool isDynamic = (m_mass != 0.f);
 
-			
-		
+
+
 	// Local Inertia
 	btVector3 localInertia(0, 0, 0);
 	if (isDynamic)
 		boxShape->calculateLocalInertia(m_mass, localInertia);
 
 	//groundTransform.setOrigin(m_startTransform.getOrigin());
-	
+
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 	m_myMotionState = new btDefaultMotionState(m_startTransform);
 
@@ -133,8 +133,8 @@ inline void PhysicsBodyComponent::createRigidBody()
 
 	physicsworld.getDynamicsWorld()->addRigidBody(body);
 
-	
-	
+
+
 }
 
 
@@ -167,7 +167,7 @@ inline PhysicsBodyComponent::~PhysicsBodyComponent()
 	}
 
 
-	
+
 
 	//next line is optional: it will be cleared by the destructor when the array goes out of scope
 	m_collisionShapes.clear();

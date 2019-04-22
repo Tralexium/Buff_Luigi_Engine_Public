@@ -24,14 +24,14 @@ PhysicsWorld& physicsWorld = physicsWorld.getInstance();
 
 Scene::Scene()
 {
-	
-	
+
+
 
 
 	m_modelmanager = new ModelManager();  // creating model manager
 
 
-	
+
 	//------------ Skybox initialisation ------------------------------------------------------------------------------//
 	enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
 	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
@@ -43,7 +43,7 @@ Scene::Scene()
 	framebufferShader->createQuad(); // 1. create the quad
 	framebufferShader->use(); // 2. use the framebuffer
 	framebufferShader->setfboTexture(); // 3.  set the texture
-	
+
 	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //  Instantiate new screen framebuffer shader for PP -> for postprocessing
 	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
@@ -52,14 +52,14 @@ Scene::Scene()
 
 
 	//---------------- Initialisation for model loading START-----------------------------------------------------//
-	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName); 
-	
-	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName); 
-	
+	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
+
+	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
+
 	//----------------- Initialisation for model loading END -----------------------------------------------------//
 
 
-	
+
 
 
 
@@ -136,6 +136,12 @@ bool Scene::loadSceneObjects(std::string level)
 		x = massNode[0].asFloat(); // get float
 		btScalar mass(x);
 
+		const Json::Value colSize = gameObjects[i]["collisionboxsize"];
+		x = colSize[0].asFloat(); // get float
+		y = colSize[1].asFloat();
+		z = colSize[2].asFloat();
+		glm::vec3 col(x, y, z);
+
 
 		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
 
@@ -148,7 +154,7 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new ShaderComponent(shaderName));
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(pos), glmQuatToBt(ori), glmVec3toBt(sca), mass));
+		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(pos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
 
 
 		// --------------------------------------------------------------------------------------------------------------------------//
@@ -233,7 +239,7 @@ bool Scene::loadPlayerObjects(std::string player)
 		//--------------- ADD COMPONENTS TO LEVEL GAME OBJECTS HERE --------------------------------------//
 		v_playerCharacterObjects[i].addComponent(new TransformComponent(CameraPosition, CameraPosition, sca)); // pass poss ori scale
 		v_playerCharacterObjects[i].addComponent(new CameraComponent(CameraPosition, CameraOrientation));
-		
+
 		// -----------------------------------------------------------------------------------------------------------//
 
 
@@ -263,7 +269,7 @@ void Scene::stepPhysicsSimulation() {
 			l_body->getMotionState()->getWorldTransform(physicsWorld.m_transform);
 
 			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3((float)physicsWorld.m_transform.getOrigin().getX(), (float)physicsWorld.m_transform.getOrigin().getY(), (float)physicsWorld.m_transform.getOrigin().getZ()));
-			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat((float)physicsWorld.m_transform.getRotation().getW(),(float)physicsWorld.m_transform.getRotation().getX(), (float)physicsWorld.m_transform.getRotation().getY(), (float)physicsWorld.m_transform.getRotation().getZ() ));
+			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat((float)physicsWorld.m_transform.getRotation().getW(), (float)physicsWorld.m_transform.getRotation().getX(), (float)physicsWorld.m_transform.getRotation().getY(), (float)physicsWorld.m_transform.getRotation().getZ()));
 
 		}
 		else
@@ -282,25 +288,25 @@ void Scene::stepPhysicsSimulation() {
 void Scene::update(float dt)
 {
 
-	
+
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
 
 	//m_audio->playSound(); 
 
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	
+
 
 
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
-	
+
 	stepPhysicsSimulation();
 
 	// --------------------------------------------------------------------------------------------------------------------
 
 
 
-	
+
 }
 
 void Scene::render(CameraComponent* camera)
@@ -325,21 +331,21 @@ void Scene::render(CameraComponent* camera)
 	// or whichever dimension we set it to be in the WindowSettings.h singleton class.
 	for (int i = 0; i < v_gameObjects.size(); i++)
 	{
-		
+
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
 		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
 
-		shaderptr->setShaderComponentLightPos( glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
+		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
-		
+
 	}
-	
+
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
@@ -347,7 +353,7 @@ void Scene::render(CameraComponent* camera)
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
 	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
-	
+
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 }
@@ -371,26 +377,26 @@ Scene::~Scene()
 	framebufferScreenShader = nullptr;
 
 
-	
+
 
 	for (GameObject gameObject : v_gameObjects)
 	{
 		if (gameObject.getComponent<TransformComponent>())
 		{
 			delete gameObject.getComponent<TransformComponent>();
-			
+
 			v_gameObjects.clear();
 		}
 		if (gameObject.getComponent<ModelComponent>())
 		{
 			delete gameObject.getComponent<ModelComponent>();
-			
+
 			v_gameObjects.clear();
 		}
 		if (gameObject.getComponent<ShaderComponent>())
 		{
 			delete gameObject.getComponent<ShaderComponent>();
-		
+
 			v_gameObjects.clear();
 		}
 
@@ -402,7 +408,7 @@ Scene::~Scene()
 			delete m_physicsBody;
 			m_physicsBody = nullptr;
 			//delete m_physicsBodyPosition;
-			
+
 
 			v_gameObjects.clear();
 		}
@@ -438,13 +444,13 @@ Scene::~Scene()
 			delete m_physicsBody;
 			m_physicsBody = nullptr;
 			//delete m_physicsBodyPosition;
-		
+
 			v_playerCharacterObjects.clear();
 		}
 
 	}
 
-	
+
 
 
 }

@@ -22,23 +22,19 @@ EngineCore* enginecore = enginecore->Instance();
 
 PhysicsWorld& physicsWorld = physicsWorld.getInstance();
 
+
 Scene::Scene()
 {
-
-
-
-
 	m_modelmanager = new ModelManager();  // creating model manager
 
-
-
-	//------------ Skybox initialisation ------------------------------------------------------------------------------//
+	//------------ Skybox initialisation -------------//
 	enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
 	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
-	//-----------------------------------------------------------------------------------------------------------------//
+	
+	// -- Shader for debug drawing --//
+	debugLineShader = new ShaderComponent("lineShader");
 
-
-	// --------------FBO initalisation --------------------------------------------------------------------------------//
+	// --------------FBO initalisation ------//
 	framebufferShader = new ShaderComponent("frameBuffer"); // Instantiate new framebuffer shader
 	framebufferShader->createQuad(); // 1. create the quad
 	framebufferShader->use(); // 2. use the framebuffer
@@ -48,32 +44,17 @@ Scene::Scene()
 	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
-	//---------------------------------------------------------------------------------------------------------------//
-
-
-	//---------------- Initialisation for model loading START-----------------------------------------------------//
+	
+	//---------------- Initialisation for model loading START---------------//
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
-
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
-	//----------------- Initialisation for model loading END -----------------------------------------------------//
-
-
-
-
-
-
-	// --------------------- Setting player camera pointer-----------------------------------------------------------------------------//
+	// --------------------- Setting player camera pointer----------------//
 	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera
-	//--------------------------------------------------------------------------------------------------------------------------------//
-
-
-	// --------------------- Audio stuff -----------------------------------------------------------------------------//
+	
+	// --------------------- Audio stuff --------------------------------//
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
-	//---------------------------------------------------------------------------------------------------------------//
 
-
-	//setPhysicsBodies(); // setting the physicsbodies to teh world.
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -157,7 +138,6 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(pos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
 
 
-		// --------------------------------------------------------------------------------------------------------------------------//
 
 	}
 	return true;
@@ -248,13 +228,13 @@ bool Scene::loadPlayerObjects(std::string player)
 
 }
 
+
+
 void Scene::stepPhysicsSimulation() {
 
-	// Do some simulation
-			//-----stepsimulation_start----------------------
+	
+	//-----stepsimulation_start----------------------//
 	physicsWorld.getDynamicsWorld()->stepSimulation(1.f / 60.f, 10);
-
-
 
 	//print positions of all objects
 	for (int j = physicsWorld.getDynamicsWorld()->getNumCollisionObjects() - 1; j >= 0; j--)
@@ -267,21 +247,44 @@ void Scene::stepPhysicsSimulation() {
 		if (l_body && l_body->getMotionState())
 		{
 			l_body->getMotionState()->getWorldTransform(physicsWorld.m_transform);
-
+	
 			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3((float)physicsWorld.m_transform.getOrigin().getX(), (float)physicsWorld.m_transform.getOrigin().getY(), (float)physicsWorld.m_transform.getOrigin().getZ()));
 			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat((float)physicsWorld.m_transform.getRotation().getW(), (float)physicsWorld.m_transform.getRotation().getX(), (float)physicsWorld.m_transform.getRotation().getY(), (float)physicsWorld.m_transform.getRotation().getZ()));
-
 		}
 		else
 		{
 			physicsWorld.m_transform = l_collisionObject->getWorldTransform();
 		}
+		//printf("world pos object %d = %f,%f,%f\n", j, float(physicsWorld.m_transform.getOrigin().getX()), float(physicsWorld.m_transform.getOrigin().getY()), float(physicsWorld.m_transform.getOrigin().getZ()));
+	}
+}
 
-		printf("world pos object %d = %f,%f,%f\n", j, float(physicsWorld.m_transform.getOrigin().getX()), float(physicsWorld.m_transform.getOrigin().getY()), float(physicsWorld.m_transform.getOrigin().getZ()));
-		//printf("world pos object %d = %f,%f,%f\n", j, float(m_collisionObject->getWorldTransform().getOrigin().getX()), float(m_collisionObject->getWorldTransform().getOrigin().getY()), float(m_collisionObject->getWorldTransform().getOrigin().getZ()));
+void Scene::drawCollisionDebugLines() {
+
+	//print positions of all objects
+	for (int j = physicsWorld.getDynamicsWorld()->getNumCollisionObjects() - 1; j >= 0; j--)
+	{
+		btCollisionObject* l_collisionObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[j];
+
+		debugLineShader->use(); // Use debug shader
+		debugLineShader->setUniforms(m_playerCameraComponent); // set uniforms
+
+		//// Use drawline function from btIDebugDraw
+		//physicsWorld.getPhysicsWorldDebugDrawer()->drawLine
+		//(
+		//	btVector3
+		//	(
+		//	0,0,0
+		//	),
+		//	btVector3
+		//	(
+		//	0,0,0
+		//	),
+		//	btVector3(10, 0, 0)
+		//);
 	}
 
-
+	physicsWorld.drawWorld(); // draw the world
 }
 
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)
@@ -309,6 +312,7 @@ void Scene::update(float dt)
 
 }
 
+
 void Scene::render(CameraComponent* camera)
 {
 	//------------ BINDING FBO BEFORE RENDERING ANYTHING ---------------------------------------------------------------------------------------------------------------------//
@@ -317,13 +321,19 @@ void Scene::render(CameraComponent* camera)
 	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+
+	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
+	drawCollisionDebugLines();
+	// ------------------------------------------------------//
+
+
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyShader.use();  //! Use skybox shader. 
 	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
 	m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-
+	
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
@@ -341,6 +351,9 @@ void Scene::render(CameraComponent* camera)
 		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
+
+
+		
 
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 

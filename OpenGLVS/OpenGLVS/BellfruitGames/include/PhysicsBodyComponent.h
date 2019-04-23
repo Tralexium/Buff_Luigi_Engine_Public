@@ -13,6 +13,7 @@
 
 #include "PhysicsWorld.h"
 
+
 #define ARRAY_SIZE_Y 5
 #define ARRAY_SIZE_X 5
 #define ARRAY_SIZE_Z 5
@@ -37,7 +38,7 @@ private:
 
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 
-
+	
 
 public:
 	PhysicsWorld& physicsworld = physicsworld.getInstance();
@@ -61,6 +62,7 @@ public:
 	// Parameterized Constructor
 	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize)
 	{
+		
 
 		m_collisionBoxSize = colSize;
 		m_position = pos;
@@ -69,6 +71,9 @@ public:
 
 		m_startTransform = btTransform(btQuaternion(rot), btVector3(pos));
 
+		
+
+		
 
 		// -> Create Rigid Body
 		createRigidBody();
@@ -168,7 +173,7 @@ inline PhysicsBodyComponent::~PhysicsBodyComponent()
 
 
 
-
+	
 	//next line is optional: it will be cleared by the destructor when the array goes out of scope
 	m_collisionShapes.clear();
 }

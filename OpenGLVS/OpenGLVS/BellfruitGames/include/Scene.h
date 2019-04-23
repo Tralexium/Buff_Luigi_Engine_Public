@@ -15,7 +15,7 @@
 #include "AudioComponent.h"
 
 #include "PhysicsBodyComponent.h"
-
+#include "WindowSettings.h"
 /*!
 \class Scene
 \brief Handles scene logic.
@@ -50,12 +50,13 @@ private:
 	
 	// ------------------------------------------------//
 public:
-	
+	WindowSettings& g_window = g_window.getInstance();
 
 	//------------- Shader Components -----------------//
 	ShaderComponent* framebufferShader; // FBO
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
+	ShaderComponent* debugLineShader;
 	// ------------------------------------------------//
 
 
@@ -92,7 +93,7 @@ public:
 
 	void stepPhysicsSimulation();
 
-	
+	void drawCollisionDebugLines();
 
 	
 	// --- ENTRY FOR LOADING OBJECTS --//

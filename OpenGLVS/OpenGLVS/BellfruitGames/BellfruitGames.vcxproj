@@ -157,6 +157,7 @@
     <ClInclude Include="include\AudioComponent.h" />
     <ClInclude Include="include\BellfruitGame.h" />
     <ClInclude Include="include\Bitmap.h" />
+    <ClInclude Include="include\DebugDrawPhysics.h" />
     <ClInclude Include="include\PhysicsBodyComponent.h" />
     <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\Component.h" />
@@ -194,6 +195,8 @@
     <None Include="res\shaders\kernelShader.vert" />
     <None Include="res\shaders\lampShader.frag" />
     <None Include="res\shaders\lampShader.vert" />
+    <None Include="res\shaders\lineShader.frag" />
+    <None Include="res\shaders\lineShader.vert" />
     <None Include="res\shaders\normalMapShader2.frag" />
     <None Include="res\shaders\normalMapShader2.vert" />
     <None Include="res\shaders\parallaxMapShader.frag" />

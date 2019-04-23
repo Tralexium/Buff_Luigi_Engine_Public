@@ -9,6 +9,7 @@
 
 #include "PhysicsBodyComponent.h"
 
+#include "DebugDrawPhysics.h"
 
 class PhysicsWorld
 {
@@ -20,16 +21,17 @@ private:
 	btSequentialImpulseConstraintSolver* solver;
 	btDiscreteDynamicsWorld* m_dynamicsWorld;
 
-	
+	DebugDrawPhysics* m_debugDraw;
 
 public:
 
+
 	btTransform m_transform;
 
-	btDiscreteDynamicsWorld* getDynamicsWorld() {
-		return m_dynamicsWorld;
-	}
 
+
+
+	
 	
 	PhysicsWorld() {
 
@@ -41,15 +43,32 @@ public:
 		solver = new btSequentialImpulseConstraintSolver; //the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
 		// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-		
+		m_debugDraw = new DebugDrawPhysics();
+
 
 		m_dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 		//-- Set Gravity of dynamics world --//
 		m_dynamicsWorld->setGravity(btVector3(0.0, -9-8, 0.0));
+
+		m_dynamicsWorld->setDebugDrawer(m_debugDraw);
+
+		m_dynamicsWorld->getDebugDrawer()->setDebugMode(2);
+
+		
+
 	};
 
+	DebugDrawPhysics* getPhysicsWorldDebugDrawer() { return m_debugDraw; }
 
+	void drawWorld() {
+	
+		
+		m_dynamicsWorld->debugDrawWorld();
+	}
 
+	btDiscreteDynamicsWorld* getDynamicsWorld() {
+		return m_dynamicsWorld;
+	}
 
 	//! Copy Constructor.
 	/*!

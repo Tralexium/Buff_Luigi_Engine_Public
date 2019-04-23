@@ -162,7 +162,10 @@
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="include\PhysicsWorld.h">
-      <Filter>Header Files\Components</Filter>
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DebugDrawPhysics.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +243,12 @@
     </None>
     <None Include="res\levels\Player0.json">
       <Filter>res\Players</Filter>
+    </None>
+    <None Include="res\shaders\lineShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\lineShader.vert">
+      <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

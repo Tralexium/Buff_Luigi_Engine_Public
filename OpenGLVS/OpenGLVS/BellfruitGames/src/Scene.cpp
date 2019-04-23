@@ -100,6 +100,14 @@ bool Scene::loadSceneObjects(std::string level)
 		z = posNode[2].asFloat();
 		glm::vec3 pos(x, y, z);
 
+		
+		// get the position node
+		const Json::Value colliderPosNode = gameObjects[i]["colliderposition"];
+		x = colliderPosNode[0].asFloat(); // get float
+		y = colliderPosNode[1].asFloat();
+		z = colliderPosNode[2].asFloat();
+		glm::vec3 colpos(x, y, z);
+
 		const Json::Value oriNode = gameObjects[i]["orientation"];
 		x = oriNode[0].asFloat(); // get float
 		y = oriNode[1].asFloat();
@@ -135,7 +143,7 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new ShaderComponent(shaderName));
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(pos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
+		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
 
 
 
@@ -241,20 +249,36 @@ void Scene::stepPhysicsSimulation() {
 	{
 
 		btCollisionObject* l_collisionObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[j];
-
 		btRigidBody* l_body = btRigidBody::upcast(l_collisionObject);
 
 		if (l_body && l_body->getMotionState())
 		{
 			l_body->getMotionState()->getWorldTransform(physicsWorld.m_transform);
-	
-			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3((float)physicsWorld.m_transform.getOrigin().getX(), (float)physicsWorld.m_transform.getOrigin().getY(), (float)physicsWorld.m_transform.getOrigin().getZ()));
-			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat((float)physicsWorld.m_transform.getRotation().getW(), (float)physicsWorld.m_transform.getRotation().getX(), (float)physicsWorld.m_transform.getRotation().getY(), (float)physicsWorld.m_transform.getRotation().getZ()));
+			
+			glm::vec3 l_pos((float)physicsWorld.m_transform.getOrigin().getX(), 
+							(float)physicsWorld.m_transform.getOrigin().getY(), 
+							(float)physicsWorld.m_transform.getOrigin().getZ());
+
+			glm::quat l_quat((float)physicsWorld.m_transform.getRotation().getW(), 
+							 (float)physicsWorld.m_transform.getRotation().getX(), 
+							 (float)physicsWorld.m_transform.getRotation().getY(), 
+							 (float)physicsWorld.m_transform.getRotation().getZ());
+
+			
+
+			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
+			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat(l_quat));
+
+			v_gameObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3((float)physicsWorld.m_transform.getOrigin().getX(),
+				(float)physicsWorld.m_transform.getOrigin().getY() +0.8,
+				(float)physicsWorld.m_transform.getOrigin().getZ()));
 		}
+
 		else
 		{
 			physicsWorld.m_transform = l_collisionObject->getWorldTransform();
 		}
+
 		//printf("world pos object %d = %f,%f,%f\n", j, float(physicsWorld.m_transform.getOrigin().getX()), float(physicsWorld.m_transform.getOrigin().getY()), float(physicsWorld.m_transform.getOrigin().getZ()));
 	}
 }

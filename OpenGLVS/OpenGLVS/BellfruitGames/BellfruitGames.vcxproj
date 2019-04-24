@@ -139,8 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AIBirdBoid.cpp" />
+    <ClCompile Include="src\AIFlock.cpp" />
     <ClCompile Include="src\BellfruitGame.cpp" />
     <ClCompile Include="src\Bitmap.cpp" />
+    <ClCompile Include="src\EculidanMovement.cpp" />
     <ClCompile Include="src\EngineCore.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\glslprogram.cpp" />
@@ -154,10 +157,13 @@
     <ClCompile Include="src\stb_image.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\AIBirdBoid.h" />
+    <ClInclude Include="include\AIFlock.h" />
     <ClInclude Include="include\AudioComponent.h" />
     <ClInclude Include="include\BellfruitGame.h" />
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\DebugDrawPhysics.h" />
+    <ClInclude Include="include\EculidanMovement.h" />
     <ClInclude Include="include\PhysicsBodyComponent.h" />
     <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\Component.h" />

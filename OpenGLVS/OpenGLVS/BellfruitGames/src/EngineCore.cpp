@@ -27,7 +27,7 @@ WindowSettings& g_window = g_window.getInstance();
 
 using namespace std; // using namespace
 
-EngineCore * EngineCore::Instance()
+EngineCore * EngineCore::Instance()//
 {
 	if (!m_pInstance)   // Only allow one instance of class to be generated.
 

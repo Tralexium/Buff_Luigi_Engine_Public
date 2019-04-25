@@ -5,7 +5,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
-
+#include "Component.h"
 #ifndef AIBirdBoid_H_
 #define AIBirdBoid_H_
 

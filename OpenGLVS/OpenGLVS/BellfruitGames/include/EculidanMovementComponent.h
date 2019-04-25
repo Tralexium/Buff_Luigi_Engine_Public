@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "Component.h"
 using namespace std;
 
 #ifndef EculidanMovement_H_

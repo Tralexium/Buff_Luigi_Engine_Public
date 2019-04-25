@@ -3,7 +3,7 @@
 
 
 // =============================================== //
-// ======== Flock Functions from AIFlock.h ========= //
+// ======== AIFlock Functions from AIFlock.h ========= //
 // =============================================== //
 //Creating the flock functions so i can then move onto the boids which are going,
 //to allow me to add those boid functions to my duck to allow it to move.

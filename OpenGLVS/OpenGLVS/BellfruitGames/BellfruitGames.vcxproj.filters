@@ -99,13 +99,13 @@
     <ClCompile Include="src\EngineCore.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\AIBirdBoid.cpp">
+    <ClCompile Include="src\AiBirdBoidComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\AIFlock.cpp">
+    <ClCompile Include="src\AIFlockComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\EculidanMovement.cpp">
+    <ClCompile Include="src\EculidanMovementComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,14 +176,14 @@
     <ClInclude Include="include\DebugDrawPhysics.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="include\AIBirdBoid.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\AiBirdBoidComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="include\AIFlock.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\AIFlockComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="include\EculidanMovement.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\EculidanMovementComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

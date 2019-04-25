@@ -2,16 +2,16 @@
 #include <vector>
 #include <string>
 #include <math.h>
-#include "AiBoidComponent.h"
+#include "AiBirdBoidComponent.h"
 
 // =====================================================//
-// ======== AIBirdBoid Functions from Boid.h =========== //
+// ========  Functions from Boid.h =========== //
 // ===================================================== //
 #define w_height window_height
 #define w_width window_width
 #define PI 3.141592635
 
-AIBirdBoid::AIBirdBoid(float x, float y)
+AiBirdBoidComponent::AiBirdBoidComponent(float x, float y)
 {
 	BoidAcceleration = EculidanMovement(0, 0);
 	Boidvelocity = EculidanMovement(rand() % 3 - 2, rand() % 3 - 2);
@@ -21,7 +21,7 @@ AIBirdBoid::AIBirdBoid(float x, float y)
 }
 
 
-AIBirdBoid::AIBirdBoid(float x, float y, bool BirdPredCheck)
+AiBirdBoidComponent::AiBirdBoidComponent(float x, float y, bool BirdPredCheck)
 {
 	Birdpredator = BirdPredCheck;
 	if (BirdPredCheck == true) {
@@ -41,7 +41,7 @@ AIBirdBoid::AIBirdBoid(float x, float y, bool BirdPredCheck)
 
 
 
-void AIBirdBoid::ApplyVectorAcceleration(EculidanMovement Forces)
+void AiBirdBoidComponent::ApplyVectorAcceleration(EculidanMovement Forces)
 {
 	BoidAcceleration.VectorIncrease(Forces);
 }
@@ -51,28 +51,28 @@ void AIBirdBoid::ApplyVectorAcceleration(EculidanMovement Forces)
 
 // Separation
 //The first law that i will be implementing for the boid is seperation.
-EculidanMovement AIBirdBoid::BoidSeparation(vector<AIBirdBoid> boids)
+EculidanMovement AiBoidComponent::BoidSeparation(vector<AIBirdBoid> boids)
 {
-	
+
 	float desiredseparation = 20;//Distance between the speration of boids.
 	EculidanMovement steer(0, 0);
 	int count = 0;//Count 
-	
+
 	for (int i = 0; i < boids.size(); i++)//Check if the boids are not to close as thats the purpose of sepration.
 	{
-		
+
 		float Distance = Boidlocation.DistanceFunction(boids[i].Boidlocation);//Calculate the difference of distance between the boids for seperation.
-		
+
 		if ((Distance > 0) && (Distance < desiredseparation))//If the boids are to close then this if function makes them move from each other. 
 		{
 			EculidanMovement difference(0, 0);
 			difference = difference.subTwoVector(Boidlocation, boids[i].Boidlocation);
 			difference.NormalizeFunction();
-			difference.divScalar(Distance);     
+			difference.divScalar(Distance);
 			steer.VectorIncrease(difference);
 			count++;
 		}
-	
+
 		if ((Distance > 0) && (Distance < desiredseparation) && Birdpredator == true
 			&& boids[i].Birdpredator == true) //If there are two predetors then they are gonna seperate from each other.
 		{
@@ -93,9 +93,9 @@ EculidanMovement AIBirdBoid::BoidSeparation(vector<AIBirdBoid> boids)
 			count++;
 		}
 	}
-	
+
 	if (count > 0)//Looking at accleration where in this if function i go over the accelertaion but looking at,
-		// how the forces and how the maginitude changes as more force happens.
+				  // how the forces and how the maginitude changes as more force happens.
 		steer.divScalar((float)count);
 	if (steer.MagnitudeFunction() > 0) {
 		// Steering = Desired - Velocity
@@ -130,7 +130,7 @@ EculidanMovement AIBirdBoid::BoidAlignment(vector<AIBirdBoid> Boids)
 	//are close to each other.
 	if (count > 0) {
 		sum.divScalar((float)count);//The first sum is used using the average of velocity.
-		//Which divides the sum by the number of boids which are close by.
+									//Which divides the sum by the number of boids which are close by.
 		sum.NormalizeFunction();//fpr the second sum you need to turn the sum into a unit vector to get the second sum to work.
 		sum.divScalar(BoidmaxSpeed);// Then for the third part of the sum you need to mutiply by boid max speed.
 
@@ -182,16 +182,16 @@ EculidanMovement AIBirdBoid::BoidSeek(EculidanMovement vector)
 {
 	EculidanMovement desired;
 	desired.SubVector(vector); //The purpose of the desired sub vector is to point to,
-	// The target this allows the function to normalize and scale the boid to the,
-	//Set maxium speed this is done using a vector.
-						   
+							   // The target this allows the function to normalize and scale the boid to the,
+							   //Set maxium speed this is done using a vector.
+
 	desired.NormalizeFunction();
 	desired.ScalarMultiple(BoidmaxSpeed);//The equation for what steering is, equals desired,
-	//Minus the velocity to find the steering.
-	
+										 //Minus the velocity to find the steering.
+
 	BoidAcceleration.subTwoVector(desired, Boidvelocity);
 	BoidAcceleration.MaxMagnitude(BoidmaxForce);//The purpose of the max force is to be able to set a limit this,
-	//Allows the steering force to have a set into so it can't keep getting faster theres a limit.
+												//Allows the steering force to have a set into so it can't keep getting faster theres a limit.
 	return BoidAcceleration;
 }
 
@@ -202,14 +202,14 @@ EculidanMovement AIBirdBoid::BoidSeek(EculidanMovement vector)
 
 void AIBirdBoid::Boidupdate()
 {
-	
+
 	BoidAcceleration.divScalar(.4);// You have this function to make the slow down not be abrupt as you want it smooth.
 
 	Boidvelocity.VectorIncrease(BoidAcceleration);// Uses the vector to update the velocity.
 
 	Boidvelocity.MaxMagnitude(BoidmaxSpeed);//Limits the boids max speed.
 	Boidlocation.VectorIncrease(Boidvelocity);
-	
+
 	BoidAcceleration.divScalar(0);//The int has been set to 0 for each cycle so when the cycle reaches 0 it resets.
 
 }

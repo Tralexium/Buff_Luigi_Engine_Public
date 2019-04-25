@@ -20,6 +20,8 @@ x86/
 bld/
 [Oo]bj/
 [Ll]og/
+BellfruitGames/Bin/BellfruitGames.exe
+BellfruitGames/Build/
 
 # Visual Studio 2015 cache/options directory
 .vs/

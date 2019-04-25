@@ -67,7 +67,7 @@ public:
 	void sortParticles()
 	{
 		// sort the particles based on their distance from the camera
-		std::sort(&m_particles[0], &m_particles[m_maxParticles], Particle::operator<);
+		//std::sort(&m_particles[0], &m_particles[m_maxParticles], Particle::operator<);
 	}
 
 	int findUnusedParticle() 

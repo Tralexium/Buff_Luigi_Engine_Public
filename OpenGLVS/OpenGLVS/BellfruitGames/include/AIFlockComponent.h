@@ -13,7 +13,7 @@ public:
 	int GetBirdSize();//This int will get the size of the flocks that are needed for the boids.
 	AIBirdBoidComponent GetBirdBoid(int i);
 	void AddAIBoid(AIBirdBoidComponent b);
-	//void AIFlocking();
+	void AIFlocking();
 
 	void OnUpdate(float dt) override
 	{

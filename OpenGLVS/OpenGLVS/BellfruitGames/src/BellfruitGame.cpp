@@ -14,7 +14,7 @@ BellfruitGame::BellfruitGame()
 void BellfruitGame::update(float dt)
 {
 
-	m_currentScene->getFirstPlayerObject()->OnUpdate(dt); // call player 1 update
+	//m_currentScene->getFirstPlayerObject()->OnUpdate(dt); // call player 1 update
 
 	m_currentScene->update(dt); // update current scene
 

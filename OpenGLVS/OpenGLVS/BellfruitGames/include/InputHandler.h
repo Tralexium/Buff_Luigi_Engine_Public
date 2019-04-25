@@ -31,7 +31,14 @@ public:
 class TranslateLeftCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveLeft"); }
+	void execute(GameObject& obj) override
+	{ 
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveLeft");
+		}
+		
+	}
 };
 
 /*!
@@ -41,7 +48,13 @@ public:
 class TranslateRightCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveRight"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveRight");
+		}
+	}
 };
 
 /*!
@@ -51,7 +64,13 @@ public:
 class TranslateForwardsCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveForward"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveForward");
+		}
+	}
 };
 
 /*!
@@ -61,7 +80,13 @@ public:
 class TranslateBackwardsCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveBackward"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveBackward");
+		}
+	}
 };
 
 

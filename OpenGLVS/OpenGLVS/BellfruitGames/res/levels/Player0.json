@@ -1,14 +1,15 @@
 {
-  "GameObjects": 
-  [
+  "GameObjects": [
     {
-      "name": "CossackFull",
-      "pos": [ 0, -2.5, 0 ],
-      "ori": [ 1, 0, 0, 0 ],
-      "CameraPosition": [ 0, -2.5, 0 ],
-      "CameraOrientation": [ 1, 0, 0, 0 ],
-      "sca": [ 0.8, 0.8, 0.8 ],
-      "mass": [0.0]
+      "name": "box2",
+      "model": "box2",
+      "shader": "normalMapShader2",
+      "position": [ 2, 15, 0 ],
+      "colliderposition": [ 2, 15, 0 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ],
+      "mass": [ 1.0 ],
+      "collisionboxsize": [ 0.2, 0.2, 0.2 ]
     }
   ]
 }

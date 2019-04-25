@@ -165,7 +165,10 @@
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="include\PhysicsWorld.h">
-      <Filter>Header Files\Components</Filter>
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DebugDrawPhysics.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="include\ParticleEmitterComponent.h">
       <Filter>Header Files\Components</Filter>
@@ -247,8 +250,14 @@
     <None Include="res\shaders\normalMapShader2.vert">
       <Filter>res\shaders</Filter>
     </None>
+    <None Include="res\shaders\lineShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\lineShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
     <None Include="res\levels\Player0.json">
-      <Filter>res\Players</Filter>
+      <Filter>res\levels</Filter>
     </None>
   </ItemGroup>
 </Project>

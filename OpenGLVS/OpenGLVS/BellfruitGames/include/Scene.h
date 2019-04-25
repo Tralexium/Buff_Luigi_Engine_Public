@@ -15,7 +15,7 @@
 #include "AudioComponent.h"
 
 #include "PhysicsBodyComponent.h"
-
+#include "WindowSettings.h"
 /*!
 \class Scene
 \brief Handles scene logic.
@@ -38,24 +38,23 @@ private:
 	GLSLProgram skyShader; //!< skybox shader.
 	GLSLProgram defaultShader; //!< default shader.
 
-	// ---------- physics bodies ----------------------//
+	// ---------- physics  ----------------------//
 	btTransform m_transform;
-	//btVector3* m_physicsBodyPosition;
-	//btQuaternion* m_transform;
-
 	PhysicsBodyComponent* m_physicsBody;
-
-
-
+	btCollisionObject* l_collisionObject;
+	btRigidBody* l_body;
+	btCollisionObject* l_collisionObjectPlayer;
+	btRigidBody* l_bodyPlayer;
 	
 	// ------------------------------------------------//
 public:
-	
+	WindowSettings& g_window = g_window.getInstance();
 
 	//------------- Shader Components -----------------//
 	ShaderComponent* framebufferShader; // FBO
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
+	ShaderComponent* debugLineShader;
 	// ------------------------------------------------//
 
 
@@ -92,7 +91,7 @@ public:
 
 	void stepPhysicsSimulation();
 
-	
+	void drawCollisionDebugLines();
 
 	
 	// --- ENTRY FOR LOADING OBJECTS --//

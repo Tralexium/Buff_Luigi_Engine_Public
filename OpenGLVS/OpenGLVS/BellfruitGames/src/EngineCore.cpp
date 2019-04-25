@@ -108,8 +108,7 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 		//--------------------------------------------------------------------------------------//
 
 		
-			//Input handler
-			game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
+			
 
 			//Mouse move function
 			mouseCameraView(game, m_window); // see mouse position.
@@ -119,6 +118,9 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 	
 			// Main Render
 			game->render(); 
+
+			//Input handler
+			game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
 
 
 		glfwSwapBuffers(m_window); // Swap buffers	

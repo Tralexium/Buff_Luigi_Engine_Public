@@ -7,7 +7,7 @@
 #include "LinearMath/btQuaternion.h"
 #include "CommonInterfaces/CommonRigidBodyBase.h"
 
-#include "PhysicsBodyComponent.h"
+
 
 #include "DebugDrawPhysics.h"
 
@@ -23,6 +23,7 @@ private:
 
 	DebugDrawPhysics* m_debugDraw;
 
+
 public:
 
 
@@ -35,6 +36,7 @@ public:
 	
 	PhysicsWorld() {
 
+
 		overlappingPairCache = new btDbvtBroadphase(); //btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
 		// ------------ Things needed for initialization -------------------------------------------------------------------------------------------------------------------------------------------------//
 		collisionConfiguration = new btDefaultCollisionConfiguration(); //collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
@@ -42,9 +44,7 @@ public:
 
 		solver = new btSequentialImpulseConstraintSolver; //the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
 		// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
 		m_debugDraw = new DebugDrawPhysics();
-
 
 		m_dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 		//-- Set Gravity of dynamics world --//
@@ -54,7 +54,6 @@ public:
 
 		m_dynamicsWorld->getDebugDrawer()->setDebugMode(2);
 
-		
 
 	};
 

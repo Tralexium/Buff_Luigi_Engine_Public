@@ -38,15 +38,13 @@ private:
 	GLSLProgram skyShader; //!< skybox shader.
 	GLSLProgram defaultShader; //!< default shader.
 
-	// ---------- physics bodies ----------------------//
+	// ---------- physics  ----------------------//
 	btTransform m_transform;
-	//btVector3* m_physicsBodyPosition;
-	//btQuaternion* m_transform;
-
 	PhysicsBodyComponent* m_physicsBody;
-
-
-
+	btCollisionObject* l_collisionObject;
+	btRigidBody* l_body;
+	btCollisionObject* l_collisionObjectPlayer;
+	btRigidBody* l_bodyPlayer;
 	
 	// ------------------------------------------------//
 public:

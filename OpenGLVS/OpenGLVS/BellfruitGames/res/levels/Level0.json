@@ -12,18 +12,17 @@
       "mass": [ 0.0 ],
       "collisionboxsize": [ 11, 1.0, 11 ]
 
-
     },
 
     {
       "name": "box2",
       "model": "box2",
       "shader": "parallaxMapShader",
-      "position": [ 0, -9.3, -8 ],
+      "position": [ 0, 20, -8 ],
       "colliderposition": [ 0, -9.3, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 4, 3, 4 ],
-      "mass": [ 0.0 ],
+      "mass": [ 0.5 ],
       "collisionboxsize": [ 1, 1, 1 ]
     },
 
@@ -31,11 +30,11 @@
       "name": "box2",
       "model": "box2",
       "shader": "normalMapShader2",
-      "position": [ -4, -9.3, -8 ],
+      "position": [ -4, 20, -8 ],
       "colliderposition": [ -4, -9.3, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 4, 3, 4 ],
-      "mass": [ 0.0 ],
+      "mass": [ 0.5 ],
       "collisionboxsize": [ 1, 1, 1 ]
 
     },
@@ -62,99 +61,6 @@
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 1, 1, 1 ],
       "mass": [ 0.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 2, 150, -12 ],
-      "colliderposition": [ 2, 150, -12 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 2, 100, -12 ],
-      "colliderposition": [ 2, 100, -12 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 0, 200, -0 ],
-      "colliderposition": [ 0, 200, -0 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 0, 230, -0 ],
-      "colliderposition": [ 0, 230, -0 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 0, 180, -0 ],
-      "colliderposition": [ 0, 180, -0 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 0, 140, -0 ],
-      "colliderposition": [ 0, 140, -0 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
-
-    },
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "lampShader",
-      "position": [ 0, 280, -0 ],
-      "colliderposition": [ 0, 280, -0 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
       "collisionboxsize": [ 0.25, 0.25, 0.25 ]
 
     }

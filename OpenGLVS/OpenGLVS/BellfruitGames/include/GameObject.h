@@ -12,8 +12,9 @@
 #include <iostream>
 #include <cstdlib>
 #include "Component.h"
-#include "CameraComponent.h"
-#include "TransformComponent.h"
+//#include "CameraComponent.h"
+//#include "TransformComponent.h"
+
 
 #define Deg2Rad 0.01745329252f
 #define Rad2Deg 57.29577f
@@ -57,46 +58,17 @@ public:
 	/*!
 	\param dt, float for delta time.
 	*/
-	void OnUpdate(float dt){}
+	void OnUpdate(float dt) {
+		
+	}
 
 	//! OnMessage Function Override.
 	/*!
 	\param m const string which takes a message from components.
 	*/
-	void OnMessage(const std::string m)
-	{
-		TransformComponent* tc = getComponent<TransformComponent>(); // local pointer variable
-		CameraComponent* cc = getComponent<CameraComponent>(); // local pointer variable
-
-		if (m == "moveLeft")
-		{
-			tc->translate(tc->getOrientation() * glm::vec3((-1.0f *MOVE_SPEED), 0.0f, 0.0f));
-			std::cout << "Input: FP Translate Left " << std::endl;
-		}
-
-		else if (m == "moveRight")
-		{
-			tc->translate(tc->getOrientation() * glm::vec3((1.0f *MOVE_SPEED), 0.0f, 0.0f));
-			std::cout << "Input: FP Translate Right " << std::endl;
-		}
-
-		else if (m == "moveForward")
-		{
-			tc->translate(tc->getOrientation() * glm::vec3(0.0f, 0.0f, (-1.0f * MOVE_SPEED)));
-			std::cout << "Input: FP Translate Forwards " << std::endl;
-		}
-
-		else if (m == "moveBackward")
-		{
-			tc->translate(tc->getOrientation() * glm::vec3(0.0f, 0.0f, (1.0f * MOVE_SPEED)));
-			std::cout << "Input: FP Translate Backwards " << std::endl;
-		}
-
-		glm::quat orientation = tc->getOrientation(); //! local orientation variable
-		glm::vec3 position = tc->getPosition(); //! local position variable
-
-		cc->setPos(position); // sets position
-		cc->setOri(orientation); // sets orientation
+	void OnMessage(const std::string m) {
+	
+		
 	}
 
 	//! Getter for Relative Position.

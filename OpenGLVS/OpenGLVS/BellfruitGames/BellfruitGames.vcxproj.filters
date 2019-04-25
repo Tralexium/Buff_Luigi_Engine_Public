@@ -241,14 +241,14 @@
     <None Include="res\shaders\normalMapShader2.vert">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\levels\Player0.json">
-      <Filter>res\Players</Filter>
-    </None>
     <None Include="res\shaders\lineShader.frag">
       <Filter>res\shaders</Filter>
     </None>
     <None Include="res\shaders\lineShader.vert">
       <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\levels\Player0.json">
+      <Filter>res\levels</Filter>
     </None>
   </ItemGroup>
 </Project>

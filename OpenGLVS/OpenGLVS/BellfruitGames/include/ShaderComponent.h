@@ -18,9 +18,9 @@
 
 using namespace std;
 
-#define CONSTANT 1.0f
+#define CONSTANT 0.8f
 #define LINEAR 0.009f
-#define QUADRATIC 0.032f
+#define QUADRATIC 0.0032f
 
 
 /*!

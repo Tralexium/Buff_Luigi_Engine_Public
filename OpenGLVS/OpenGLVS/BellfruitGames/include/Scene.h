@@ -13,6 +13,7 @@
 #include "SkyBox.h"
 #include "ShaderComponent.h"
 #include "AudioComponent.h"
+#include "UIComponent.h"
 
 #include "PhysicsBodyComponent.h"
 #include "WindowSettings.h"
@@ -30,6 +31,8 @@ private:
 	AudioComponent* m_audio; //!< Audio pointer
 	SkyBox* m_skyboxCube; //!< skybox object pointer.
 	CameraComponent* m_playerCameraComponent; //!< Player component pointer.
+	UIComponent* m_UIMenu;
+
 	ModelManager* m_modelmanager; //!< ModelManager pointer.
 
 	std::vector<GameObject> v_gameObjects; //!< Vector of gameObjects.

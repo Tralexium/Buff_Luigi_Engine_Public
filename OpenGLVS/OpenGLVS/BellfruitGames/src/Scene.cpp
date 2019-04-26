@@ -37,6 +37,11 @@ Scene::Scene()
 	// -- Shader for debug drawing --//
 	debugLineShader = new ShaderComponent("lineShader");
 
+
+	// WANG
+
+	//m_UIMenu = new UIComponent("uiShader");
+
 	// --------------FBO initalisation ------//
 	framebufferShader = new ShaderComponent("frameBuffer"); // Instantiate new framebuffer shader
 	framebufferShader->createQuad(); // 1. create the quad
@@ -380,6 +385,27 @@ void Scene::render(CameraComponent* camera)
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	
+
+
+
+	// ---------------
+
+
+
+
+
+
+	// WANG RENDER AREA
+
+
+
+
+
+
+
+	//--------------
+
+
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture

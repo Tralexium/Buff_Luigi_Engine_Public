@@ -19,7 +19,7 @@ class BellfruitGame
 private:
 
 	Scene* m_currentScene; //!< current scene pointer.
-	
+
 	CameraComponent* m_playerCameraComponent; //!< camera component pointer.
 	InputHandler* m_playerInputHandler;
 	InputHandler* m_inputHandlerFirstObject; //!< Inputhandler pointer for first reel.

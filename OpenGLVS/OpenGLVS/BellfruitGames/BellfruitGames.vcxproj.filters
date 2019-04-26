@@ -100,13 +100,13 @@
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\AiBirdBoidComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AIFlockComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\EculidanMovementComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIFlockComponent.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +267,9 @@
     </None>
     <None Include="res\shaders\lineShader.vert">
       <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\levels\AIObjects.json">
+      <Filter>res\Players</Filter>
     </None>
   </ItemGroup>
 </Project>

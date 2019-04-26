@@ -33,6 +33,7 @@ private:
 	ModelManager* m_modelmanager; //!< ModelManager pointer.
 
 	std::vector<GameObject> v_gameObjects; //!< Vector of gameObjects.
+	std::vector<GameObject> v_BirdObjects;
 	std::vector<GameObject> v_playerCharacterObjects; //!< Vector of player objects.
 
 	GLSLProgram skyShader; //!< skybox shader.
@@ -98,6 +99,12 @@ public:
 	
 	// --- ENTRY FOR LOADING OBJECTS --//
 	bool loadSceneObjects(std::string level);
+
+
+
+	// --- ENTRY FOR LOADING AI --//
+	bool loadAiBirds(std::string level);
+
 
 	// --- ENTRY FOR LOADING PLAYER  --//
 	bool loadPlayerObjects(std::string player);

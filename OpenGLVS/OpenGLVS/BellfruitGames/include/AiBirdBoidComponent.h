@@ -1,6 +1,6 @@
 #include "Component.h"
 #include <iostream>
-
+#include "WindowSettings.h"
 #include "EculidanMovementComponent.h"
 #include <vector>
 #include <stdlib.h>
@@ -13,6 +13,7 @@
 
 class AIBirdBoidComponent : public Component {
 public:
+	WindowSettings & g_window = g_window.getInstance(); // Global instance
 	bool Birdpredator;
 	EculidanMovementComponent Boidlocation;// This vector allows me to find a boids location for the flock,
 	EculidanMovementComponent Boidvelocity;// This vector allows me to find a boids velocity for the flock,

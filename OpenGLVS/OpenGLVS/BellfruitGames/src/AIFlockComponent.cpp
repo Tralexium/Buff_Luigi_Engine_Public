@@ -29,6 +29,7 @@ AIBirdBoidComponent AIFlockComponent::GetBirdBoid(int i)
 
 void AIFlockComponent::AIFlocking()
 {
+
 	for (int i = 0; i < BirdFlock.size(); i++)
 		BirdFlock[i].Boidrun(BirdFlock);//Then runs thorugh the bird boid class to be able to,
 }

@@ -1,0 +1,20 @@
+{
+  "GameObjects": [
+    {
+      "name": "box2",
+      "model": "box2",
+      "shader": "lampShader",
+      "position": [ 0, 15, -0 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ]
+     },
+    {
+      "name": "box2",
+      "model": "box2",
+      "shader": "lampShader",
+      "position": [ 0, 10, -0 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ]
+    }
+  ]
+}

@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4CAE621A-4E36-4118-9F4B-B70DC7A7DDDA}</ProjectGuid>
     <RootNamespace>BellfruitGames</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -94,7 +94,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)/../../External Resources/GLFW/lib-vc2015;$(SolutionDir)/BellfruitGames/include/lib/x86;$(SolutionDir)/BellfruitGames/include/bulletbuild/lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-d.lib;fmod_vc.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-d.lib;fmod_vc.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;freetype281d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -152,6 +152,7 @@
     <ClCompile Include="src\ShaderComponent.cpp" />
     <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\stb_image.c" />
+    <ClCompile Include="src\UIComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AudioComponent.h" />
@@ -181,9 +182,14 @@
   <ItemGroup>
     <None Include="res\configs\keyconfig.json" />
     <None Include="res\levels\Level0.json" />
+    <None Include="res\levels\Menu0.json" />
     <None Include="res\levels\Player0.json" />
+    <None Include="res\shaders\defaultShader.frag" />
+    <None Include="res\shaders\defaultShader.vert" />
     <None Include="res\shaders\depthBufferShader.frag" />
     <None Include="res\shaders\depthBufferShader.vert" />
+    <None Include="res\shaders\fontShader.frag" />
+    <None Include="res\shaders\fontShader.vert" />
     <None Include="res\shaders\framebuffer.frag" />
     <None Include="res\shaders\framebuffer.vert" />
     <None Include="res\shaders\framebufferScreen.frag" />

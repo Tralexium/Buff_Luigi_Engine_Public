@@ -1,0 +1,29 @@
+{
+  "GameObjects": [
+    {
+      "name": "startbutton",
+      "model": "startbutton",
+      "shader": "defaultShader",
+      "position": [ 0, 0, 0 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ]
+    },
+    {
+      "name": "optionbutton",
+      "model": "optionbutton",
+      "shader": "defaultShader",
+      "position": [ 0, 0, 0 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ]
+    },
+    {
+      "name": "exitbutton",
+      "model": "exitbutton",
+      "shader": "defaultShader",
+      "position": [ 0, 0, 0 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ]
+    }
+
+  ]
+}

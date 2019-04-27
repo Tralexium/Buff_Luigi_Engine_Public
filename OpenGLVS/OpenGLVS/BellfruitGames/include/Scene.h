@@ -13,9 +13,13 @@
 #include "SkyBox.h"
 #include "ShaderComponent.h"
 #include "AudioComponent.h"
-#include "UIComponent.h"
+
 
 #include "PhysicsBodyComponent.h"
+
+
+#include "UIComponent.h"
+
 #include "WindowSettings.h"
 /*!
 \class Scene
@@ -31,12 +35,12 @@ private:
 	AudioComponent* m_audio; //!< Audio pointer
 	SkyBox* m_skyboxCube; //!< skybox object pointer.
 	CameraComponent* m_playerCameraComponent; //!< Player component pointer.
-	UIComponent* m_UIMenu;
-
+	UIComponent* m_UIComponent;
 	ModelManager* m_modelmanager; //!< ModelManager pointer.
 
 	std::vector<GameObject> v_gameObjects; //!< Vector of gameObjects.
 	std::vector<GameObject> v_playerCharacterObjects; //!< Vector of player objects.
+	std::vector<GameObject> v_menuObjects;
 
 	GLSLProgram skyShader; //!< skybox shader.
 	GLSLProgram defaultShader; //!< default shader.
@@ -53,11 +57,17 @@ private:
 public:
 	WindowSettings& g_window = g_window.getInstance();
 
+	GLuint menuShaderProgram;
+	GLuint shaderProgram;
+	GLuint fontShaderProgram;
 	//------------- Shader Components -----------------//
 	ShaderComponent* framebufferShader; // FBO
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
+	ShaderComponent* menuShaderptr;
 	ShaderComponent* debugLineShader;
+	ShaderComponent* fontShader;
+	
 	// ------------------------------------------------//
 
 
@@ -99,6 +109,12 @@ public:
 	
 	// --- ENTRY FOR LOADING OBJECTS --//
 	bool loadSceneObjects(std::string level);
+
+	// --- ENTRY FOR LOADING OBJECTS --//
+	bool loadMenuObjects(std::string level);
+
+	void updateMenubuttons();
+
 
 	// --- ENTRY FOR LOADING PLAYER  --//
 	bool loadPlayerObjects(std::string player);

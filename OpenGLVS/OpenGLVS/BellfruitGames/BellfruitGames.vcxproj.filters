@@ -58,12 +58,6 @@
     <Filter Include="Source Files\Renders">
       <UniqueIdentifier>{922ec07d-9248-4864-a195-b232600a717e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Scenes">
-      <UniqueIdentifier>{78e06781-1f7f-42b2-a180-a28cd0aa68c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes">
-      <UniqueIdentifier>{2be8fde0-9dfd-4537-95c2-86cdc8103df9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -90,6 +84,9 @@
     <ClCompile Include="src\BellfruitGame.cpp">
       <Filter>Source Files\Renders</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
     <ClCompile Include="src\SkyBox.cpp">
       <Filter>Source Files\Renders</Filter>
     </ClCompile>
@@ -102,8 +99,8 @@
     <ClCompile Include="src\EngineCore.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+    <ClCompile Include="src\UIComponent.cpp">
+      <Filter>Source Files\Renders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +149,9 @@
     <ClInclude Include="include\AudioComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="include\Scene.h">
+      <Filter>Header Files\Renders</Filter>
+    </ClInclude>
     <ClInclude Include="include\ShaderComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -172,9 +172,6 @@
     </ClInclude>
     <ClInclude Include="include\UIComponent.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Scene.h">
-      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +255,21 @@
     </None>
     <None Include="res\levels\Player0.json">
       <Filter>res\levels</Filter>
+    </None>
+    <None Include="res\shaders\fontShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\fontShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\levels\Menu0.json">
+      <Filter>res\levels</Filter>
+    </None>
+    <None Include="res\shaders\defaultShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\defaultShader.vert">
+      <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

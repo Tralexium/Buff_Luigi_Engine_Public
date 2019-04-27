@@ -2,7 +2,7 @@
 /*!
 \file Shader.h
 */
-
+#include <map>
 #include <glad/glad.h>
 #include <iostream>
 #include <string>
@@ -10,6 +10,10 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+
+
+
+
 #include "Component.h"
 #include "CameraComponent.h"
 #include "WindowSettings.h"
@@ -30,6 +34,7 @@ using namespace std;
 class ShaderComponent : public Component
 {
 private:
+	
 	
 	unsigned int rbo; //!< Rendering Buffer Object
 	unsigned int textureColorBufferMultiSampled; //!< Texture Color Buffer Object.
@@ -72,12 +77,12 @@ public:
 
 	GLuint shaderProgram; //!< shader program id.
 	
-	//! Shader class Constructor.
-	/*!
-	\brief initialisation and creatino of shader.
-	\param shadername string that contains the name of the shader.
-	*/
+	
+
 	ShaderComponent(std::string shadername);
+
+
+
 
 	//! Use Shader function.
 	/*!
@@ -85,11 +90,22 @@ public:
 	*/
 	void use();
 
+	
+
+
+
+
 	//! Set uniforms function.
 	/*!
 	\brief to set or alter different uniforms in the shader program.
 	*/
 	void setUniforms(const CameraComponent* cam);
+
+	//! Set uniforms function.
+	/*!
+	\brief to set or alter different uniforms in the shader program.
+	*/
+	void setUniformsOrtho(const CameraComponent* cam);
 
 	//! Set fbo screen texture function.
 	/*!
@@ -101,6 +117,8 @@ public:
 	\brief updates game logic.
 	*/
 	void setfboTexture();
+
+	
 
 	void createFBO();
 
@@ -115,6 +133,12 @@ public:
 	void blitFBO();
 
 
+
+	//GLuint m_fontShaderProgram;
+
+	
+
+	
 
 	//! Overridden Update function.
 	/*!

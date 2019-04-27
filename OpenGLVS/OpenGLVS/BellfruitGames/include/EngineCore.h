@@ -15,7 +15,7 @@
 #include "CameraComponent.h"
 #include "BellfruitGame.h"
 
-
+#include "UIComponent.h"
 /*!
 \class EngineCore
 \brief handles all core related tasks such OpenGL instructions and running main game loop.
@@ -66,13 +66,13 @@ private:
 public:
 
 	static EngineCore * Instance();
-
-
-	
-
 	static std::vector<bool> m_keyBuffer; //!< key buffer.
+
+	UIComponent* m_UIComponent;
+	ShaderComponent* fontShader;
+
 	GLuint m_defaultSP; //!< GLuint default shader.
-	GLuint programHandle; //!< Program handle.
+	GLuint programHandle; //!< Program handle.#
 
 	int width, height; //!< int height variables.
 	static const int m_keyBufferSize = 400; //!< key buffer size.
@@ -90,6 +90,7 @@ public:
 	unsigned int screenTexture;
 
 
+	
 	
 	
 	//! Initializes window.
@@ -145,6 +146,11 @@ public:
 	\param h height of screen
 	*/
 	void resize(CameraComponent* camera, int w, int h);
+
+
+	
+
+	void setupDefaultFont();
 
 	//! Virtual Destructor.
 	/*!

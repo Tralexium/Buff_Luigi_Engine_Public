@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -9,6 +10,8 @@
 
 #include "EngineCore.h"
 #include "WindowSettings.h"
+
+#include "ShaderComponent.h"
 
 // ------------------- DEFINITION MACROS -------------------------------------------//
 #define MOVE_VELOCITY 0.01f // macro for velocity multiplier
@@ -67,14 +70,21 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 	glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 	glfwSetKeyCallback(m_window, keyCallbackEvent);
 
+	
+	//m_UIComponent = new UIComponent("fontShader");
+	//m_UIComponent->use();
+
+
 	m_keyBuffer.resize(m_keyBufferSize); // make space for the keybuffer
 	std::fill(m_keyBuffer.begin(), m_keyBuffer.end(), false);
 	// enable depth test
-	glEnable(GL_DEPTH_TEST);
-
+	
 	// enable alpha transparency
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	/*glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);*/
+	// enable alpha transparency
+	/*glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);*/
 	return true;
 }
 
@@ -108,24 +118,26 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 		//--------------------------------------------------------------------------------------//
 
 		
-			
 
-			//Mouse move function
-			mouseCameraView(game, m_window); // see mouse position.
+		//Mouse move function
+		mouseCameraView(game, m_window); // see mouse position.
 
-			// Main Update
-			game->update(0.1f); // Main Game,  60 Fps Limited Update function
+		// Main Update
+		game->update(l_limitFPS); // Main Game,  60 Fps Limited Update function
 	
-			// Main Render
-			game->render(); 
+		
+		// Main Render
+		game->render(); 
 
-			//Input handler
-			game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
+		
+		
+		//Input handler
+		game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
 
 
 		glfwSwapBuffers(m_window); // Swap buffers	
 
-		glfwSwapInterval(0); // Enable or Disable Vsync for reduced screentearing!(does cost about double in render performance)
+		//glfwSwapInterval(0); // Enable or Disable Vsync for reduced screentearing!(does cost about double in render performance)
 
 		glfwPollEvents(); // poll for events
 	}
@@ -252,6 +264,9 @@ void EngineCore::resize(CameraComponent* camera, int w, int h)
 	height = h;
 	//camera.setAspectRatio((float)w / h);
 }
+
+
+
 
 EngineCore::~EngineCore()
 {

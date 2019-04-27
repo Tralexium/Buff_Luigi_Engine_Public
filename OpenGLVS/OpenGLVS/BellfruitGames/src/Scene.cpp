@@ -34,27 +34,40 @@ Scene::Scene()
 	enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
 	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
 	
+	
+	//m_UIComponent->use();
+	//m_UIComponent->setTextTexture();
+	//m_UIComponent->setupDefaultFont();
+
 	// -- Shader for debug drawing --//
 	debugLineShader = new ShaderComponent("lineShader");
 
+	
 
-	// WANG
-
-	//m_UIMenu = new UIComponent("uiShader");
+	//m_UIComponent = new UIComponent("fontShader");
+	//m_UIComponent->setupFont();
 
 	// --------------FBO initalisation ------//
 	framebufferShader = new ShaderComponent("frameBuffer"); // Instantiate new framebuffer shader
+	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferShader->createQuad(); // 1. create the quad
+	
+
 	framebufferShader->use(); // 2. use the framebuffer
 	framebufferShader->setfboTexture(); // 3.  set the texture
 
+	
+
 	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //  Instantiate new screen framebuffer shader for PP -> for postprocessing
-	framebufferShader->createFBO(); // 3.  create fbos
+	
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
+
+	
 	
 	//---------------- Initialisation for model loading START---------------//
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
+	loadMenuObjects(levelLoadingfilePath + "Menu0" + levelLoadingfileName);
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
 	// --------------------- Setting player camera pointer----------------//
@@ -63,8 +76,91 @@ Scene::Scene()
 	// --------------------- Audio stuff --------------------------------//
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
+	
+	
+	
+
+	
 }
 
+
+// WANG
+bool Scene::loadMenuObjects(std::string level)
+{
+
+	std::fstream jsonData;
+	Json::Value root;
+	Json::Reader reader;
+	jsonData.open(level.c_str());
+
+	// check for errors
+	if (!reader.parse(jsonData, root))
+	{
+		std::cout << "Failed to parse data from: "
+			<< level
+			<< reader.getFormattedErrorMessages();
+		return false;
+	}
+
+	const Json::Value gameObjects = root["GameObjects"];
+
+	v_menuObjects.resize(gameObjects.size());
+
+	// size() tells us how large the array is
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		//----> name in json file <----//
+		std::cout << gameObjects[i]["name"].asString() << " loaded\n";
+
+		//----> the ACTUAL modelname in json <------//
+		std::string modelName = gameObjects[i]["model"].asString();
+
+		//----> the ACTUAL modelname in json <------//
+		std::string shaderName = gameObjects[i]["shader"].asString();
+
+		//----> the values pos or scale in json <------//
+		float x, y, z, w;
+		// get the position node
+		const Json::Value posNode = gameObjects[i]["position"];
+		x = posNode[0].asFloat(); // get float
+		y = posNode[1].asFloat();
+		z = posNode[2].asFloat();
+		glm::vec3 pos(x, y, z);
+
+		const Json::Value oriNode = gameObjects[i]["orientation"];
+		x = oriNode[0].asFloat(); // get float
+		y = oriNode[1].asFloat();
+		z = oriNode[2].asFloat();
+		w = oriNode[3].asFloat();
+		glm::quat ori(x, y, z, w);
+
+		const Json::Value scaNode = gameObjects[i]["scale"];
+		x = scaNode[0].asFloat(); // get float
+		y = scaNode[1].asFloat();
+		z = scaNode[2].asFloat();
+		glm::vec3 sca(x, y, z);
+
+	
+
+		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
+
+		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
+
+		// Because we do v_gameObjects[i] and not a specific one, this will set the components to all objects
+		// that this loop goes through, which is every object in the JSON file 
+
+		// All game objects wnats to have these different things such as shaders, models, transforms wants to have a shader, a model
+		v_menuObjects[i].addComponent(new ShaderComponent(shaderName));
+		v_menuObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
+		v_menuObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
+		
+
+
+
+	}
+	return true;
+
+}
 // Main Object Loading Function, handled in Level0.json
 bool Scene::loadSceneObjects(std::string level)
 {
@@ -342,6 +438,29 @@ void Scene::drawCollisionDebugLines() {
 	physicsWorld.drawWorld(); // draw the world
 }
 
+void Scene::updateMenubuttons() { // WANG
+
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	glm::vec3 l_camerapos;
+
+	float l_buttonOneOffset = -0.6f;
+	float l_buttonTwoOffset = -0.2f;
+	float l_buttonThreeOffset = 0.2f;
+	for (int j = 0; j < v_playerCharacterObjects.size(); j++)
+	{
+		l_camerapos = v_playerCharacterObjects[j].getComponent<CameraComponent>()->getPos();
+	}
+	for (int i = 0; i < v_menuObjects.size(); i++)
+	{
+
+
+		v_menuObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonOneOffset, l_camerapos.z - 2));
+		v_menuObjects[1].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonTwoOffset, l_camerapos.z - 2));
+		v_menuObjects[2].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonThreeOffset, l_camerapos.z - 2));
+		//v_menuObjects[i].getComponent<TransformComponent>()->setOri(glm::quat(l_quat));
+	}
+
+}
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)
 void Scene::update(float dt)
 {
@@ -351,9 +470,7 @@ void Scene::update(float dt)
 
 	//m_audio->playSound(); 
 
-	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
-
+	updateMenubuttons(); // WANG
 
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -366,74 +483,74 @@ void Scene::update(float dt)
 
 void Scene::render(CameraComponent* camera)
 {
+	
+	
 	//------------ BINDING FBO BEFORE RENDERING ANYTHING ---------------------------------------------------------------------------------------------------------------------//
 	// Here we bind the framebuffer before we do any rendering, this renders everything into the FBO,
 	// So we can then do the shader rendering step with everything getting rendered directly from the FBO.
 	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
-
+	
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
 	drawCollisionDebugLines();
 	// ------------------------------------------------------//
-
-
+	
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyShader.use();  //! Use skybox shader. 
 	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
 	m_skyboxCube->render(); //!Render Skyshader
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	
 	
 
-
-
-	// ---------------
-
-
-
-
-
-
-	// WANG RENDER AREA
-
-
-
-
-
-
-
-	//--------------
-
-
-
-	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
+	// ------------------------ Shader Rendering ------------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
 	// which is then used to put that texture onto a Quad shape, that Quad shape is then rendering the entire scene as a 800x600 texture
 	// or whichever dimension we set it to be in the WindowSettings.h singleton class.
 	for (int i = 0; i < v_gameObjects.size(); i++)
 	{
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
-		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+		shaderProgram = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
 		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+		enginecore->drawModel(shaderProgram, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+
+		
 	}
 
 	
+	// WANG 
+	for (int j = 0; j < v_menuObjects.size(); j++)
+	{
+		Model* menuModel = v_menuObjects[j].getComponent<ModelComponent>()->getModel(); // pointer to the other models
+		menuShaderProgram = v_menuObjects[j].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+		menuShaderptr = v_menuObjects[j].getComponent<ShaderComponent>();
+		menuShaderptr->use(); // -> Step 2. use shaders specified in loader.
 
+		menuShaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
+		glm::mat4 l_modelMatrix = v_menuObjects[j].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
+		enginecore->drawModel(menuShaderProgram, menuModel, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+
+
+	}
+
+	
+	//m_UIComponent->renderText("HELLO", 10.0f, 10.0f, 100.0f, glm::vec3(1.0f, 1.0f, 0.0f));
+	
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
-
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
 	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
+	
 
-	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	
+	
+	
 
 }
 

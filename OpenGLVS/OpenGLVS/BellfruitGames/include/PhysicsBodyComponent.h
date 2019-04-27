@@ -120,17 +120,13 @@ public:
 			
 			std::cout << "V'nster" << std::endl;
 			
-			////tc->translate(tc->getOrientation() * glm::vec3((-1.0f *MOVE_SPEED), 0.0f, 0.0f));
-			////std::cout << "Input: FP Translate Left " << std::endl;
-			////thisRigidBody->applyForce(btVector3(-100, 0, 0), btVector3(0, 0, 0));
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(-10, 0, 0), btVector3(0, 0, 0));
 		}
 
 		else if (m == "moveRight")
 		{
-			//tc->translate(tc->getOrientation() * glm::vec3((1.0f *MOVE_SPEED), 0.0f, 0.0f));
-			//std::cout << "Input: FP Translate Right " << std::endl;
+	
 			std::cout << "Hoger" << std::endl;
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
@@ -138,18 +134,14 @@ public:
 
 		else if (m == "moveForward")
 		{
-			//tc->translate(tc->getOrientation() * glm::vec3(0.0f, 0.0f, (-1.0f * MOVE_SPEED)));
-			//std::cout << "Input: FP Translate Forwards " << std::endl;
-			//physicsworld.getl_bodyPlayer()->applyForce(btVector3(0, 0, 100), btVector3(0, 0, 0));
+
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, -10), btVector3(0, 0, 0));
 		}
 
 		else if (m == "moveBackward")
 		{
-			//tc->translate(tc->getOrientation() * glm::vec3(0.0f, 0.0f, (1.0f * MOVE_SPEED)));
-			//std::cout << "Input: FP Translate Backwards " << std::endl;
-			//physicsworld.getl_bodyPlayer()->applyForce(btVector3(0, 0, -100), btVector3(0, 0, 0));
+
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
 		}

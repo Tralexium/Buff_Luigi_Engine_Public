@@ -83,11 +83,13 @@ void ShaderComponent::use() // loading some default shaders to get things up and
 	glUseProgram(shaderProgram);// set the default shader
 }
 
-void ShaderComponent::setfboScreenTexture() {
+void ShaderComponent::setfboScreenTexture() 
+{
 	glUniform1i(glGetUniformLocation(shaderProgram, "screenTexture"), 0);
 }
 
-void ShaderComponent::setfboTexture() {
+void ShaderComponent::setfboTexture() 
+{
 	glUniform1i(glGetUniformLocation(shaderProgram, "texture1_diffuse"), 0);
 }
 
@@ -105,7 +107,6 @@ void ShaderComponent::createQuad()
 	   -1.0f,  1.0f,  0.0f, 1.0f,
 		1.0f, -1.0f,  1.0f, 0.0f,
 		1.0f,  1.0f,  1.0f, 1.0f
-
 	};
 
 	// screen quad VAO
@@ -222,7 +223,6 @@ void ShaderComponent::setUniforms(const CameraComponent * cam)
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightPos"), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(glGetUniformLocation(shaderProgram, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z);
-	//glUniform3f(glGetUniformLocation(shaderProgram, "lightPosView"), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3fv(glGetUniformLocation(shaderProgram, "viewPos"), 0, glm::value_ptr(cam->getPos()));
 
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.ambient"), ambient.x, ambient.y, ambient.z);

@@ -16,12 +16,10 @@
 
 #include "Conversions.h"
 #include "EngineCore.h"
+#include "MouseSettings.h"
 
-
-
+// Global instances
 EngineCore* enginecore = enginecore->Instance();
-
-
 PhysicsWorld& physicsWorld = physicsWorld.getInstance();
 
 
@@ -148,8 +146,6 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
 
-
-
 	}
 	return true;
 
@@ -158,7 +154,6 @@ bool Scene::loadSceneObjects(std::string level)
 // Main Player loading function, handled in Player0.json
 bool Scene::loadPlayerObjects(std::string player)
 {
-
 	std::fstream jsonData;
 	Json::Value root;
 	Json::Reader reader;
@@ -176,7 +171,6 @@ bool Scene::loadPlayerObjects(std::string player)
 
 	v_playerCharacterObjects.resize(gameObjects.size());
 
-	
 	// size() tells us how large the array is
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
@@ -197,7 +191,6 @@ bool Scene::loadPlayerObjects(std::string player)
 		y = posNode[1].asFloat();
 		z = posNode[2].asFloat();
 		glm::vec3 pos(x, y, z);
-
 
 		// get the position node
 		const Json::Value colliderPosNode = gameObjects[i]["colliderposition"];
@@ -276,16 +269,14 @@ void Scene::stepPhysicsSimulation() {
 
 			////Trying to make a small offset for where the ground gets drawn compared to the collider (not good implementation, only testing)
 			//v_gameObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3((float)physicsWorld.m_transform.getOrigin().getX(),
-			//	(float)physicsWorld.m_transform.getOrigin().getY(),
-			//	(float)physicsWorld.m_transform.getOrigin().getZ()));
-		}
-	
-		else
+			
+		}else
 		{
 			physicsWorld.m_transform = l_collisionObject->getWorldTransform();
 		}
-		
 		//printf("world pos object %d = %f,%f,%f\n", j, float(physicsWorld.m_transform.getOrigin().getX()), float(physicsWorld.m_transform.getOrigin().getY()), float(physicsWorld.m_transform.getOrigin().getZ()));
+		
+		
 	}
 
 	// -- IMPORTANT INFO ABOUT THIS SPECIFIC BLOCK OF CODE
@@ -319,6 +310,23 @@ void Scene::stepPhysicsSimulation() {
 	{
 		physicsWorld.m_transform = l_collisionObjectPlayer->getWorldTransform();
 	}
+
+	// TODO
+	// ATTEMPTING TO CAST RAYS FROM MOUSE
+	glm::mat4 proj = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getProjectionMatrix();
+	glm::mat4 view = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getViewMatrix();
+	glm::mat4 model = v_playerCharacterObjects[0].getComponent<TransformComponent>()->getModelMatrix();
+	double l_mouseXpos, l_mouseYpos;
+	glfwGetCursorPos(enginecore->getWindow(), &l_mouseXpos, &l_mouseYpos);
+
+	// CAST RAY FUNCTION 
+	physicsWorld.castRays(mouseToWorldPos
+	(
+		l_mouseXpos, l_mouseYpos, g_window.getScreenWidth(),
+		g_window.getScreenHeight(), proj, view, model
+	));
+
+	//cout << mouseXpos << mouseYpos << endl;
 		
 }
 
@@ -331,31 +339,21 @@ void Scene::drawCollisionDebugLines() {
 
 		debugLineShader->use(); // Use debug shader
 		debugLineShader->setUniforms(m_playerCameraComponent); // set uniforms
-
 	}
-
 	physicsWorld.drawWorld(); // draw the world
 }
 
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)
 void Scene::update(float dt)
 {
-
-
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
-
 	//m_audio->playSound(); 
-
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
-
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
-
 	stepPhysicsSimulation();
-
 	// --------------------------------------------------------------------------------------------------------------------
-
 }
 
 
@@ -367,11 +365,9 @@ void Scene::render(CameraComponent* camera)
 	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
 	drawCollisionDebugLines();
 	// ------------------------------------------------------//
-
 
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyShader.use();  //! Use skybox shader. 
@@ -380,7 +376,6 @@ void Scene::render(CameraComponent* camera)
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	
-
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
 	// which is then used to put that texture onto a Quad shape, that Quad shape is then rendering the entire scene as a 800x600 texture
@@ -396,8 +391,6 @@ void Scene::render(CameraComponent* camera)
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 	}
-
-	
 
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo

@@ -9,19 +9,25 @@
 
 #include "EngineCore.h"
 #include "WindowSettings.h"
+#include "MouseSettings.h"
+
 
 // ------------------- DEFINITION MACROS -------------------------------------------//
 #define MOVE_VELOCITY 0.01f // macro for velocity multiplier
 #define ROTATE_VELOCITY 0.001f // macro for rotate velocity multiplier
 //----------------------------------------------------------------------------------//
 
-// ------------------- GLOBAL VARIABLES --------------------------------------------//
-std::vector<bool> EngineCore::m_keyBuffer; // Global key buffer variable.
-double previousMousePosX, previousMousePosY, currentMousePosX, currentMousePosY; // Global mouse positions for calculating delta position.
+
 
 EngineCore* EngineCore::m_pInstance = nullptr; // Initialize enginecore instance to null.
 
+// ------------------- GLOBAL VARIABLES --------------------------------------------//
 WindowSettings& g_window = g_window.getInstance();
+MouseSettings& g_mouse = g_mouse.getInstance();
+
+
+std::vector<bool> EngineCore::m_keyBuffer; // Global key buffer variable.
+double previousMousePosX, previousMousePosY, currentMousePosX, currentMousePosY; // Global mouse positions for calculating delta position.
 //---------------------------------------------------------------------------------//
 
 
@@ -177,18 +183,18 @@ void EngineCore::framebuffer_size_callback(GLFWwindow * window, int width, int h
 
 void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 {
-	
+
 	// ------------------ Local Variables -----------------------------------------------------------------------------------------------------------------//
 	TransformComponent* pTransform = game->getcurrentScene()->getFirstPlayerObject()->getComponent<TransformComponent>(); // pointer to relevant transform.
 	CameraComponent* pCamera = game->getcurrentScene()->getFirstPlayerObject()->getComponent<CameraComponent>(); // pointer to camera.
-	
+
 	glm::quat orientation = pTransform->getOrientation();
 	glm::vec3 position = pTransform->getPosition();
 	glm::vec3 relativePosition = game->getcurrentScene()->getFirstPlayerObject()->getRelativePos();
 
-	glfwGetCursorPos(window, &currentMousePosX, &currentMousePosY); //! Built int glfw get cursor pos function.
-	float deltaxPos = (float)(previousMousePosX - currentMousePosX); //! delta x mouse pos
-	float deltayPos = (float)(previousMousePosY - currentMousePosY); //! delta y mouse pos
+	glfwGetCursorPos(window, &g_mouse.m_currentMouseXpos, &g_mouse.m_currentMouseYpos); //! Built int glfw get cursor pos function.
+	float deltaxPos = (float)(g_mouse.m_previousMouseXpos - g_mouse.m_currentMouseXpos); //! delta x mouse pos
+	float deltayPos = (float)(g_mouse.m_previousMouseYpos - g_mouse.m_currentMouseYpos); //! delta y mouse pos
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
@@ -201,8 +207,8 @@ void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 		pCamera->setOri(orientation); // sets orientation of camera while we move x and y.
 	}
 
-	previousMousePosX = currentMousePosX; //stores mouse pos x
-	previousMousePosY = currentMousePosY;  //stores mouse pos y
+	g_mouse.m_previousMouseXpos = g_mouse.m_currentMouseXpos; //stores mouse pos x
+	g_mouse.m_previousMouseYpos = g_mouse.m_currentMouseYpos;  //stores mouse pos y
 	//---------------------------------------------------------------------------------------------------------------------------------------------------//
 }
 

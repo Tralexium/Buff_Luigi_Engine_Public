@@ -10,6 +10,7 @@
 
 
 #include "DebugDrawPhysics.h"
+#include "Conversions.h"
 
 class PhysicsWorld
 {
@@ -58,6 +59,47 @@ public:
 	};
 
 	DebugDrawPhysics* getPhysicsWorldDebugDrawer() { return m_debugDraw; }
+
+
+	// TODO
+	// TODO
+	// TODO we meed mouse based ray casts.
+	void castRays(glm::vec3 ray) {
+
+		btTransform tr = m_dynamicsWorld->getCollisionObjectArray()[m_dynamicsWorld->getNumCollisionObjects() - 1]->getWorldTransform();
+
+		if (m_dynamicsWorld)
+		{
+			m_dynamicsWorld->updateAabbs();
+			m_dynamicsWorld->computeOverlappingPairs();
+
+			btVector3 red(1, 0, 0);
+			btVector3 blue(0, 0, 1);
+
+			//TODO TRY FIX THIS FROM MOUSE
+			//btVector3 btFromMouse(viewToWorldCoord())
+			btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
+			btVector3 btTo(tr.getOrigin().getX(), tr.getOrigin().getY(), -(tr.getOrigin().getZ() + 5000));
+
+
+
+			btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
+
+			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
+
+			m_dynamicsWorld->rayTest(btFrom, btTo, res); // m_btWorld is btDiscreteDynamicsWorld
+
+			if (res.hasHit()) // Debug in console for having hit 
+			{
+				printf("Collision at: <%.2f, %.2f, %.2f>\n", res.m_hitPointWorld.getX(), res.m_hitPointWorld.getY(), res.m_hitPointWorld.getZ());
+			}
+
+			if (res.hasHit()) // Debug as drawing line (doesnt work..)
+			{
+				m_debugDraw->drawLine(btFrom, btTo, red);
+			}
+		}
+	}
 
 	void drawWorld() {
 	

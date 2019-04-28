@@ -16,6 +16,9 @@
 #include "BellfruitGame.h"
 
 #include "UIComponent.h"
+
+
+
 /*!
 \class EngineCore
 \brief handles all core related tasks such OpenGL instructions and running main game loop.
@@ -25,7 +28,7 @@ class EngineCore
 private:
 
 	
-
+	
 
 	EngineCore() {};  // Private so that it can  not be called
 
@@ -36,6 +39,7 @@ private:
 	static EngineCore* m_pInstance;
 
 
+	
 
 	//! frame buffer size callback for resizing window.
 	/*!
@@ -65,11 +69,12 @@ private:
 
 public:
 
+	
+
 	static EngineCore * Instance();
 	static std::vector<bool> m_keyBuffer; //!< key buffer.
 
-	UIComponent* m_UIComponent;
-	ShaderComponent* fontShader;
+	
 
 	GLuint m_defaultSP; //!< GLuint default shader.
 	GLuint programHandle; //!< Program handle.#
@@ -88,7 +93,6 @@ public:
 	unsigned int quadVAO, quadVBO; //!< Quad vertex array object, and vertex buffer object.
 	unsigned int msFBO, intermediateFBO; //!< Frame buffer object. (FBO)
 	unsigned int screenTexture;
-
 
 	
 	
@@ -150,7 +154,7 @@ public:
 
 	
 
-	void setupDefaultFont();
+	
 
 	//! Virtual Destructor.
 	/*!

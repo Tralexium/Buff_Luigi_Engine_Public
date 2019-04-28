@@ -23,6 +23,7 @@ private:
 	
 	CameraComponent* m_playerCameraComponent; //!< camera component pointer.
 	InputHandler* m_playerInputHandler;
+	InputHandler* m_menuInputHandler;
 	InputHandler* m_inputHandlerFirstObject; //!< Inputhandler pointer for first reel.
 
 public:
@@ -50,13 +51,19 @@ public:
 	*/
 	void render();
 	
-	//! Getter function for first reel.
+	//! Getter function for player
 	/*!
 	\brief gets the pointer to the first reel.
 	*/
 	InputHandler* getPlayerInputHandler() { return m_playerInputHandler; }
+
+	//! Getter function for menu object
+	/*!
+	\brief gets the pointer to the first reel.
+	*/
+	InputHandler* getMenuInputHandler() { return m_menuInputHandler; }
 	
-	//! Getter function for first reel.
+	//! Getter function for first object
 	/*!
 	\brief gets the pointer to the first reel.
 	*/

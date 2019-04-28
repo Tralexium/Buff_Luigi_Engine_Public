@@ -128,6 +128,7 @@ public:
 
 	// -----Random getter functions ---------------------------------------------//
 	GameObject* getFirstPlayerObject() { return &v_playerCharacterObjects[0]; }
+	GameObject* getFirstMenuObject() { return &v_menuObjects[0]; }
 	GameObject* getFirstGameObject() { return &v_gameObjects[0]; }
 	// --------------------------------------------------------------------------//
 };

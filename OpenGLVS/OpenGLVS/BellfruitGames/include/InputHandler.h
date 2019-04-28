@@ -90,6 +90,20 @@ public:
 };
 
 
+// WANG MEN UBUTTON
+class MenuButton : public InputCommand
+{
+public:
+	void execute(GameObject& obj) override
+	{
+		if (obj.getComponent<UIComponent>())
+		{
+			obj.getComponent<UIComponent>()->OnMessage("renderMenu");
+		}
+	}
+};
+
+
 
 class TranslateLeftArrowCommand : public InputCommand
 {
@@ -119,6 +133,9 @@ public:
 
 
 
+
+
+
 /*!
 \class InputHandler
 \brief communicates with game objects to execute tasks.
@@ -128,7 +145,7 @@ struct InputHandler
 	
 	// ASCII Keys as ints, INSERT KEYS BELOW ---------------// // can add more keys under here
 	int rotateKey, moveForwardKey, moveBackwardKey, moveLeftKey, moveRightkey,
-		moveForwardArrowKey, moveBackwardArrowKey, moveLeftArrowKey, moveRightArrowKey;
+		moveForwardArrowKey, moveBackwardArrowKey, moveLeftArrowKey, moveRightArrowKey, menuKey;
 	// ASCII KEYS as ints, END HERE----------------------------------------------------------//
 	bool readInputsFromConfig(std::string levelJSONFile)
 	{
@@ -164,6 +181,9 @@ struct InputHandler
 		int tright = keyboardInput["TRight"].asInt();
 		moveRightkey = tright;
 
+		int tmenu = keyboardInput["TMenu"].asInt();
+		menuKey = tmenu;
+
 
 		// Arrow keys
 		int tforwardArrow = keyboardInput["tforwardArrow"].asInt();
@@ -197,6 +217,8 @@ struct InputHandler
 		m_controlMapping[moveBackwardKey] = new TranslateBackwardsCommand;
 		m_controlMapping[moveLeftKey] = new TranslateLeftCommand;
 		m_controlMapping[moveRightkey] = new TranslateRightCommand;
+
+		m_controlMapping[menuKey] = new MenuButton;
 
 		m_controlMapping[moveLeftArrowKey] = new TranslateLeftArrowCommand;
 		m_controlMapping[moveRightArrowKey] = new TranslateRightArrowCommand;
@@ -236,6 +258,9 @@ struct InputHandler
 		m_controlMapping[moveLeftKey] = nullptr;
 		delete m_controlMapping[moveRightkey];
 		m_controlMapping[moveRightkey] = nullptr;
+
+		delete m_controlMapping[menuKey];
+		m_controlMapping[menuKey] = nullptr;
 
 		delete m_controlMapping[moveLeftArrowKey];
 		m_controlMapping[moveLeftArrowKey] = nullptr;

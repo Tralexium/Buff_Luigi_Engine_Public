@@ -5,6 +5,7 @@
     "TForward": 87,
     "TBackward": 83,
     "TLeft": 65,
-    "TRight": 68
+    "TRight": 68,
+    "TMenu": 67
   }
 }

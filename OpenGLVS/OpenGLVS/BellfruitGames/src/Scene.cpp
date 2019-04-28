@@ -78,7 +78,7 @@ Scene::Scene()
 
 	
 	
-	
+	//m_UIComponent = new UIComponent();
 
 	
 }
@@ -140,8 +140,6 @@ bool Scene::loadMenuObjects(std::string level)
 		z = scaNode[2].asFloat();
 		glm::vec3 sca(x, y, z);
 
-	
-
 		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
 
 		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
@@ -153,9 +151,7 @@ bool Scene::loadMenuObjects(std::string level)
 		v_menuObjects[i].addComponent(new ShaderComponent(shaderName));
 		v_menuObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_menuObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		
-
-
+		v_menuObjects[0].addComponent(new UIComponent());
 
 	}
 	return true;
@@ -440,7 +436,7 @@ void Scene::drawCollisionDebugLines() {
 
 void Scene::updateMenubuttons() { // WANG
 
-	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	
 	glm::vec3 l_camerapos;
 
 	float l_buttonOneOffset = -0.6f;
@@ -452,12 +448,10 @@ void Scene::updateMenubuttons() { // WANG
 	}
 	for (int i = 0; i < v_menuObjects.size(); i++)
 	{
-
-
 		v_menuObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonOneOffset, l_camerapos.z - 2));
 		v_menuObjects[1].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonTwoOffset, l_camerapos.z - 2));
 		v_menuObjects[2].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonThreeOffset, l_camerapos.z - 2));
-		//v_menuObjects[i].getComponent<TransformComponent>()->setOri(glm::quat(l_quat));
+		
 	}
 
 }
@@ -525,16 +519,17 @@ void Scene::render(CameraComponent* camera)
 	// WANG 
 	for (int j = 0; j < v_menuObjects.size(); j++)
 	{
-		Model* menuModel = v_menuObjects[j].getComponent<ModelComponent>()->getModel(); // pointer to the other models
-		menuShaderProgram = v_menuObjects[j].getComponent<ShaderComponent>()->shaderProgram; // get shader program
-		menuShaderptr = v_menuObjects[j].getComponent<ShaderComponent>();
-		menuShaderptr->use(); // -> Step 2. use shaders specified in loader.
+		if (v_menuObjects[0].getComponent<UIComponent>()->m_menuRender)
+		{
+			Model* menuModel = v_menuObjects[j].getComponent<ModelComponent>()->getModel(); // pointer to the other models
+			menuShaderProgram = v_menuObjects[j].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+			menuShaderptr = v_menuObjects[j].getComponent<ShaderComponent>();
+			menuShaderptr->use(); // -> Step 2. use shaders specified in loader.
 
-		menuShaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
-		glm::mat4 l_modelMatrix = v_menuObjects[j].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-		enginecore->drawModel(menuShaderProgram, menuModel, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
-
-
+			menuShaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
+			glm::mat4 l_modelMatrix = v_menuObjects[j].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
+			enginecore->drawModel(menuShaderProgram, menuModel, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+		}
 	}
 
 	

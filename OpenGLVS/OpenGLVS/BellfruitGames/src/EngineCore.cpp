@@ -19,6 +19,9 @@
 //----------------------------------------------------------------------------------//
 
 // ------------------- GLOBAL VARIABLES --------------------------------------------//
+
+bool renderMenu = false; // WANG bool for render menu
+
 std::vector<bool> EngineCore::m_keyBuffer; // Global key buffer variable.
 double previousMousePosX, previousMousePosY, currentMousePosX, currentMousePosY; // Global mouse positions for calculating delta position.
 
@@ -46,6 +49,7 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
+	
 
 	m_screenWidth = width; // set screen width
 	m_screenHeight = height; // set screen height
@@ -133,11 +137,12 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 		
 		//Input handler
 		game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
+		game->getMenuInputHandler()->handleInputs(m_keyBuffer);
 
 
 		glfwSwapBuffers(m_window); // Swap buffers	
 
-		//glfwSwapInterval(0); // Enable or Disable Vsync for reduced screentearing!(does cost about double in render performance)
+		glfwSwapInterval(0); // Enable or Disable Vsync for reduced screentearing!(does cost about double in render performance)
 
 		glfwPollEvents(); // poll for events
 	}
@@ -220,17 +225,20 @@ void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 
 void EngineCore::keyCallbackEvent(GLFWwindow* window, int key, int scancode, int action, int mods) // keyboard input
 {
+	
 
 	if (key == GLFW_KEY_UNKNOWN || key > m_keyBufferSize)
 	{
 		return;	
 	}
-	m_keyBuffer[key] = ((action == GLFW_PRESS || action == GLFW_REPEAT));
+	m_keyBuffer[key] = ((action == GLFW_PRESS || action == GLFW_PRESS));
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
+
+	
 
 }
 

@@ -84,9 +84,6 @@
     <ClCompile Include="src\BellfruitGame.cpp">
       <Filter>Source Files\Renders</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
-      <Filter>Source Files\Renders</Filter>
-    </ClCompile>
     <ClCompile Include="src\SkyBox.cpp">
       <Filter>Source Files\Renders</Filter>
     </ClCompile>
@@ -99,15 +96,18 @@
     <ClCompile Include="src\EngineCore.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystemRenderer.cpp">
+      <Filter>Source Files\Renders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Component.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="include\TransformComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CameraComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="include\ModelComponent.h">
@@ -146,9 +146,6 @@
     <ClInclude Include="include\AudioComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="include\Scene.h">
-      <Filter>Header Files\Renders</Filter>
-    </ClInclude>
     <ClInclude Include="include\ShaderComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -168,7 +165,16 @@
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="include\ParticleEmitterComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene.h">
+      <Filter>Header Files\Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ParticleSystemRenderer.h">
+      <Filter>Header Files\Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CameraComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

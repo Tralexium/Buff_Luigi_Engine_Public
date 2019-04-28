@@ -8,6 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
+#include "WindowSettings.h"
 #include "Component.h"
 
 #define ROTATION_VALUE 0.001
@@ -26,6 +27,7 @@ private:
 		
 public:
 
+	WindowSettings& g_window = g_window.getInstance(); // Global instance
 
 	float m_fov; //!< Float field of view variable.
 
@@ -95,9 +97,15 @@ public:
 
 	//! View matrix Getter Function.
 	/*!
-	\returns viewmatrix.
+	\returns view matrix.
 	*/
 	glm::mat4 getViewMatrix() const { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), -m_pos); }
+
+	//! Projection matrix Getter Function.
+	/*!
+	\returns projection matrix.
+	*/
+	glm::mat4 getProjectionMatrix() const { return glm::perspective(glm::radians(m_fov), g_window.getScreenWidth() / g_window.getScreenHeight(), g_window.getNearPlane(), g_window.getFarPlane()); }
 
 	//! FOV setter Function.
 	/*!

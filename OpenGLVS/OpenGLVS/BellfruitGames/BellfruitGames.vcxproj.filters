@@ -99,9 +99,6 @@
     <ClCompile Include="src\EngineCore.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\ParticleSystemRenderer.cpp">
-      <Filter>Source Files\Renders</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Component.h">
@@ -169,12 +166,6 @@
     </ClInclude>
     <ClInclude Include="include\DebugDrawPhysics.h">
       <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ParticleEmitterComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ParticleSystemRenderer.h">
-      <Filter>Header Files\Renders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

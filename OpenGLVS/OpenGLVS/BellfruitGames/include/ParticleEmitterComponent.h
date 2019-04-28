@@ -8,7 +8,7 @@
 struct Particle
 {
 	// initialised to dead particle (-1.0f life)
-	Particle() : life(0.0f), size(1.0f), colour(1.0f, 0.0f, 0.0f, 1.0f), velocity(0.0f, 0.0f, 0.0f) {}
+	Particle() : life(0.0f), size(1.0f), colour(255.0f, 0.0f, 0.0f, 255.0f), velocity(0.0f, 0.0f, 0.0f) {}
 
 	// variables that need passing to the shader
 	float life, size, cameraSqDistance;
@@ -36,14 +36,14 @@ private:
 	Particle* m_particles; // Array of particles
 
 public:
-	ParticleEmitterComponent(const unsigned int maxParticles, const unsigned int partsPerGen, const float timeForGen, std::string textureName)
+	ParticleEmitterComponent(const unsigned int maxParticles, const unsigned int partsPerGen, const float timeForGen, glm::vec3 pos, std::string textureName)
 	{
 		m_maxParticles = maxParticles;
 		m_partsPerGen = partsPerGen;
 		m_timeForGen = timeForGen;
 		m_texturePath = textureName;
+		m_emitterPos = pos;
 		m_particles = new Particle[m_maxParticles];
-		m_emitterPos = glm::vec3(0.0f);
 		m_lastUsedParticleIndex = 0;
 		m_numLiveParticles = 0;
 		m_timeSinceLastParticleGen = 0.0f;
@@ -64,17 +64,17 @@ public:
 			for (int i = 0; i < m_partsPerGen; i++)
 			{
 				int particleIndex = findUnusedParticle();
-				m_particles[particleIndex].life = 500.0f;
+				m_particles[particleIndex].life = 200.0f;
 				//float randomXStart = ((rand() % RAND_MAX) / (float)RAND_MAX) * 50000.0f - 25000.0f;
 				//float randomZStart = ((rand() % RAND_MAX) / (float)RAND_MAX) * 50000.0f - 25000.0f;
 				//m_particles[particleIndex].position = glm::vec3(randomXStart, 5000, randomZStart);
-				float randVelX = randomNumRange(20.0f);
-				float randVelZ = randomNumRange(20.0f);
+				float randVelX = randomNumRange(1.0f);
+				float randVelZ = randomNumRange(1.0f);
 				m_particles[particleIndex].position = glm::vec3(m_emitterPos.x, m_emitterPos.y, m_emitterPos.z);
-				m_particles[particleIndex].velocity = glm::vec3(randVelX, 30.0f, randVelZ);
-				m_particles[particleIndex].colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-				m_particles[particleIndex].finalColour = glm::vec4(1.0f, 0.0f, 0.0f, 0.0f);
-				m_particles[particleIndex].size = 100;
+				m_particles[particleIndex].velocity = glm::vec3(randVelX, 2.0f, randVelZ);
+				m_particles[particleIndex].colour = glm::vec4(255.0f, 255.0f, 0.0f, 255.0f);
+				m_particles[particleIndex].finalColour = glm::vec4(255.0f, 0.0f, 0.0f, 0.0f);
+				m_particles[particleIndex].size = 1;
 			}
 
 			m_timeSinceLastParticleGen = 0;
@@ -111,11 +111,6 @@ public:
 	float randomNumRange(float maxVal)
 	{
 		return ((rand() % RAND_MAX) / (float)RAND_MAX) * maxVal - (maxVal/2);
-	}
-
-	void setPosition(glm::vec3 newPos)
-	{
-		//m_emitterPos = newPos;
 	}
 
 	Particle* getParticles()

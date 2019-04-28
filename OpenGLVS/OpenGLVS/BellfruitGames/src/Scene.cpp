@@ -149,10 +149,10 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
-		if (i > 0 && i < 4)
+		if (i == 3)
 		{
 			// Set particle effects for some objects (TESTING PURPOSES)
-			v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 1, "spark"));
+			v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
 		}
 
 
@@ -404,12 +404,14 @@ void Scene::render()
 		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-		//enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
 		// -------------- Particle Drawing ------------------- //
 		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
+			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
+			emitter->setEmitterPos(pos);
 			m_particleSystem->setEmitter(emitter);
 			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();

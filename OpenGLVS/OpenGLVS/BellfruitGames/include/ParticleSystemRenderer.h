@@ -40,8 +40,8 @@ private:
 	unsigned int partCounter = 0; // Keeps track of how many live particles get updated
 
 	// Used for passing it to the sub-buffer
-	float g_particalPosSizeData[400000];
-	unsigned int g_particalColorData[400000];
+	GLfloat* g_particalPosSizeData;
+	GLubyte* g_particalColorData;
 
 	ParticleEmitterComponent* m_particleEmitter;
 	CameraComponent* m_camera;

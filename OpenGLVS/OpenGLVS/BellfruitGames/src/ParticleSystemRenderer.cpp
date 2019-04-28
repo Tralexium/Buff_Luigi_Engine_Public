@@ -5,8 +5,8 @@
 ParticleSystemRenderer::ParticleSystemRenderer(const unsigned int maxParticles)
 {
 	resize(maxParticles);
-	//g_particalPosSizeData[m_maxParticles*4];
-	//g_particalColorData[m_maxParticles*4];
+	g_particalPosSizeData = new GLfloat[maxParticles * 4];
+	g_particalColorData = new GLubyte[maxParticles * 4];
 	initialise();
 }
 
@@ -62,7 +62,7 @@ void ParticleSystemRenderer::initialise()
 	glGenBuffers(1, &VBO_color);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_color);
 	// Initialize with empty (NULL) buffer : it will be updated later, each frame.
-	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLuint) * 4, NULL, GL_STREAM_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLubyte) * 4, NULL, GL_STREAM_DRAW);
 }
 
 void ParticleSystemRenderer::update(float dt)
@@ -120,24 +120,20 @@ void ParticleSystemRenderer::render()
 	// Update the buffers that OpenGL uses for rendering.
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positionAndSize);
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(Particle), NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
-	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLfloat) * 4, &g_particalPosSizeData);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLfloat) * 4, g_particalPosSizeData);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_color);
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(Particle), NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
-	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLuint) * 4, &g_particalColorData);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLubyte) * 4, g_particalColorData);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Use our shader
 	glUseProgram(m_shaderID);
 
 	glm::mat4 ViewMatrix = m_camera->getViewMatrix();
-	glm::mat4 Projectionmatrix = m_camera->getProjectionMatrix() * ViewMatrix;
-
-	// Bind our texture in Texture Unit 0
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_textureID);
+	glm::mat4 ViewProjectionMatrix = m_camera->getProjectionMatrix() * ViewMatrix;
 
 	// Fragment Attributes
 	glUniform1i(glGetUniformLocation(m_shaderID, "myTextureSampler"), 0);
@@ -145,16 +141,20 @@ void ParticleSystemRenderer::render()
 	// Vertex Attributes
 	glUniform3f(glGetUniformLocation(m_shaderID, "CameraRight_worldspace"), ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 	glUniform3f(glGetUniformLocation(m_shaderID, "CameraUp_worldspace"), ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
-	glUniformMatrix4fv(glGetUniformLocation(m_shaderID, "VP"), 1, GL_FALSE, &Projectionmatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(m_shaderID, "VP"), 1, GL_FALSE, &ViewProjectionMatrix[0][0]);
 
 	// pass the updated VBO info to the VAO
 	setupVAO();
+
+	// Bind our texture in Texture Unit 0
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, m_textureID);
 
 	glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
 	glVertexAttribDivisor(1, 1); // positions : one per quad (its center) -> 1
 	glVertexAttribDivisor(2, 1); // color : one per quad -> 1
 
-	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, m_maxParticles);
+	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, partCounter);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
@@ -252,7 +252,7 @@ void ParticleSystemRenderer::setupVAO()
 	glVertexAttribPointer(
 		2, // attribute for color.
 		4, // size : r + g + b + a => 4
-		GL_UNSIGNED_INT, // type
+		GL_UNSIGNED_BYTE, // type
 		GL_TRUE, // normalized? *** YES, this means that the unsigned char[4] will be accessible with a vec4 (floats) in the shader ***
 		0, // stride
 		(void*)0 // array buffer offset

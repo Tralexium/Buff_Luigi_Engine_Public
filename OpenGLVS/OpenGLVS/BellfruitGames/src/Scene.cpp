@@ -48,6 +48,7 @@ Scene::Scene()
 	
 	// ---------------- Initialisation for model loading START--------------- //
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
+
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
 	// --------------------- Setting player camera pointer---------------- //
@@ -134,11 +135,12 @@ bool Scene::loadSceneObjects(std::string level)
 		z = colSize[2].asFloat();
 		glm::vec3 col(x, y, z);
 
+		//----> the ACTUAL modelname in json <------//
+		std::string shapeName = gameObjects[i]["collisionshape"].asString();
 
 		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
 
 		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
-
 		// Because we do v_gameObjects[i] and not a specific one, this will set the components to all objects
 		// that this loop goes through, which is every object in the JSON file 
 
@@ -146,17 +148,19 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new ShaderComponent(shaderName));
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
-		if (i == 3)
-		{
+		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName));
+	
+		
 			// Set particle effects for some objects (TESTING PURPOSES)
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
-		}
+		
 
 	}
 	return true;
 
 }
+
+
 
 // Main Player loading function, handled in Player0.json
 bool Scene::loadPlayerObjects(std::string player)
@@ -229,13 +233,20 @@ bool Scene::loadPlayerObjects(std::string player)
 		z = colSize[2].asFloat();
 		glm::vec3 col(x, y, z);
 
+		//----> the ACTUAL modelname in json <------//
+		std::string shapeName = gameObjects[i]["collisionshape"].asString();
+
+		const Json::Value sphereColSizeNode = gameObjects[i]["spherecolsize"];
+		x = sphereColSizeNode[0].asFloat(); // get float
+		btScalar sphereColSize(x);
+
 		//----------------------------------- THIS IS WHERE I LOAD IN PLAYER OBJECTS ---------------------//
 		//--------------- ADD COMPONENTS TO LEVEL GAME OBJECTS HERE --------------------------------------//
 		v_playerCharacterObjects[i].addComponent(new ShaderComponent(shaderName));
 		v_playerCharacterObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_playerCharacterObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_playerCharacterObjects[i].addComponent(new CameraComponent(pos, ori));
-		v_playerCharacterObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
+		v_playerCharacterObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
 		// -----------------------------------------------------------------------------------------------------------//
 
 		return true;
@@ -273,6 +284,7 @@ void Scene::stepPhysicsSimulation() {
 			// Set position and orientation equal to the physics bodies positions and orientations
 			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
 			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat(l_quat));
+
 
 			////Trying to make a small offset for where the ground gets drawn compared to the collider (not good implementation, only testing)
 			//v_gameObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3((float)physicsWorld.m_transform.getOrigin().getX(),
@@ -319,7 +331,6 @@ void Scene::stepPhysicsSimulation() {
 		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
 
 		// TODO SET RIGID BODY ROTATION EQUAL TO CAMERA ROTATION
-
 		//btTransform l_playerTransform = btTransform(glmQuatToBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri(), glmVec3toBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos())));
 		//l_bodyPlayer->setWorldTransform(l_playerTransform);
 	}
@@ -377,34 +388,33 @@ void Scene::update(float dt)
 
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 	stepPhysicsSimulation();
-	// --------------------------------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------------------------------------------//
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-
 	m_particleSystem->update(dt);
-
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
-
 void Scene::render()
 {
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	//------------ BINDING FBO BEFORE RENDERING ANYTHING ---------------------------------------------------------------------------------------------------------------------//
 	// Here we bind the framebuffer before we do any rendering, this renders everything into the FBO,
 	// So we can then do the shader rendering step with everything getting rendered directly from the FBO.
-	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
+	//framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
 	drawCollisionDebugLines();
-	// ------------------------------------------------------//
-
+	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyShader.use();  //! Use skybox shader. 
 	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
 	m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	// -------------- Particle Drawing ------------------- //
+	
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
@@ -412,6 +422,8 @@ void Scene::render()
 	// or whichever dimension we set it to be in the WindowSettings.h singleton class.
 	for (int i = 0; i < v_gameObjects.size(); i++)
 	{
+	
+		
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
 		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
@@ -421,7 +433,6 @@ void Scene::render()
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		// -------------- Particle Drawing ------------------- //
 		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
@@ -433,13 +444,17 @@ void Scene::render()
 		}
 	}
 
+	
+	
+	
+
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
-	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
-	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
+	//framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
+	//framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
 
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
-	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
-	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
+	//framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
+	//framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
 
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 

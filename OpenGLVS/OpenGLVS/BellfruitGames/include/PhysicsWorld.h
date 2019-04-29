@@ -73,7 +73,7 @@ public:
 			btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
 			btVector3 btTo(mousepos.x, mousepos.y, mousepos.z);
 
-			cout <<  mousepos.z << endl;
+			//cout <<  mousepos.z << endl;
 
 			btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
 			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;

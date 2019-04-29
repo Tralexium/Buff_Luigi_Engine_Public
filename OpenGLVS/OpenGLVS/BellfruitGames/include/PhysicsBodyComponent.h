@@ -24,12 +24,15 @@ class PhysicsBodyComponent : public Component
 private:
 
 	btScalar m_mass = 0.0; // Object is only dynamic if this is not 0
+	btScalar m_sphereRadius = 1.0f;
 	btVector3 m_position;
 	btVector3 m_scale;
 	btVector3 m_collisionBoxSize;
 	btQuaternion m_rotation;
 	
-	btCollisionShape* boxShape;
+	btCollisionShape* m_shape;
+	
+	std::string m_whatShape = "";
 
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 
@@ -50,9 +53,10 @@ public:
 	PhysicsBodyComponent() {};
 
 	// Parameterized Constructor
-	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize)
+	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize, std::string whatshape)
 	{
 
+		m_whatShape = whatshape;
 		m_collisionBoxSize = colSize;
 		m_position = pos;
 		m_mass = mass;
@@ -63,6 +67,25 @@ public:
 		createRigidBody();
 
 	};
+
+
+	// Parameterized Constructor
+	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize, std::string whatshape, btScalar sphereColSize)
+	{
+		m_sphereRadius = sphereColSize;
+		m_whatShape = whatshape;
+		m_collisionBoxSize = colSize;
+		m_position = pos;
+		m_mass = mass;
+
+		m_startTransform = btTransform(btQuaternion(rot), btVector3(pos));
+
+		// -> Create Rigid Body
+		createRigidBody();
+
+	};
+
+
 
 	void createRigidBody(); // Create Rigid Body
 
@@ -118,26 +141,40 @@ public:
 
 inline void PhysicsBodyComponent::createRigidBody()
 {
-	// Collision Shape
-	boxShape = new btBoxShape(m_collisionBoxSize);
-	m_collisionShapes.push_back(boxShape);
+	if (m_whatShape == "btBoxShape")
+	{
+		// Collision Shape
+		m_shape = new btBoxShape(m_collisionBoxSize);
+		m_collisionShapes.push_back(m_shape);
+		// Set rigidbody is dynamic if and only if mass is non zero, otherwise static
+		bool isDynamic = (m_mass != 0.f);
+		// Local Inertia
+		btVector3 localInertia(0, 0, 0);
+		if (isDynamic)
+			m_shape->calculateLocalInertia(m_mass, localInertia);
 
-	// Set rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (m_mass != 0.f);
-
-	// Local Inertia
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		boxShape->calculateLocalInertia(m_mass, localInertia);
-
-	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-	m_myMotionState = new btDefaultMotionState(m_startTransform);
-
-	btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, boxShape, localInertia);
-
-	btRigidBody* body = new btRigidBody(rbInfo);
-
-	physicsworld.getDynamicsWorld()->addRigidBody(body);
+		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
+		m_myMotionState = new btDefaultMotionState(m_startTransform);
+		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
+		btRigidBody* body = new btRigidBody(rbInfo);
+		physicsworld.getDynamicsWorld()->addRigidBody(body);
+	}
+	else if (m_whatShape == "btSphereShape")
+	{
+		m_shape = new btSphereShape(m_sphereRadius);
+		m_collisionShapes.push_back(m_shape);
+		// Set rigidbody is dynamic if and only if mass is non zero, otherwise static
+		bool isDynamic = (m_mass != 0.f);
+		// Local Inertia
+		btVector3 localInertia(0, 0, 0);
+		if (isDynamic)
+			m_shape->calculateLocalInertia(m_mass, localInertia);
+		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
+		m_myMotionState = new btDefaultMotionState(m_startTransform);
+		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
+		btRigidBody* body = new btRigidBody(rbInfo);
+		physicsworld.getDynamicsWorld()->addRigidBody(body);
+	}	
 }
 
 // Clean up

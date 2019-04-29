@@ -126,8 +126,9 @@ void ParticleSystemRenderer::render()
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(Particle), NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
 	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLubyte) * 4, g_particalColorData);
 
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_FALSE);
 
 	// Use our shader
 	glUseProgram(m_shaderID);
@@ -154,11 +155,17 @@ void ParticleSystemRenderer::render()
 	glVertexAttribDivisor(1, 1); // positions : one per quad (its center) -> 1
 	glVertexAttribDivisor(2, 1); // color : one per quad -> 1
 
+	//glBindVertexArray(VAO);
 	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, partCounter);
+	//glBindVertexArray(0);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+
+	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_TRUE);
 }
 
 void ParticleSystemRenderer::resize(unsigned int newSize)

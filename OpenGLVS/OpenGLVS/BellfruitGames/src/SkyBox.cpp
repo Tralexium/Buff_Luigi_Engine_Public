@@ -85,11 +85,6 @@ SkyBox::SkyBox(int fvert, unsigned int shader)
 	glActiveTexture(GL_TEXTURE0); //! Sets active texture
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID); //! binds it
 
-
-	
-
-
-
 }
 
 
@@ -98,6 +93,7 @@ void SkyBox::render() const
 {
 	glBindVertexArray(vaoHandle); //! Bind VAO
 	glDrawElements(GL_TRIANGLES, 6 * faces, GL_UNSIGNED_INT, ((GLubyte *)NULL + (0))); //! Draws faces
+	glBindVertexArray(0); // unbind vao
 }
 
 

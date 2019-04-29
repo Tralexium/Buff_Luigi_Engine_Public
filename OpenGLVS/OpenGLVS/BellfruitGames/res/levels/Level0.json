@@ -10,7 +10,9 @@
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 1, 1, 1 ],
       "mass": [ 0.0 ],
-      "collisionboxsize": [ 11, 1.0, 11 ]
+      "collisionboxsize": [ 100, 1.0, 100 ],
+      "collisionshape": "btBoxShape"
+
 
     },
 
@@ -19,11 +21,12 @@
       "model": "box2",
       "shader": "parallaxMapShader",
       "position": [ 0, 20, -8 ],
-      "colliderposition": [ 0, -9.3, -8 ],
+      "colliderposition": [ 0, 20, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 4, 4, 4 ],
       "mass": [ 0.5 ],
-      "collisionboxsize": [ 1, 1, 1 ]
+      "collisionboxsize": [ 1, 1, 1 ],
+      "collisionshape": "btBoxShape"
     },
 
     {
@@ -31,25 +34,29 @@
       "model": "box2",
       "shader": "normalMapShader2",
       "position": [ -4, 20, -8 ],
-      "colliderposition": [ -4, -9.3, -8 ],
+      "colliderposition": [ -4, -20, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 4, 4, 4 ],
       "mass": [ 0.5 ],
-      "collisionboxsize": [ 1, 1, 1 ]
+      "collisionboxsize": [ 1, 1, 1 ],
+      "collisionshape": "btBoxShape"
 
     },
 
     {
-      "name": "testwall",
-      "model": "testwall",
-      "shader": "parallaxMapShader",
-      "position": [ -2, -9.3, -15 ],
-      "colliderposition": [ -2, -9.3, -15 ],
+      "name": "box2",
+      "model": "box2",
+      "shader": "normalMapShader2",
+      "position": [ -4, 30, -8 ],
+      "colliderposition": [ -4, -30, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 4, 4, 4 ],
-      "mass": [ 0.0 ],
-      "collisionboxsize": [ 1, 1, 1 ]
+      "mass": [ 0.5 ],
+      "collisionboxsize": [ 1, 1, 1 ],
+      "collisionshape": "btBoxShape"
+
     },
+
 
 
     {
@@ -61,7 +68,24 @@
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 1, 1, 1 ],
       "mass": [ 0.0 ],
-      "collisionboxsize": [ 0.25, 0.25, 0.25 ]
+      "collisionboxsize": [ 0.2, 0.2, 0.2 ],
+      "collisionshape": "btBoxShape"
+
+    },
+
+
+    {
+      "name": "spaceball",
+      "model": "spaceball",
+      "shader": "normalMapShader2",
+      "position": [ 2, -5, -5 ],
+      "colliderposition": [ 2, -5, -5 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ],
+      "mass": [ 1.0 ],
+      "collisionboxsize": [ 1, 1, 1 ],
+      "collisionshape": "btSphereShape",
+      "spherecolsize": [ 2.0 ]
 
     }
   ]

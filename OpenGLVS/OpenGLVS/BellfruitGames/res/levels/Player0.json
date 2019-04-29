@@ -9,7 +9,8 @@
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 4, 4, 4 ],
       "mass": [ 1.0 ],
-      "collisionboxsize": [ 1, 1, 1 ]
+      "collisionboxsize": [ 1, 1, 1 ],
+      "collisionshape": "btBoxShape"
     }
   ]
 }

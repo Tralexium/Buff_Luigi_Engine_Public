@@ -3,11 +3,9 @@
 \file AudioComponent.h
 */
 #include "Component.h"
-
 #include "fmod.hpp"
 #include "fmod_errors.h"
 #include "fmod_common.h"
-
 #include <iostream>
 
 /*!
@@ -25,7 +23,6 @@ private:
 	void             *extradriverdata = 0;
 
 public:
-
 
 	//! Constructor
 	/*!

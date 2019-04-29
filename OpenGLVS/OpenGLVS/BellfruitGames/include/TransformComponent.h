@@ -3,9 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 #include <glm/mat4x4.hpp>
-
 
 
 #define MOVE_SPEED 0.1f
@@ -66,8 +64,6 @@ public:
 	/*! *\brief Returns the current scale of the object. */
 	const glm::vec3& getScale() const { return m_sca; }
 	
-
-	
 	/*!
 	* \brief Sets a new position for the camera.
 	* \param newPosition - The new position of the camera.
@@ -98,7 +94,6 @@ public:
 		return rotation;
 	}
 
-
 	//! QuatCameraRotation.
 	/*!
 	\brief does a quaternion rotation.
@@ -126,7 +121,6 @@ public:
 		glm::mat4 rotationMatrix = glm::mat4_cast(m_ori);
 		return transMatrix * rotationMatrix * scaleMatrix;
 	}
-
 
 	/*!
 	* \brief Returns the euler angles of the assosiated object.

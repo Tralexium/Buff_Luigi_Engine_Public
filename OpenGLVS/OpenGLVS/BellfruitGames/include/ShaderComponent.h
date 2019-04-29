@@ -114,8 +114,6 @@ public:
 
 	void blitFBO();
 
-
-
 	//! Overridden Update function.
 	/*!
 	\brief updates game logic.

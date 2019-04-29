@@ -83,63 +83,57 @@ void ShaderComponent::use() // loading some default shaders to get things up and
 	glUseProgram(shaderProgram);// set the default shader
 }
 
-void ShaderComponent::setfboScreenTexture() {
+void ShaderComponent::setfboScreenTexture() 
+{
 	glUniform1i(glGetUniformLocation(shaderProgram, "screenTexture"), 0);
 }
 
-void ShaderComponent::setfboTexture() {
+void ShaderComponent::setfboTexture() 
+{
 	glUniform1i(glGetUniformLocation(shaderProgram, "texture1_diffuse"), 0);
 }
 
-void ShaderComponent::createQuad() {
+void ShaderComponent::createQuad() 
+{
 
-	
+	float quadVertices[] =
+	{
+		// vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
+		// positions   // texCoords
+	   -1.0f,  1.0f,  0.0f, 1.0f,
+	   -1.0f, -1.0f,  0.0f, 0.0f,
+		1.0f, -1.0f,  1.0f, 0.0f,
 
-		float quadVertices[] =
-		{
+	   -1.0f,  1.0f,  0.0f, 1.0f,
+		1.0f, -1.0f,  1.0f, 0.0f,
+		1.0f,  1.0f,  1.0f, 1.0f
+	};
 
-			// vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
-			// positions   // texCoords
-		   -1.0f,  1.0f,  0.0f, 1.0f,
-		   -1.0f, -1.0f,  0.0f, 0.0f,
-			1.0f, -1.0f,  1.0f, 0.0f,
-
-		   -1.0f,  1.0f,  0.0f, 1.0f,
-			1.0f, -1.0f,  1.0f, 0.0f,
-			1.0f,  1.0f,  1.0f, 1.0f
-
-		};
-
-		// screen quad VAO
-		glGenVertexArrays(1, &quadVAO);
-		glGenBuffers(1, &quadVBO);
-		glBindVertexArray(quadVAO);
-		glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-
+	// screen quad VAO
+	glGenVertexArrays(1, &quadVAO);
+	glGenBuffers(1, &quadVBO);
+	glBindVertexArray(quadVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
 }
 
-void ShaderComponent::bindFrameBuffer() {
-
-
-
+void ShaderComponent::bindFrameBuffer() 
+{
 	// These steps need to be followed for the FBO to render!
 	// 1. Bind Framebuffer!
 	glBindFramebuffer(GL_FRAMEBUFFER, msFBO);
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // make sure we clear the framebuffer's content
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST); // enable depth testing (is disabled for rendering screen-space quad)	
-
 }
 
-void ShaderComponent::unbindFrameBuffer() {
-
-
+void ShaderComponent::unbindFrameBuffer() 
+{
 	// 3. Unbind Framebuffer!
 	glBindFramebuffer(GL_FRAMEBUFFER, 0); // now bind back to default framebuffer and draw a quad plane with the attached framebuffer color texture
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
@@ -147,94 +141,81 @@ void ShaderComponent::unbindFrameBuffer() {
 	glDisable(GL_DEPTH_TEST); // disable depth test so screen-space quad isn't discarded due to depth test.
 }
 
-void ShaderComponent::bindAndDrawFBOQuad() {
-
+void ShaderComponent::bindAndDrawFBOQuad() 
+{
 	// 5. Bind quad QUAD vao and textureColorbuffer, then draw it!
 	glBindVertexArray(quadVAO);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, screenTexture); // use the now resolved color attachment as the quad's texture
-
-
-
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void ShaderComponent::blitFBO() {
-
+void ShaderComponent::blitFBO() 
+{
 	// 2.5 now blit multisampled buffer(s) to normal colorbuffer of intermediate FBO. Image is stored in screenTexture
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, msFBO);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, intermediateFBO);
 	glBlitFramebuffer(0, 0, g_window.getScreenWidth(), g_window.getScreenHeight(), 0, 0, g_window.getScreenWidth(), g_window.getScreenHeight(), GL_COLOR_BUFFER_BIT, GL_NEAREST);
 }
 
-void ShaderComponent::createFBO() {
+void ShaderComponent::createFBO() 
+{
+	// Start MSAA FBO
+	// 1.
+	// configure MSAA framebuffer
+	glGenFramebuffers(1, &msFBO);
+	glBindFramebuffer(GL_FRAMEBUFFER, msFBO);
+
+	// 2.
+	// create a multisampled color attachment texture
+	glGenTextures(1, &textureColorBufferMultiSampled);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled);
+	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGBA16F, g_window.getScreenWidth(), g_window.getScreenHeight(), GL_TRUE);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled, 0);
+
+	// 3.
+	// create a (also multisampled) renderbuffer object for depth and stencil attachments
+	glGenRenderbuffers(1, &rbo);
+	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+	glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, g_window.getScreenWidth(), g_window.getScreenHeight());
+	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+
+	// 4.
+	// now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << endl;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	//--------------------------------------------------------------------------------------------------------//
+	// Start PostProcessing FBO
+	// 1. 
+	// Configure second FBO so we can do postprocessing effects still
+	glGenFramebuffers(1, &intermediateFBO);
+	glBindFramebuffer(GL_FRAMEBUFFER, intermediateFBO);
+
+	// 2.
+	// create a color attachment texture
+	glGenTextures(1, &screenTexture);
+	glBindTexture(GL_TEXTURE_2D, screenTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, g_window.getScreenWidth(), g_window.getScreenHeight(), 0, GL_RGBA, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTexture, 0);	// we only need a color buffer
 
 
-
-		// Start MSAA FBO
-		// 1.
-		// configure MSAA framebuffer
-		glGenFramebuffers(1, &msFBO);
-		glBindFramebuffer(GL_FRAMEBUFFER, msFBO);
-
-
-		// 2.
-		// create a multisampled color attachment texture
-		glGenTextures(1, &textureColorBufferMultiSampled);
-		glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled);
-		glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGBA16F, g_window.getScreenWidth(), g_window.getScreenHeight(), GL_TRUE);
-		glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled, 0);
-
-		// 3.
-		// create a (also multisampled) renderbuffer object for depth and stencil attachments
-		glGenRenderbuffers(1, &rbo);
-		glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-		glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, g_window.getScreenWidth(), g_window.getScreenHeight());
-		glBindRenderbuffer(GL_RENDERBUFFER, 0);
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
-
-		// 4.
-		// now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
-		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-			cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << endl;
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-		//--------------------------------------------------------------------------------------------------------//
-
-		// Start PostProcessing FBO
-		// 1. 
-		// Configure second FBO so we can do postprocessing effects still
-		glGenFramebuffers(1, &intermediateFBO);
-		glBindFramebuffer(GL_FRAMEBUFFER, intermediateFBO);
-
-		// 2.
-		// create a color attachment texture
-		glGenTextures(1, &screenTexture);
-		glBindTexture(GL_TEXTURE_2D, screenTexture);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, g_window.getScreenWidth(), g_window.getScreenHeight(), 0, GL_RGBA, GL_FLOAT, NULL);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTexture, 0);	// we only need a color buffer
-
-
-		// 3. 
-		// Check if any errors with the intermediate FBO
-		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-			cout << "ERROR::FRAMEBUFFER:: Intermediate framebuffer is not complete!" << endl;
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-	
-
+	// 3. 
+	// Check if any errors with the intermediate FBO
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		cout << "ERROR::FRAMEBUFFER:: Intermediate framebuffer is not complete!" << endl;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void ShaderComponent::setUniforms(const CameraComponent * cam)
 {
-
 	// set the view and projection components of our shader to the CameraComponent values
-	glm::mat4 projection = glm::perspective(glm::radians(cam->m_fov),  g_window.getScreenWidth()/ g_window.getScreenHeight(), g_window.getNearPlane(), g_window.getFarPlane());
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(cam->getProjectionMatrix()));
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(cam->getViewMatrix()));
 
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.objectColour"), objectColour.x, objectColour.y, objectColour.z);
@@ -242,7 +223,6 @@ void ShaderComponent::setUniforms(const CameraComponent * cam)
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightPos"), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(glGetUniformLocation(shaderProgram, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z);
-	//glUniform3f(glGetUniformLocation(shaderProgram, "lightPosView"), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3fv(glGetUniformLocation(shaderProgram, "viewPos"), 0, glm::value_ptr(cam->getPos()));
 
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.ambient"), ambient.x, ambient.y, ambient.z);
@@ -252,11 +232,7 @@ void ShaderComponent::setUniforms(const CameraComponent * cam)
 	glUniform1f(glGetUniformLocation(shaderProgram, "light.constant"), constant);
 	glUniform1f(glGetUniformLocation(shaderProgram, "light.linear"), linear);
 	glUniform1f(glGetUniformLocation(shaderProgram, "light.quadratic"), quadratic);
-
-
 }
-
-
 
 ShaderComponent::~ShaderComponent()
 {
@@ -266,4 +242,3 @@ ShaderComponent::~ShaderComponent()
 	glDeleteBuffers(1, &msFBO);
 	glDeleteBuffers(1, &textureColorBufferMultiSampled);
 }
-

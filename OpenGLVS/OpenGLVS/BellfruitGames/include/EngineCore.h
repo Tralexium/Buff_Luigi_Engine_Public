@@ -24,9 +24,6 @@ class EngineCore
 {	
 private:
 
-	
-
-
 	EngineCore() {};  // Private so that it can  not be called
 
 	EngineCore(EngineCore const&) {};             // copy constructor is private
@@ -34,8 +31,6 @@ private:
 	EngineCore& operator=(EngineCore const&) {};  // assignment operator is private
 
 	static EngineCore* m_pInstance;
-
-
 
 	//! frame buffer size callback for resizing window.
 	/*!
@@ -64,11 +59,7 @@ private:
 	static void keyCallbackEvent(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 public:
-
 	static EngineCore * Instance();
-
-
-	
 
 	static std::vector<bool> m_keyBuffer; //!< key buffer.
 	GLuint m_defaultSP; //!< GLuint default shader.
@@ -79,19 +70,9 @@ public:
 	GLFWwindow* m_window;  //!< GLFWwindow pointer variable.
 	mat4 model; //!< Model Matrix.
 
-	
 	int m_screenWidth;  //!< screen width.
 	int m_screenHeight; //!< screen height.
 
-	unsigned int rbo; //!< Rendering Buffer Object
-	unsigned int textureColorBufferMultiSampled; //!< Texture Color Buffer Object.
-	unsigned int quadVAO, quadVBO; //!< Quad vertex array object, and vertex buffer object.
-	unsigned int msFBO, intermediateFBO; //!< Frame buffer object. (FBO)
-	unsigned int screenTexture;
-
-
-	
-	
 	//! Initializes window.
 	/*!
 	\param width width of window.
@@ -128,8 +109,7 @@ public:
 	\param name string variable to hold name of shader
 	*/
 	void compileAndLinkSkyBoxShader(GLSLProgram* Shader, string name);
-
-	
+		
 	//! Draws model to screen.
 	/*!
 	\param model model pointer.
@@ -145,6 +125,9 @@ public:
 	\param h height of screen
 	*/
 	void resize(CameraComponent* camera, int w, int h);
+
+
+	GLFWwindow* getWindow() { return m_window; }
 
 	//! Virtual Destructor.
 	/*!

@@ -21,7 +21,7 @@
       "position": [ 0, 20, -8 ],
       "colliderposition": [ 0, -9.3, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 4, 3, 4 ],
+      "scale": [ 4, 4, 4 ],
       "mass": [ 0.5 ],
       "collisionboxsize": [ 1, 1, 1 ]
     },
@@ -33,7 +33,7 @@
       "position": [ -4, 20, -8 ],
       "colliderposition": [ -4, -9.3, -8 ],
       "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 4, 3, 4 ],
+      "scale": [ 4, 4, 4 ],
       "mass": [ 0.5 ],
       "collisionboxsize": [ 1, 1, 1 ]
 
@@ -46,7 +46,7 @@
       "position": [ -2, -9.3, -15 ],
       "colliderposition": [ -2, -9.3, -15 ],
       "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 4, 3, 4 ],
+      "scale": [ 4, 4, 4 ],
       "mass": [ 0.0 ],
       "collisionboxsize": [ 1, 1, 1 ]
     },
@@ -64,11 +64,5 @@
       "collisionboxsize": [ 0.25, 0.25, 0.25 ]
 
     }
-
-
-
-
-
-
   ]
 }

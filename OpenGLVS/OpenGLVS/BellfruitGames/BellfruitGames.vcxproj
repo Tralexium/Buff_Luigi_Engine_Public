@@ -160,6 +160,7 @@
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\DebugDrawPhysics.h" />
+    <ClInclude Include="include\MouseSettings.h" />
     <ClInclude Include="include\ParticleEmitterComponent.h" />
     <ClInclude Include="include\ParticleSystemRenderer.h" />
     <ClInclude Include="include\PhysicsBodyComponent.h" />

@@ -10,22 +10,20 @@
 #include <glm/gtx/quaternion.hpp>
 #include "WindowSettings.h"
 #include "Component.h"
+#include "WindowSettings.h"
 
 #define ROTATION_VALUE 0.001
+
 /*!
 \class CameraComponent
 \brief handles majority of the camera related functionality.
 */
 class CameraComponent : public Component
 {
-private: 
-	
-
+private:
 	glm::quat m_ori; //!< glm::quat Variable orientation, stores orientation.	
 	glm::vec3 m_pos; //!< glm::vec3 position, stores position.
 	float m_sensitivity;
-		
-public:
 
 	WindowSettings& g_window = g_window.getInstance(); // Global instance
 
@@ -45,7 +43,7 @@ public:
 	\brief inherited update function.
 	\param dt, float for delta time.
 	*/
-	void OnMessage(const std::string m) override{}
+	void OnMessage(const std::string m) override {}
 
 	//! Default Constructor.
 	/*!
@@ -67,7 +65,7 @@ public:
 	\param target target to look at.
 	*/
 	void lookAt(const glm::vec3& target) { m_ori = (glm::toQuat(glm::lookAt(m_pos, target, glm::vec3(0, 1, 0)))); }
-	
+
 	//! Position getter.
 	/*!
 	\returns the position.
@@ -79,7 +77,7 @@ public:
 	\returns m_ori.
 	*/
 	const glm::quat& getOri() const { return m_ori; }
-	
+
 	//! Position Setter Function
 	/*!
 	\brief Sets a new position for the camera.
@@ -94,7 +92,12 @@ public:
 	*/
 	void setOri(const glm::quat newOrientation) { m_ori = newOrientation; }
 
+	glm::mat4 getProjectionMatrix() const {
 
+		glm::mat4 projection = glm::perspective(m_fov, g_window.getScreenWidth() / g_window.getScreenHeight(), g_window.getNearPlane(), g_window.getFarPlane());
+
+		return projection;
+	}
 	//! View matrix Getter Function.
 	/*!
 	\returns view matrix.

@@ -24,7 +24,7 @@ private:
 	glm::quat m_ori; //!< glm::quat Variable orientation, stores orientation.	
 	glm::vec3 m_pos; //!< glm::vec3 position, stores position.
 	float m_sensitivity;
-
+public:
 	WindowSettings& g_window = g_window.getInstance(); // Global instance
 
 	float m_fov; //!< Float field of view variable.
@@ -104,11 +104,6 @@ private:
 	*/
 	glm::mat4 getViewMatrix() const { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), -m_pos); }
 
-	//! Projection matrix Getter Function.
-	/*!
-	\returns projection matrix.
-	*/
-	glm::mat4 getProjectionMatrix() const { return glm::perspective(glm::radians(m_fov), g_window.getScreenWidth() / g_window.getScreenHeight(), g_window.getNearPlane(), g_window.getFarPlane()); }
 
 	//! FOV setter Function.
 	/*!

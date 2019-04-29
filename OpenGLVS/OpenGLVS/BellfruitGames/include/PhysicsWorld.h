@@ -11,6 +11,7 @@
 
 #include "DebugDrawPhysics.h"
 #include "Conversions.h"
+#include "MouseSettings.h"
 
 class PhysicsWorld
 {
@@ -27,16 +28,10 @@ private:
 
 public:
 
-
 	btTransform m_transform;
 
-
-
-
-	
-	
-	PhysicsWorld() {
-
+	PhysicsWorld() 
+	{
 
 		overlappingPairCache = new btDbvtBroadphase(); //btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
 		// ------------ Things needed for initialization -------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -55,16 +50,14 @@ public:
 
 		m_dynamicsWorld->getDebugDrawer()->setDebugMode(2);
 
-
 	};
 
 	DebugDrawPhysics* getPhysicsWorldDebugDrawer() { return m_debugDraw; }
 
 
-	// TODO
-	// TODO
 	// TODO we meed mouse based ray casts.
-	void castRays(glm::vec3 ray) {
+	void castRays(glm::vec3 mousepos) 
+	{
 
 		btTransform tr = m_dynamicsWorld->getCollisionObjectArray()[m_dynamicsWorld->getNumCollisionObjects() - 1]->getWorldTransform();
 
@@ -77,16 +70,13 @@ public:
 			btVector3 blue(0, 0, 1);
 
 			//TODO TRY FIX THIS FROM MOUSE
-			//btVector3 btFromMouse(viewToWorldCoord())
-			btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
-			btVector3 btTo(tr.getOrigin().getX(), tr.getOrigin().getY(), -(tr.getOrigin().getZ() + 5000));
+			btVector3 btFrom(mousepos.x, mousepos.y, mousepos.z);
+			btVector3 btTo(mousepos.x, mousepos.y, mousepos.z + 500);
 
-
+			cout <<  mousepos.z << endl;
 
 			btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
-
 			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
-
 			m_dynamicsWorld->rayTest(btFrom, btTo, res); // m_btWorld is btDiscreteDynamicsWorld
 
 			if (res.hasHit()) // Debug in console for having hit 
@@ -101,13 +91,13 @@ public:
 		}
 	}
 
-	void drawWorld() {
-	
-		
+	void drawWorld() 
+	{		
 		m_dynamicsWorld->debugDrawWorld();
 	}
 
-	btDiscreteDynamicsWorld* getDynamicsWorld() {
+	btDiscreteDynamicsWorld* getDynamicsWorld() 
+	{
 		return m_dynamicsWorld;
 	}
 
@@ -123,7 +113,6 @@ public:
 	void operator=(PhysicsWorld const&);
 
 	
-
 	//! Constructor.
 	/*!
 	\brief Returns only one instance of this object.
@@ -131,26 +120,19 @@ public:
 	static PhysicsWorld& getInstance()
 	{
 		static PhysicsWorld instance; //!< Guaranteed to be destroyed.
-								  //!< Instantiated on first use.
+
+		//!< Instantiated on first use.
 		return instance;
 	}
 
 	
-
-	~PhysicsWorld() {
+	~PhysicsWorld() 
+	{
 		delete m_dynamicsWorld;
-
-
 		delete solver;
-
-		//delete broadphase
 		delete overlappingPairCache;
-
-		//delete dispatcher
 		delete dispatcher;
-
 		delete collisionConfiguration;
-	
 	};
 
 

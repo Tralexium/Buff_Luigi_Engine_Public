@@ -10,7 +10,9 @@
 #include <glm/gtx/quaternion.hpp>
 #include "Component.h"
 #include "WindowSettings.h"
+
 #define ROTATION_VALUE 0.001
+
 /*!
 \class CameraComponent
 \brief handles majority of the camera related functionality.
@@ -18,8 +20,6 @@
 class CameraComponent : public Component
 {
 private:
-
-
 	glm::quat m_ori; //!< glm::quat Variable orientation, stores orientation.	
 	glm::vec3 m_pos; //!< glm::vec3 position, stores position.
 	float m_sensitivity;

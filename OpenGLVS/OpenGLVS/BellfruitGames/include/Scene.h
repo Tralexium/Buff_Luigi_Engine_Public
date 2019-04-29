@@ -23,7 +23,6 @@
 class Scene 
 {
 private:
-	
 	std::string levelLoadingfileName = ".json";
 	std::string levelLoadingfilePath = "res/levels/";
 
@@ -38,44 +37,34 @@ private:
 	GLSLProgram skyShader; //!< skybox shader.
 	GLSLProgram defaultShader; //!< default shader.
 
-	// ---------- physics  ----------------------//
+	// ---------- physics  ---------------------//
 	btTransform m_transform;
 	PhysicsBodyComponent* m_physicsBody;
 	btCollisionObject* l_collisionObject;
 	btRigidBody* l_body;
 	btCollisionObject* l_collisionObjectPlayer;
 	btRigidBody* l_bodyPlayer;
-	
-	// ------------------------------------------------//
+	// ----------------------------------------//
+
 public:
 	WindowSettings& g_window = g_window.getInstance();
 
-	//------------- Shader Components -----------------//
+	//------------- Shader Components ---------------------------------------------//
 	ShaderComponent* framebufferShader; // FBO
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
 	ShaderComponent* debugLineShader;
-	// ------------------------------------------------//
+	//----------------------------------------------------------------------------//
 
-
-	
-	
 	//! Scene default constructor.
 	/*!
 	*/
 	Scene();
 
-	////! Scene constructor.
-	///*!
-	//*/
-	//Scene(IEngineCore* engineCore);
-
 	//! Scene Destructor.
 	/*!
 	*/
 	~Scene();
-
-	
 
 	//! Update Function.
 	/*!

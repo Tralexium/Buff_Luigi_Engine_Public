@@ -27,21 +27,20 @@ Scene::Scene()
 {
 	m_modelmanager = new ModelManager();  // creating model manager
 
-
 	//------------ Skybox initialisation -------------//
 	enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
 	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
 	
-	// -- Shader for debug drawing --//
+	// -- Shader for debug drawing -------------------//
 	debugLineShader = new ShaderComponent("lineShader");
 
-	// --------------FBO initalisation ------//
-	framebufferShader = new ShaderComponent("frameBuffer"); // Instantiate new framebuffer shader
+	// --------------FBO initalisation --------------------------------------------------------//
+	framebufferShader = new ShaderComponent("frameBuffer"); //Instantiate new framebuffer shader
 	framebufferShader->createQuad(); // 1. create the quad
 	framebufferShader->use(); // 2. use the framebuffer
 	framebufferShader->setfboTexture(); // 3.  set the texture
 
-	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //  Instantiate new screen framebuffer shader for PP -> for postprocessing
+	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //Instantiate new screen framebuffer shader for PP -> for postprocessing
 	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
@@ -50,10 +49,9 @@ Scene::Scene()
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
-	// --------------------- Setting player camera pointer----------------//
-	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera
-	
-	// --------------------- Audio stuff --------------------------------//
+	// --------------------- Setting player camera pointer---------------------------------------------------------//
+	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera	
+	// --------------------- Audio stuff --------------------------------------------------------------------------//
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 }
@@ -101,7 +99,6 @@ bool Scene::loadSceneObjects(std::string level)
 		z = posNode[2].asFloat();
 		glm::vec3 pos(x, y, z);
 
-		
 		// get the position node
 		const Json::Value colliderPosNode = gameObjects[i]["colliderposition"];
 		x = colliderPosNode[0].asFloat(); // get float
@@ -298,13 +295,21 @@ void Scene::stepPhysicsSimulation() {
 		(float)l_collisionObjectPlayer->getWorldTransform().getOrigin().getY(),
 		(float)l_collisionObjectPlayer->getWorldTransform().getOrigin().getZ());
 
+	glm::quat l_rot(
+		(float)l_collisionObjectPlayer->getWorldTransform().getRotation().getW(),
+		(float)l_collisionObjectPlayer->getWorldTransform().getRotation().getX(),
+		(float)l_collisionObjectPlayer->getWorldTransform().getRotation().getY(),
+		(float)l_collisionObjectPlayer->getWorldTransform().getRotation().getZ());
+
 	if (l_bodyPlayer && l_bodyPlayer->getMotionState())
 	{
 		l_bodyPlayer->getMotionState()->getWorldTransform(physicsWorld.m_transform);
 
 		v_playerCharacterObjects[0].getComponent<CameraComponent>()->setPos(glm::vec3(l_pos));
 		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
-		//v_playerCharacterObjects[0].getComponent<CameraComponent>()->setOri(glm::quat(l_quat));
+
+		// TODO SET RIGID BODY ROTATION EQUAL TO CAMERA ROTATION
+		l_rot = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri();
 	}
 	else
 	{
@@ -315,10 +320,17 @@ void Scene::stepPhysicsSimulation() {
 	// ATTEMPTING TO CAST RAYS FROM MOUSE
 	glm::mat4 proj = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getProjectionMatrix();
 	glm::mat4 view = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getViewMatrix();
-	glm::mat4 model = v_playerCharacterObjects[0].getComponent<TransformComponent>()->getModelMatrix();
+
+	glm::mat4 model;
+	for (int i = 0; i < v_gameObjects.size(); i++)
+	{
+		model = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix();
+	}
+	
 	double l_mouseXpos, l_mouseYpos;
 	glfwGetCursorPos(enginecore->getWindow(), &l_mouseXpos, &l_mouseYpos);
 
+	//physicsWorld.castRays();
 	// CAST RAY FUNCTION 
 	physicsWorld.castRays(mouseToWorldPos
 	(
@@ -326,7 +338,7 @@ void Scene::stepPhysicsSimulation() {
 		g_window.getScreenHeight(), proj, view, model
 	));
 
-	//cout << mouseXpos << mouseYpos << endl;
+	//cout << l_mouseXpos << l_mouseYpos << endl;
 		
 }
 

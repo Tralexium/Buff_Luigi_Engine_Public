@@ -23,21 +23,38 @@ inline glm::vec3 mouseToWorldPos(
 	glm::mat4 proj, glm::mat4 view, glm::mat4 model)
 {
 
-	double x = 2.0 * mousex / screenwidth - 1;
-	double y = 2.0 * mousey / screenheight - 1;
+	
 
+	double x = (2.0 * mousex) / screenwidth - 1.0f;
+	double y = 1.0f - (2.0 * mousey) / screenheight;
+	double z = 1.0f;
+	glm::vec3 ray = vec3(x, y, z);
+
+	
 	// HOMOGENEOUS SPACE
-	glm::vec4 screenPos = glm::vec4(x, -y, -1.0f, 1.0f);
+	glm::vec4 screenPos = glm::vec4(ray.x, ray.y, -1.0f, 1.0f);
 
 	// PROJECTION SPACE
-	glm::mat4 PV = proj * view * model;
-	glm::mat4 viewProjectionInverse = inverse(PV);
+	glm::vec3 ray_eye = inverse(proj) * screenPos;
+
+	glm::mat4 ray_model = model;
+
+	ray_eye = vec4(ray_eye.x,ray_eye.y, -1.0, 0.0);
+	//glm::mat4 viewProjectionInverse = inverse(MVP);
+
+	
+
+
+	glm::vec3 ray_wor = (inverse(view) * ray_model * glm::vec4(ray_eye.x, ray_eye.y, ray_eye.z, 0.0f));
+	// don't forget to normalise the vector at some point
+	ray_wor = glm::normalize(ray_wor);
+
 
 	// WORLD POS
-	glm::vec4 worldPos = viewProjectionInverse * screenPos;
+	//glm::vec4 worldPos = viewProjectionInverse * screenPos;
 
 	// WORLD POS AS VEC3
-	return glm::vec3(worldPos);
+	return glm::vec3(ray_wor);
 
 	/*RESOLVED
 
@@ -65,8 +82,8 @@ inline glm::vec3 mouseToWorldPos(
 
 	6) Divide result vector by it's w component after matrix multiplication ( perspective division )*/
 
-
 }
+
 inline btVector3 glmVec3toBt(const glm::vec3& vec) 
 {
 

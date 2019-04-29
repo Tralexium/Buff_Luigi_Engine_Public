@@ -15,14 +15,9 @@
 #include "TransformComponent.h"
 #include "CameraComponent.h"
 
-
-
 #define ARRAY_SIZE_Y 5
 #define ARRAY_SIZE_X 5
 #define ARRAY_SIZE_Z 5
-
-
-
 
 class PhysicsBodyComponent : public Component
 {
@@ -31,17 +26,12 @@ private:
 	btScalar m_mass = 0.0; // Object is only dynamic if this is not 0
 	btVector3 m_position;
 	btVector3 m_scale;
-	btQuaternion m_rotation;
-	//btVector3 m_collisionShapeSize = btVector3(10.0, 10.0, 10.0);
 	btVector3 m_collisionBoxSize;
-
-	//btTransform* m_currentTransform;
-
+	btQuaternion m_rotation;
+	
 	btCollisionShape* boxShape;
 
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
-
-	
 
 public:
 	PhysicsWorld& physicsworld = physicsworld.getInstance();
@@ -54,14 +44,7 @@ public:
 	btSequentialImpulseConstraintSolver* solver;
 	btDiscreteDynamicsWorld* dynamicsWorld;
 
-
-	
-
-	//keep track of the shapes, we release memory at exit.
-	//make sure to re-use collision shapes among rigid bodies whenever possible!
-
 	btTransform m_startTransform;
-
 
 	// Default Constructor
 	PhysicsBodyComponent() {};
@@ -126,8 +109,6 @@ public:
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
 		}
-
-
 	}
 
 	~PhysicsBodyComponent();
@@ -149,8 +130,6 @@ inline void PhysicsBodyComponent::createRigidBody()
 	if (isDynamic)
 		boxShape->calculateLocalInertia(m_mass, localInertia);
 
-	//groundTransform.setOrigin(m_startTransform.getOrigin());
-
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 	m_myMotionState = new btDefaultMotionState(m_startTransform);
 
@@ -158,12 +137,7 @@ inline void PhysicsBodyComponent::createRigidBody()
 
 	btRigidBody* body = new btRigidBody(rbInfo);
 
-	//std::cout << m_startTransform.getOrigin() << std::endl;
-
 	physicsworld.getDynamicsWorld()->addRigidBody(body);
-
-
-
 }
 
 // Clean up
@@ -192,9 +166,6 @@ inline PhysicsBodyComponent::~PhysicsBodyComponent()
 		delete shape;
 	}
 
-
-
-	
 	//next line is optional: it will be cleared by the destructor when the array goes out of scope
 	m_collisionShapes.clear();
 }

@@ -8,7 +8,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "Model.h"
 
-
 /*!
 \class ModelComponent
 \brief Manages model data.

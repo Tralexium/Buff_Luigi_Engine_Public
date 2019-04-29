@@ -28,9 +28,9 @@ class GameObject : public Component
 private:
 	std::unordered_map<std::type_index, Component*> m_components; //!< map of components.
 	glm::vec3 relativePosition;
+
 public:
 	
-
 	/*! Component Getter Function
 	\brief retrieves a pointer to a component stored in a map by index.
 	*/
@@ -58,18 +58,13 @@ public:
 	/*!
 	\param dt, float for delta time.
 	*/
-	void OnUpdate(float dt) {
-		
-	}
+	void OnUpdate(float dt) {}
 
 	//! OnMessage Function Override.
 	/*!
 	\param m const string which takes a message from components.
 	*/
-	void OnMessage(const std::string m) {
-	
-		
-	}
+	void OnMessage(const std::string m) {}
 
 	//! Getter for Relative Position.
 	/*!

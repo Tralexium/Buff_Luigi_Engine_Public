@@ -11,7 +11,6 @@
 class Component
 {
 public:
-
 	//! Pure Virutal Update Function.
 	/*!
 	\param dt

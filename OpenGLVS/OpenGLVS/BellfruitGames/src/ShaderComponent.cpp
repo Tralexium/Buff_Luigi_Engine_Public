@@ -234,8 +234,6 @@ void ShaderComponent::setUniforms(const CameraComponent * cam)
 	glUniform1f(glGetUniformLocation(shaderProgram, "light.quadratic"), quadratic);
 }
 
-
-
 ShaderComponent::~ShaderComponent()
 {
 
@@ -244,4 +242,3 @@ ShaderComponent::~ShaderComponent()
 	glDeleteBuffers(1, &msFBO);
 	glDeleteBuffers(1, &textureColorBufferMultiSampled);
 }
-

@@ -45,15 +45,19 @@ Scene::Scene()
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
 	
-	//---------------- Initialisation for model loading START---------------//
+	// ---------------- Initialisation for model loading START--------------- //
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
-	// --------------------- Setting player camera pointer---------------------------------------------------------//
-	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera	
-	// --------------------- Audio stuff --------------------------------------------------------------------------//
+	// --------------------- Setting player camera pointer---------------- //
+	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera
+	
+	// --------------------- Audio stuff -------------------------------- //
+
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
+	// --------------------- Particle stuff ----------------------------- //
+	m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -142,6 +146,11 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col)));
+		if (i == 3)
+		{
+			// Set particle effects for some objects (TESTING PURPOSES)
+			v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
+		}
 
 	}
 	return true;
@@ -368,10 +377,17 @@ void Scene::update(float dt)
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 	stepPhysicsSimulation();
 	// --------------------------------------------------------------------------------------------------------------------
+
+
+	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
+
+	m_particleSystem->update(dt);
+
+	// ------------------------------------------------------------------------------------------------------------- //
 }
 
 
-void Scene::render(CameraComponent* camera)
+void Scene::render()
 {
 	//------------ BINDING FBO BEFORE RENDERING ANYTHING ---------------------------------------------------------------------------------------------------------------------//
 	// Here we bind the framebuffer before we do any rendering, this renders everything into the FBO,
@@ -389,7 +405,6 @@ void Scene::render(CameraComponent* camera)
 	m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
 	// which is then used to put that texture onto a Quad shape, that Quad shape is then rendering the entire scene as a 800x600 texture
@@ -404,6 +419,17 @@ void Scene::render(CameraComponent* camera)
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+
+		// -------------- Particle Drawing ------------------- //
+		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		{
+			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
+			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
+			emitter->setEmitterPos(pos);
+			m_particleSystem->setEmitter(emitter);
+			m_particleSystem->setCamera(m_playerCameraComponent);
+			m_particleSystem->render();
+		}
 	}
 
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.

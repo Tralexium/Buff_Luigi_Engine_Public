@@ -23,7 +23,7 @@ void BellfruitGame::update(float dt)
 void BellfruitGame::render()
 {
 
-	m_currentScene->render(m_playerCameraComponent); // render scene
+	m_currentScene->render(); // render scene
 
 }
 

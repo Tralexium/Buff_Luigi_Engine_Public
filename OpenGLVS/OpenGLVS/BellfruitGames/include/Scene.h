@@ -6,6 +6,7 @@
 
 #include "ModelManager.h"
 #include "GameObject.h"
+#include "ParticleSystemRenderer.h"
 
 #include "ModelComponent.h"
 #include "glslprogram.h"
@@ -30,6 +31,7 @@ private:
 	SkyBox* m_skyboxCube; //!< skybox object pointer.
 	CameraComponent* m_playerCameraComponent; //!< Player component pointer.
 	ModelManager* m_modelmanager; //!< ModelManager pointer.
+	ParticleSystemRenderer* m_particleSystem; //!< Manages particles logic and renders them.
 
 	std::vector<GameObject> v_gameObjects; //!< Vector of gameObjects.
 	std::vector<GameObject> v_playerCharacterObjects; //!< Vector of player objects.
@@ -76,7 +78,7 @@ public:
 	/*!
 	\param engineInterfacePtr handles rendering.
 	*/
-	void render(CameraComponent* camera);
+	void render();
 
 	void stepPhysicsSimulation();
 

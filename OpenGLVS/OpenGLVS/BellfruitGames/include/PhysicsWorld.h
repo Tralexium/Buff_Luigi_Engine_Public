@@ -70,8 +70,8 @@ public:
 			btVector3 blue(0, 0, 1);
 
 			//TODO TRY FIX THIS FROM MOUSE
-			btVector3 btFrom(mousepos.x, mousepos.y, mousepos.z);
-			btVector3 btTo(mousepos.x, mousepos.y, mousepos.z + 500);
+			btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
+			btVector3 btTo(mousepos.x, mousepos.y, mousepos.z);
 
 			cout <<  mousepos.z << endl;
 

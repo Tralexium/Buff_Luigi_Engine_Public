@@ -309,7 +309,9 @@ void Scene::stepPhysicsSimulation() {
 		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
 
 		// TODO SET RIGID BODY ROTATION EQUAL TO CAMERA ROTATION
-		l_rot = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri();
+
+		//btTransform l_playerTransform = btTransform(glmQuatToBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri(), glmVec3toBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos())));
+		//l_bodyPlayer->setWorldTransform(l_playerTransform);
 	}
 	else
 	{

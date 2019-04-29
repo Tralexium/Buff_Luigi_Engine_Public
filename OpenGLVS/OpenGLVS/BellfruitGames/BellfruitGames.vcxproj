@@ -148,6 +148,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\Model.cpp" />
+    <ClCompile Include="src\ParticleSystemRenderer.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\ShaderComponent.cpp" />
     <ClCompile Include="src\SkyBox.cpp" />
@@ -157,11 +158,12 @@
     <ClInclude Include="include\AudioComponent.h" />
     <ClInclude Include="include\BellfruitGame.h" />
     <ClInclude Include="include\Bitmap.h" />
+    <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\DebugDrawPhysics.h" />
     <ClInclude Include="include\MouseSettings.h" />
     <ClInclude Include="include\ParticleEmitterComponent.h" />
+    <ClInclude Include="include\ParticleSystemRenderer.h" />
     <ClInclude Include="include\PhysicsBodyComponent.h" />
-    <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\Conversions.h" />
     <ClInclude Include="include\EngineCore.h" />

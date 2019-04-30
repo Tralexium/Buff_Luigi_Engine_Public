@@ -5,10 +5,10 @@
     "TBackward": 83,
     "TLeft": 65,
     "TRight": 68,
-    "TForwardArrow": 38,
-    "TBackwardArrow": 40,
-    "TLeftArrow": 37,
-    "TRightArrow": 39,
+    "TForwardArrow": 73,
+    "TBackwardArrow": 75,
+    "TLeftArrow": 74,
+    "TRightArrow": 76,
     "TBoost": 32
   }
 }

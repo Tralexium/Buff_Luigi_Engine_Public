@@ -31,7 +31,11 @@ private:
 	btQuaternion m_rotation;
 	
 	btCollisionShape* m_shape;
-	
+
+	// Local Vars
+	btCollisionObject* l_collisionObjectPlayer;
+	btRigidBody* l_bodyPlayer;
+
 	std::string m_whatShape = "";
 
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
@@ -100,8 +104,8 @@ public:
 
 	void OnMessage(const std::string m) {
 
-		btCollisionObject* l_collisionObjectPlayer = physicsworld.getDynamicsWorld()->getCollisionObjectArray()[physicsworld.getDynamicsWorld()->getNumCollisionObjects() - 1];
-		btRigidBody* l_bodyPlayer = btRigidBody::upcast(l_collisionObjectPlayer);
+		l_collisionObjectPlayer = physicsworld.getDynamicsWorld()->getCollisionObjectArray()[physicsworld.getDynamicsWorld()->getNumCollisionObjects() - 1];
+		l_bodyPlayer = btRigidBody::upcast(l_collisionObjectPlayer);
 		btQuaternion l_onKeyQuat;
 		btTransform l_onKeyTransform;
 
@@ -145,10 +149,10 @@ public:
 		else if (m == "moveLeftArrow")
 		{
 			std::cout << "LeftArrow: (Left) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_onKeyQuat.setEuler(10.0, 0.0, 0.0);
+			/*l_bodyPlayer->activate(1);
+			l_onKeyQuat.setEuler(0.1, 0.0, 0.0);
 			l_onKeyTransform.setRotation(l_onKeyQuat);
-			l_bodyPlayer->setCenterOfMassTransform(l_onKeyTransform);
+			l_bodyPlayer->setCenterOfMassTransform(l_onKeyTransform);*/
 			//l_bodyPlayer->applyForce(btVector3(-10, 0, 0), btVector3(0, 0, 0));
 		}
 
@@ -159,14 +163,14 @@ public:
 			l_bodyPlayer->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
 		}
 
-		else if (m == "moveForwardArrow")
+		else if (m == "moveForwardsArrow")
 		{
 			std::cout << "ForwardArrow: (Forward) Pressed" << std::endl;
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, -10), btVector3(0, 0, 0));
 		}
 
-		else if (m == "moveBackwardArrow")
+		else if (m == "moveBackwardsArrow")
 		{
 			std::cout << "BackArrow: (Backwards) Pressed" << std::endl;
 			l_bodyPlayer->activate(1);
@@ -184,7 +188,10 @@ public:
 	void setScale(btVector3 scale) { m_scale = scale; }
 	void setRotation(btQuaternion ori) { m_rotation = ori; }
 
-	~PhysicsBodyComponent();
+	~PhysicsBodyComponent(
+	
+		
+	);
 };
 
 
@@ -257,6 +264,11 @@ inline PhysicsBodyComponent::~PhysicsBodyComponent()
 
 	//next line is optional: it will be cleared by the destructor when the array goes out of scope
 	m_collisionShapes.clear();
+
+	delete l_collisionObjectPlayer;
+	l_collisionObjectPlayer = nullptr;
+	delete l_bodyPlayer;
+	l_bodyPlayer = nullptr;
 }
 
 

@@ -59,7 +59,7 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	m_particleSystem = new ParticleSystemRenderer(100000);
+	//m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -152,7 +152,7 @@ bool Scene::loadSceneObjects(std::string level)
 	
 		
 			// Set particle effects for some objects (TESTING PURPOSES)
-			v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
+			//v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
 		
 
 	}
@@ -309,8 +309,8 @@ void Scene::stepPhysicsSimulation() {
 	
 
 	// Then IF this is true, then we set this player object relative to the physics component, same way we do for the objects above
-	btCollisionObject* l_collisionObjectPlayer = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[physicsWorld.getDynamicsWorld()->getNumCollisionObjects() - 1];
-	btRigidBody* l_bodyPlayer  = btRigidBody::upcast(l_collisionObjectPlayer);
+	l_collisionObjectPlayer = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[physicsWorld.getDynamicsWorld()->getNumCollisionObjects() - 1];
+	l_bodyPlayer  = btRigidBody::upcast(l_collisionObjectPlayer);
 
 	glm::vec3 l_pos(
 		(float)l_collisionObjectPlayer->getWorldTransform().getOrigin().getX(),
@@ -392,7 +392,7 @@ void Scene::update(float dt)
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	m_particleSystem->update(dt);
+	//m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -433,7 +433,7 @@ void Scene::render()
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
 			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
@@ -441,7 +441,7 @@ void Scene::render()
 			m_particleSystem->setEmitter(emitter);
 			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();
-		}
+		}*/
 	}
 
 	

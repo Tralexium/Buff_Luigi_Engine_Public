@@ -78,7 +78,7 @@ public:
 			//btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), -(tr.getOrigin().getZ()+5000));
 
 
-			cout << mousepos.x << mousepos.y << mousepos.z << endl;
+			//cout << mousepos.x << mousepos.y << mousepos.z << endl;
 
 			btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
 			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
@@ -138,6 +138,8 @@ public:
 		delete overlappingPairCache;
 		delete dispatcher;
 		delete collisionConfiguration;
+
+
 	};
 
 

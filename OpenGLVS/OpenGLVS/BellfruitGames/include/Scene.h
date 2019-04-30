@@ -41,12 +41,14 @@ private:
 	GLSLProgram defaultShader; //!< default shader.
 
 	// ---------- physics  ---------------------//
+
 	btTransform m_transform;
 	PhysicsBodyComponent* m_physicsBody;
 	btCollisionObject* l_collisionObject;
 	btRigidBody* l_body;
 	btCollisionObject* l_collisionObjectPlayer;
 	btRigidBody* l_bodyPlayer;
+
 	// ----------------------------------------//
 
 public:

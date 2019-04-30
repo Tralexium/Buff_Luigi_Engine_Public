@@ -3,10 +3,7 @@
 /*!
 \file EngineCore.h
 */
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
-#include <stdio.h>
+
 
 
 #include "glslprogram.h"
@@ -32,9 +29,6 @@ class EngineCore
 {	
 private:
 
-	bool show_demo_window;
-	ImVec4 clear_color;
-	ImVec2 imGuiWindowSize;
 
 
 	EngineCore() {};  // Private so that it can  not be called

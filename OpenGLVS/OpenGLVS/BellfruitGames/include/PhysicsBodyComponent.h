@@ -52,10 +52,20 @@ public:
 	// Default Constructor
 	PhysicsBodyComponent() {};
 
+
+	// Parameterized Constructor
+	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca)
+	{
+		m_position = pos;
+		m_startTransform = btTransform(btQuaternion(rot), btVector3(pos));
+
+		// -> Create Rigid Body
+		createRigidBody();
+	};
+
 	// Parameterized Constructor
 	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize, std::string whatshape)
 	{
-
 		m_whatShape = whatshape;
 		m_collisionBoxSize = colSize;
 		m_position = pos;
@@ -84,19 +94,7 @@ public:
 		createRigidBody();
 
 	};
-
-
-
 	void createRigidBody(); // Create Rigid Body
-
-	btVector3* getPosition() { return &m_position; }
-	btVector3* getScale() { return &m_scale; }
-	btQuaternion* getRotation() { return &m_rotation; }
-
-	void setPosition(btVector3 pos) { m_position = pos; }
-	void setScale(btVector3 scale) { m_scale = scale; }
-	void setRotation(btQuaternion ori) { m_rotation = ori; }
-
 	// Component Interface functions
 	void OnUpdate(float dt) { }
 
@@ -104,6 +102,8 @@ public:
 
 		btCollisionObject* l_collisionObjectPlayer = physicsworld.getDynamicsWorld()->getCollisionObjectArray()[physicsworld.getDynamicsWorld()->getNumCollisionObjects() - 1];
 		btRigidBody* l_bodyPlayer = btRigidBody::upcast(l_collisionObjectPlayer);
+		btQuaternion l_onKeyQuat;
+		btTransform l_onKeyTransform;
 
 		if (m == "moveLeft")
 		{
@@ -132,7 +132,57 @@ public:
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
 		}
+
+
+		else if (m == "speedBoost")
+		{
+			std::cout << "SPACE: (Booster) Pressed" << std::endl;
+			l_bodyPlayer->activate(1);
+			l_bodyPlayer->applyForce(btVector3(0, 0, -100), btVector3(0, 0, 0));
+		}
+
+
+		else if (m == "moveLeftArrow")
+		{
+			std::cout << "LeftArrow: (Left) Pressed" << std::endl;
+			l_bodyPlayer->activate(1);
+			l_onKeyQuat.setEuler(10.0, 0.0, 0.0);
+			l_onKeyTransform.setRotation(l_onKeyQuat);
+			l_bodyPlayer->setCenterOfMassTransform(l_onKeyTransform);
+			//l_bodyPlayer->applyForce(btVector3(-10, 0, 0), btVector3(0, 0, 0));
+		}
+
+		else if (m == "moveRightArrow")
+		{
+			std::cout << "RightArrow: (Right) Pressed" << std::endl;
+			l_bodyPlayer->activate(1);
+			l_bodyPlayer->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
+		}
+
+		else if (m == "moveForwardArrow")
+		{
+			std::cout << "ForwardArrow: (Forward) Pressed" << std::endl;
+			l_bodyPlayer->activate(1);
+			l_bodyPlayer->applyForce(btVector3(0, 0, -10), btVector3(0, 0, 0));
+		}
+
+		else if (m == "moveBackwardArrow")
+		{
+			std::cout << "BackArrow: (Backwards) Pressed" << std::endl;
+			l_bodyPlayer->activate(1);
+			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
+		}
 	}
+
+	
+
+	btVector3* getPosition() { return &m_position; }
+	btVector3* getScale() { return &m_scale; }
+	btQuaternion* getRotation() { return &m_rotation; }
+
+	void setPosition(btVector3 pos) { m_position = pos; }
+	void setScale(btVector3 scale) { m_scale = scale; }
+	void setRotation(btQuaternion ori) { m_rotation = ori; }
 
 	~PhysicsBodyComponent();
 };
@@ -157,6 +207,7 @@ inline void PhysicsBodyComponent::createRigidBody()
 		m_myMotionState = new btDefaultMotionState(m_startTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
 		btRigidBody* body = new btRigidBody(rbInfo);
+		body->setFriction(0.5);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}
 	else if (m_whatShape == "btSphereShape")
@@ -173,6 +224,7 @@ inline void PhysicsBodyComponent::createRigidBody()
 		m_myMotionState = new btDefaultMotionState(m_startTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
 		btRigidBody* body = new btRigidBody(rbInfo);
+		body->setFriction(1.5);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}	
 }

@@ -71,9 +71,14 @@ public:
 
 			//TODO TRY FIX THIS FROM MOUSE
 			btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
-			btVector3 btTo(mousepos.x, mousepos.y, mousepos.z);
+			btVector3 btTo(mousepos.x, mousepos.y, -(mousepos.z+5000));
+			
+			
+			//btVector3 btTo(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
+			//btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), -(tr.getOrigin().getZ()+5000));
 
-			//cout <<  mousepos.z << endl;
+
+			cout << mousepos.x << mousepos.y << mousepos.z << endl;
 
 			btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
 			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;

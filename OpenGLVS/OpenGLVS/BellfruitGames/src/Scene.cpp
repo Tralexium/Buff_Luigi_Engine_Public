@@ -445,9 +445,6 @@ void Scene::render()
 	}
 
 	
-	
-	
-
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	//framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	//framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0

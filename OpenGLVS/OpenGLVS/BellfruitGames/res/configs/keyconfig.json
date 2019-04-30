@@ -1,10 +1,14 @@
 {
-  "KeyboardInputs": 
-  {
+  "KeyboardInputs": {
     "Rotate": 32,
     "TForward": 87,
     "TBackward": 83,
     "TLeft": 65,
-    "TRight": 68
+    "TRight": 68,
+    "TForwardArrow": 38,
+    "TBackwardArrow": 40,
+    "TLeftArrow": 37,
+    "TRightArrow": 39,
+    "TBoost": 32
   }
 }

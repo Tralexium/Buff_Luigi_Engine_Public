@@ -89,32 +89,72 @@ public:
 	}
 };
 
+/*!
+\class TranslateBackwardsCommand
+\brief Handles translation backwards.
+*/
+class SpeedBoostCommand : public InputCommand
+{
+public:
+	void execute(GameObject& obj) override
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("speedBoost");
+		}
+	}
+};
+
 
 
 class TranslateLeftArrowCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveLeftArrow"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveLeftArrow");
+		}
+	}
 };
 
 
 class TranslateRightArrowCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveRightArrow"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveRightArrow");
+		}
+	}
 };
 
 
 class TranslateForwardsArrowCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveForwardArrow"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveForwardsArrow");
+		}
+	}
 };
 
 class TranslateBackwardsArrowCommand : public InputCommand
 {
 public:
-	void execute(GameObject& obj) override { obj.OnMessage("moveBackwardArrow"); }
+	void execute(GameObject& obj) override 
+	{
+		if (obj.getComponent<PhysicsBodyComponent>())
+		{
+			obj.getComponent<PhysicsBodyComponent>()->OnMessage("moveBackwardsArrow");
+		}
+	}
 };
 
 
@@ -128,7 +168,7 @@ struct InputHandler
 	
 	// ASCII Keys as ints, INSERT KEYS BELOW ---------------// // can add more keys under here
 	int rotateKey, moveForwardKey, moveBackwardKey, moveLeftKey, moveRightkey,
-		moveForwardArrowKey, moveBackwardArrowKey, moveLeftArrowKey, moveRightArrowKey;
+		moveForwardArrowKey, moveBackwardArrowKey, moveLeftArrowKey, moveRightArrowKey, speedBoostKey;
 	// ASCII KEYS as ints, END HERE----------------------------------------------------------//
 	bool readInputsFromConfig(std::string levelJSONFile)
 	{
@@ -164,18 +204,21 @@ struct InputHandler
 		int tright = keyboardInput["TRight"].asInt();
 		moveRightkey = tright;
 
+		int spbKey = keyboardInput["TBoost"].asInt();
+		speedBoostKey = spbKey;
+
 
 		// Arrow keys
-		int tforwardArrow = keyboardInput["tforwardArrow"].asInt();
+		int tforwardArrow = keyboardInput["TForwardArrow"].asInt();
 		moveForwardArrowKey = tforwardArrow;
 
-		int tbackwardArrow = keyboardInput["tbackwardArrow"].asInt();
+		int tbackwardArrow = keyboardInput["TBackwardArrow"].asInt();
 		moveBackwardArrowKey = tbackwardArrow;
 
-		int tleftArrow = keyboardInput["tleftArrow"].asInt();
+		int tleftArrow = keyboardInput["TLeftArrow"].asInt();
 		moveLeftArrowKey = tleftArrow;
 
-		int trightArrow = keyboardInput["trightArrow"].asInt();
+		int trightArrow = keyboardInput["TRightArrow"].asInt();
 		moveRightArrowKey = trightArrow;
 
 		return true;
@@ -197,6 +240,8 @@ struct InputHandler
 		m_controlMapping[moveBackwardKey] = new TranslateBackwardsCommand;
 		m_controlMapping[moveLeftKey] = new TranslateLeftCommand;
 		m_controlMapping[moveRightkey] = new TranslateRightCommand;
+
+		m_controlMapping[speedBoostKey] = new SpeedBoostCommand;
 
 		m_controlMapping[moveLeftArrowKey] = new TranslateLeftArrowCommand;
 		m_controlMapping[moveRightArrowKey] = new TranslateRightArrowCommand;
@@ -236,6 +281,9 @@ struct InputHandler
 		m_controlMapping[moveLeftKey] = nullptr;
 		delete m_controlMapping[moveRightkey];
 		m_controlMapping[moveRightkey] = nullptr;
+
+		delete m_controlMapping[speedBoostKey];
+		m_controlMapping[speedBoostKey] = nullptr;
 
 		delete m_controlMapping[moveLeftArrowKey];
 		m_controlMapping[moveLeftArrowKey] = nullptr;

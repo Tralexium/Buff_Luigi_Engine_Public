@@ -35,17 +35,12 @@ Scene::Scene()
 	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
 	
 	
-	//m_UIComponent->use();
-	//m_UIComponent->setTextTexture();
-	//m_UIComponent->setupDefaultFont();
 
 	// -- Shader for debug drawing --//
 	debugLineShader = new ShaderComponent("lineShader");
 
 	
 
-	//m_UIComponent = new UIComponent("fontShader");
-	//m_UIComponent->setupFont();
 
 	// --------------FBO initalisation ------//
 	framebufferShader = new ShaderComponent("frameBuffer"); // Instantiate new framebuffer shader
@@ -67,7 +62,7 @@ Scene::Scene()
 	
 	//---------------- Initialisation for model loading START---------------//
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
-	loadMenuObjects(levelLoadingfilePath + "Menu0" + levelLoadingfileName);
+	
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
 	// --------------------- Setting player camera pointer----------------//
@@ -78,85 +73,12 @@ Scene::Scene()
 
 	
 	
-	//m_UIComponent = new UIComponent();
+	
 
 	
 }
 
 
-// WANG
-bool Scene::loadMenuObjects(std::string level)
-{
-
-	std::fstream jsonData;
-	Json::Value root;
-	Json::Reader reader;
-	jsonData.open(level.c_str());
-
-	// check for errors
-	if (!reader.parse(jsonData, root))
-	{
-		std::cout << "Failed to parse data from: "
-			<< level
-			<< reader.getFormattedErrorMessages();
-		return false;
-	}
-
-	const Json::Value gameObjects = root["GameObjects"];
-
-	v_menuObjects.resize(gameObjects.size());
-
-	// size() tells us how large the array is
-	for (int i = 0; i < gameObjects.size(); i++)
-	{
-		//----> name in json file <----//
-		std::cout << gameObjects[i]["name"].asString() << " loaded\n";
-
-		//----> the ACTUAL modelname in json <------//
-		std::string modelName = gameObjects[i]["model"].asString();
-
-		//----> the ACTUAL modelname in json <------//
-		std::string shaderName = gameObjects[i]["shader"].asString();
-
-		//----> the values pos or scale in json <------//
-		float x, y, z, w;
-		// get the position node
-		const Json::Value posNode = gameObjects[i]["position"];
-		x = posNode[0].asFloat(); // get float
-		y = posNode[1].asFloat();
-		z = posNode[2].asFloat();
-		glm::vec3 pos(x, y, z);
-
-		const Json::Value oriNode = gameObjects[i]["orientation"];
-		x = oriNode[0].asFloat(); // get float
-		y = oriNode[1].asFloat();
-		z = oriNode[2].asFloat();
-		w = oriNode[3].asFloat();
-		glm::quat ori(x, y, z, w);
-
-		const Json::Value scaNode = gameObjects[i]["scale"];
-		x = scaNode[0].asFloat(); // get float
-		y = scaNode[1].asFloat();
-		z = scaNode[2].asFloat();
-		glm::vec3 sca(x, y, z);
-
-		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
-
-		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
-
-		// Because we do v_gameObjects[i] and not a specific one, this will set the components to all objects
-		// that this loop goes through, which is every object in the JSON file 
-
-		// All game objects wnats to have these different things such as shaders, models, transforms wants to have a shader, a model
-		v_menuObjects[i].addComponent(new ShaderComponent(shaderName));
-		v_menuObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
-		v_menuObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		v_menuObjects[0].addComponent(new UIComponent());
-
-	}
-	return true;
-
-}
 // Main Object Loading Function, handled in Level0.json
 bool Scene::loadSceneObjects(std::string level)
 {
@@ -434,27 +356,6 @@ void Scene::drawCollisionDebugLines() {
 	physicsWorld.drawWorld(); // draw the world
 }
 
-void Scene::updateMenubuttons() { // WANG
-
-	
-	glm::vec3 l_camerapos;
-
-	float l_buttonOneOffset = -0.6f;
-	float l_buttonTwoOffset = -0.2f;
-	float l_buttonThreeOffset = 0.2f;
-	for (int j = 0; j < v_playerCharacterObjects.size(); j++)
-	{
-		l_camerapos = v_playerCharacterObjects[j].getComponent<CameraComponent>()->getPos();
-	}
-	for (int i = 0; i < v_menuObjects.size(); i++)
-	{
-		v_menuObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonOneOffset, l_camerapos.z - 2));
-		v_menuObjects[1].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonTwoOffset, l_camerapos.z - 2));
-		v_menuObjects[2].getComponent<TransformComponent>()->setPos(glm::vec3(l_camerapos.x, l_camerapos.y + l_buttonThreeOffset, l_camerapos.z - 2));
-		
-	}
-
-}
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)
 void Scene::update(float dt)
 {
@@ -464,7 +365,6 @@ void Scene::update(float dt)
 
 	//m_audio->playSound(); 
 
-	updateMenubuttons(); // WANG
 
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -516,21 +416,7 @@ void Scene::render(CameraComponent* camera)
 	}
 
 	
-	// WANG 
-	for (int j = 0; j < v_menuObjects.size(); j++)
-	{
-		if (v_menuObjects[0].getComponent<UIComponent>()->m_menuRender)
-		{
-			Model* menuModel = v_menuObjects[j].getComponent<ModelComponent>()->getModel(); // pointer to the other models
-			menuShaderProgram = v_menuObjects[j].getComponent<ShaderComponent>()->shaderProgram; // get shader program
-			menuShaderptr = v_menuObjects[j].getComponent<ShaderComponent>();
-			menuShaderptr->use(); // -> Step 2. use shaders specified in loader.
-
-			menuShaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
-			glm::mat4 l_modelMatrix = v_menuObjects[j].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-			enginecore->drawModel(menuShaderProgram, menuModel, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
-		}
-	}
+	
 
 	
 	//m_UIComponent->renderText("HELLO", 10.0f, 10.0f, 100.0f, glm::vec3(1.0f, 1.0f, 0.0f));

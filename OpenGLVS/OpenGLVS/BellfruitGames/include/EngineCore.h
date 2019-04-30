@@ -3,6 +3,12 @@
 /*!
 \file EngineCore.h
 */
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+#include <stdio.h>
+
+
 #include "glslprogram.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -18,7 +24,6 @@
 #include "UIComponent.h"
 
 
-
 /*!
 \class EngineCore
 \brief handles all core related tasks such OpenGL instructions and running main game loop.
@@ -27,8 +32,10 @@ class EngineCore
 {	
 private:
 
-	
-	
+	bool show_demo_window;
+	ImVec4 clear_color;
+	ImVec2 imGuiWindowSize;
+
 
 	EngineCore() {};  // Private so that it can  not be called
 
@@ -39,7 +46,6 @@ private:
 	static EngineCore* m_pInstance;
 
 
-	
 
 	//! frame buffer size callback for resizing window.
 	/*!
@@ -69,12 +75,11 @@ private:
 
 public:
 
-	
-
 	static EngineCore * Instance();
 	static std::vector<bool> m_keyBuffer; //!< key buffer.
 
-	
+	UIComponent* m_UIComponent;
+	ShaderComponent* fontShader;
 
 	GLuint m_defaultSP; //!< GLuint default shader.
 	GLuint programHandle; //!< Program handle.#
@@ -93,6 +98,7 @@ public:
 	unsigned int quadVAO, quadVBO; //!< Quad vertex array object, and vertex buffer object.
 	unsigned int msFBO, intermediateFBO; //!< Frame buffer object. (FBO)
 	unsigned int screenTexture;
+
 
 	
 	
@@ -154,7 +160,7 @@ public:
 
 	
 
-	
+	void setupDefaultFont();
 
 	//! Virtual Destructor.
 	/*!

@@ -10,7 +10,6 @@ BellfruitGame::BellfruitGame()
 	
 
 	m_playerInputHandler = new InputHandler(m_currentScene->getFirstPlayerObject()); //! handles input on the 1 game object		
-	m_menuInputHandler = new InputHandler(m_currentScene->getFirstMenuObject()); //! handles input on the 1 game object		
 
 }
 

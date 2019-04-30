@@ -3,21 +3,12 @@
 #include FT_FREETYPE_H 
 
 #include "Component.h"
-#include "CameraComponent.h"
+
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
-
-#include <map>
-
-#include <iostream>
-#include <string>
-
-#include <vector>
-#include <fstream>
-#include <sstream>
 
 
 
@@ -27,24 +18,12 @@ using namespace std;
 class UIComponent : public Component
 {
 public:
-	GLuint m_fontShaderProgram; //!< GLuint font shader.
 	
-	struct Character {
-		GLuint textureID;   //!< ID handle of the glyph texture.
-		glm::ivec2 size;    //!< Size of glyph.
-		glm::ivec2 bearing;  //!< Offset from baseline to left/top of glyph.
-		GLuint advance;    //!< Horizontal offset to advance to next glyph.
-	};
 
-	std::map<GLchar, Character> Characters; //!< stores all the available ASCII codes.
-	GLuint font_VAO, font_VBO; //!< Font VBO and VAO.
 
-	std::string vertexFileName; //!< file name of vertex shader/
-	std::string fragmentFileName; //!< file name of fragment shader.
+	
 
-	bool m_menuRender = false; // create bool for menu render
-
-	UIComponent() //std::string shadername
+	UIComponent(std::string shadername)
 	{
 		
 		//// initialize lights
@@ -128,8 +107,8 @@ public:
 		
 	}
 
-	void setupFont() {
-	
+	//void setupFont() {
+	//
 	//	// based on tutorial from https://learnopengl.com/#!In-Practice/Text-Rendering
 	//// FreeType
 	//	FT_Library ft;
@@ -205,111 +184,94 @@ public:
 	//	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
 	//	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//	glBindVertexArray(0);
-	}
+	//}
 
-	void setTextTexture() {
-		//glUniform1i(glGetUniformLocation(m_fontShaderProgram, "text"), 0);
-	}
+	//void setTextTexture() {
+	//	glUniform1i(glGetUniformLocation(m_fontShaderProgram, "text"), 0);
+	//}
 
-	void use() // loading some default shaders to get things up and running
-	{
-		//glUseProgram(m_fontShaderProgram);// set the default shader
-	}
+	//void use() // loading some default shaders to get things up and running
+	//{
+	//	glUseProgram(m_fontShaderProgram);// set the default shader
+	//}
 
-	void renderText( std::string text, float x, float y, float scale, glm::vec3 colour) {
+	//void renderText( std::string text, float x, float y, float scale, glm::vec3 colour) {
 
-		
+	//	
 
-		//glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//// set the window to orthographic
-		//glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+	//	glEnable(GL_BLEND);
+	//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//	// set the window to orthographic
+	//	glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
 
-		//float pixelValueX = x * 800.0f;
-		//float pixelValueY = y * 600.0f;
+	//	float pixelValueX = x * 800.0f;
+	//	float pixelValueY = y * 600.0f;
 
-		//glUseProgram(m_fontShaderProgram);
-		//glUniformMatrix4fv(glGetUniformLocation(m_fontShaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-	
-		//glUniform3f(glGetUniformLocation(m_fontShaderProgram, "textColour"), colour.x, colour.y, colour.z);
-		////glUniform1i(glGetUniformLocation(m_fontShaderProgram, "text"), 0);
-		//glActiveTexture(GL_TEXTURE0);
-		//glBindVertexArray(font_VAO);
+	//	glUseProgram(m_fontShaderProgram);
+	//	glUniformMatrix4fv(glGetUniformLocation(m_fontShaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	//
+	//	glUniform3f(glGetUniformLocation(m_fontShaderProgram, "textColour"), colour.x, colour.y, colour.z);
+	//	//glUniform1i(glGetUniformLocation(m_fontShaderProgram, "text"), 0);
+	//	glActiveTexture(GL_TEXTURE0);
+	//	glBindVertexArray(font_VAO);
 
-		//// Iterate through all characters
-		//std::string::const_iterator c;
-		//for (c = text.begin(); c != text.end(); c++)
-		//{
-		//	Character ch = Characters[*c];
+	//	// Iterate through all characters
+	//	std::string::const_iterator c;
+	//	for (c = text.begin(); c != text.end(); c++)
+	//	{
+	//		Character ch = Characters[*c];
 
-		//	GLfloat xpos = pixelValueX + ch.bearing.x * scale;
-		//	GLfloat ypos = pixelValueY - (ch.size.y - ch.bearing.y) * scale;
+	//		GLfloat xpos = pixelValueX + ch.bearing.x * scale;
+	//		GLfloat ypos = pixelValueY - (ch.size.y - ch.bearing.y) * scale;
 
-		//	GLfloat w = ch.size.x * scale;
-		//	GLfloat h = ch.size.y * scale;
-		//	// Update VBO for each character
-		//	GLfloat vertices[6][4] = {
-		//		{ xpos,     ypos + h,   0.0, 0.0 },
-		//		{ xpos,     ypos,       0.0, 1.0 },
-		//		{ xpos + w, ypos,       1.0, 1.0 },
+	//		GLfloat w = ch.size.x * scale;
+	//		GLfloat h = ch.size.y * scale;
+	//		// Update VBO for each character
+	//		GLfloat vertices[6][4] = {
+	//			{ xpos,     ypos + h,   0.0, 0.0 },
+	//			{ xpos,     ypos,       0.0, 1.0 },
+	//			{ xpos + w, ypos,       1.0, 1.0 },
 
-		//		{ xpos,     ypos + h,   0.0, 0.0 },
-		//		{ xpos + w, ypos,       1.0, 1.0 },
-		//		{ xpos + w, ypos + h,   1.0, 0.0 }
-		//	};
-		//	// Render glyph texture over quad
-		//	glBindTexture(GL_TEXTURE_2D, ch.textureID);
-		//	// Update content of VBO memory
-		//	glBindBuffer(GL_ARRAY_BUFFER, font_VBO);
-		//	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-		//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-		//	// Render quad
-		//	glDrawArrays(GL_TRIANGLES, 0, 6);
-		//	// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-		//	pixelValueX += (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
-		//}
-		//glBindVertexArray(0);
-		//glBindTexture(GL_TEXTURE_2D, 0);
+	//			{ xpos,     ypos + h,   0.0, 0.0 },
+	//			{ xpos + w, ypos,       1.0, 1.0 },
+	//			{ xpos + w, ypos + h,   1.0, 0.0 }
+	//		};
+	//		// Render glyph texture over quad
+	//		glBindTexture(GL_TEXTURE_2D, ch.textureID);
+	//		// Update content of VBO memory
+	//		glBindBuffer(GL_ARRAY_BUFFER, font_VBO);
+	//		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+	//		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//		// Render quad
+	//		glDrawArrays(GL_TRIANGLES, 0, 6);
+	//		// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+	//		pixelValueX += (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
+	//	}
+	//	glBindVertexArray(0);
+	//	glBindTexture(GL_TEXTURE_2D, 0);
 
-		// go back to default shader
-		//glUseProgram(shaderProgram);
+	//	// go back to default shader
+	//	//glUseProgram(shaderProgram);
 
-	}
+	//}
 
-	
-	void setUniforms(CameraComponent* cam) { 
-	
-			// set the view and projection components of our shader to the CameraComponent values
-			//glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
-			//glUniformMatrix4fv(glGetUniformLocation(m_fontShaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-	
-	}
+	//
+	//void setUniforms(CameraComponent* cam) { 
+	//
+	//	
 
-	void renderMenu() {
+	//		// set the view and projection components of our shader to the CameraComponent values
+	//		glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+	//		glUniformMatrix4fv(glGetUniformLocation(m_fontShaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	//	
 
-		if (m_menuRender == false)
-		{
-			m_menuRender = true;
-		}
-		else if (m_menuRender == true)
-		{
-			m_menuRender = false;
-		}
-	}
+	//	
 
+
+	//}
 
 	void OnUpdate(float dt) {}
-
-
-	void OnMessage(const std::string m) 
-	{
-		if (m == "renderMenu")
-		{
-			std::cout << "Menu button pressed" << std::endl;
-			renderMenu();
-		}
-	
-	}
+	void OnMessage(const std::string m) {}
 
 	
 

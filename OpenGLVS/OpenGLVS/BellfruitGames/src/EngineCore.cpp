@@ -19,9 +19,6 @@
 //----------------------------------------------------------------------------------//
 
 // ------------------- GLOBAL VARIABLES --------------------------------------------//
-
-bool renderMenu = false; // WANG bool for render menu
-
 std::vector<bool> EngineCore::m_keyBuffer; // Global key buffer variable.
 double previousMousePosX, previousMousePosY, currentMousePosX, currentMousePosY; // Global mouse positions for calculating delta position.
 
@@ -49,7 +46,6 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-	
 
 	m_screenWidth = width; // set screen width
 	m_screenHeight = height; // set screen height
@@ -70,6 +66,25 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 			std::cout << "Failed to initialise GLAD" << std::endl;
 			return false;
 		}
+
+
+	// GUI WANG ---------------------------------------------------------------------------------------
+	const char* glsl_version = "#version 130";
+	// Setup Dear ImGui context
+	ImGui::CreateContext();
+	IMGUI_CHECKVERSION();
+
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+	// Setup Dear ImGui style
+	// Setup Platform/Renderer bindings
+	ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+	ImGui_ImplOpenGL3_Init(glsl_version);
+	ImGui::StyleColorsDark();
+	show_demo_window = false;
+	clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+	//imGuiWindowSize = ImVec2(g_window.getScreenWidth(), g_window.getScreenHeight());
 
 	glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 	glfwSetKeyCallback(m_window, keyCallbackEvent);
@@ -106,6 +121,37 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 	while (!glfwWindowShouldClose(m_window)) // main game loop
 	{
 
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+		if (show_demo_window)
+			ImGui::ShowDemoWindow(&show_demo_window);
+
+		// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
+		{
+			static float f = 0.0f;
+			static int counter = 0;
+
+			ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+			ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+			ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+
+			//ImGui::Checkbox("Another Window", &show_another_window);
+
+			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+			ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+			if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+				counter++;
+			ImGui::SameLine();
+			ImGui::Text("counter = %d", counter);
+
+			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+			ImGui::End();
+		}
 
 		// ---------Debug check ms/frame code----------------------------------------------------//
 		double l_currentTime = glfwGetTime(); // Measure performance
@@ -137,12 +183,14 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 		
 		//Input handler
 		game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
-		game->getMenuInputHandler()->handleInputs(m_keyBuffer);
 
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(m_window); // Swap buffers	
 
-		glfwSwapInterval(0); // Enable or Disable Vsync for reduced screentearing!(does cost about double in render performance)
+		//glfwSwapInterval(0); // Enable or Disable Vsync for reduced screentearing!(does cost about double in render performance)
 
 		glfwPollEvents(); // poll for events
 	}
@@ -225,20 +273,17 @@ void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 
 void EngineCore::keyCallbackEvent(GLFWwindow* window, int key, int scancode, int action, int mods) // keyboard input
 {
-	
 
 	if (key == GLFW_KEY_UNKNOWN || key > m_keyBufferSize)
 	{
 		return;	
 	}
-	m_keyBuffer[key] = ((action == GLFW_PRESS || action == GLFW_PRESS));
+	m_keyBuffer[key] = ((action == GLFW_PRESS || action == GLFW_REPEAT));
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
-
-	
 
 }
 

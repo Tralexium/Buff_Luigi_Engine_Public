@@ -127,7 +127,6 @@ void ShaderComponent::createQuad() {
 void ShaderComponent::bindFrameBuffer() {
 
 
-
 	// These steps need to be followed for the FBO to render!
 	// 1. Bind Framebuffer!
 	glBindFramebuffer(GL_FRAMEBUFFER, msFBO);
@@ -169,14 +168,11 @@ void ShaderComponent::blitFBO() {
 
 void ShaderComponent::createFBO() {
 
-
-
 		// Start MSAA FBO
 		// 1.
 		// configure MSAA framebuffer
 		glGenFramebuffers(1, &msFBO);
 		glBindFramebuffer(GL_FRAMEBUFFER, msFBO);
-
 
 		// 2.
 		// create a multisampled color attachment texture

@@ -51,12 +51,23 @@
       "collisionboxsize": [ 1, 1, 1 ]
     },
 
+    {
+      "name": "testwall",
+      "model": "testwall",
+      "shader": "parallaxMapShader",
+      "position": [ -2, -9.3, -15 ],
+      "colliderposition": [ -2, -9.3, -15 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 4, 3, 4 ],
+      "mass": [ 0.0 ],
+      "collisionboxsize": [ 1, 1, 1 ]
+    },
 
     {
       "name": "box2",
       "model": "box2",
       "shader": "lampShader",
-      "position": [ 2, -5, -12 ],
+      "position": [ -2, -9.3, -15 ],
       "colliderposition": [ 2, -5, -12 ],
       "orientation": [ 1, 0, 0, 0 ],
       "scale": [ 1, 1, 1 ],

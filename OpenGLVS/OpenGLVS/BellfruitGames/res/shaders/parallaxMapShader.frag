@@ -123,5 +123,3 @@ void main()
 	//FragColour = mix(FragColour1, FragColour2, 0.5);
    
 } 
-
-

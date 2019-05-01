@@ -159,6 +159,7 @@
     <ClInclude Include="include\BellfruitGame.h" />
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\DebugDrawPhysics.h" />
+    <ClInclude Include="include\GlowShader.h" />
     <ClInclude Include="include\ParticleEmitterComponent.h" />
     <ClInclude Include="include\ParticleSystemRenderer.h" />
     <ClInclude Include="include\PhysicsBodyComponent.h" />
@@ -184,12 +185,18 @@
     <None Include="res\configs\keyconfig.json" />
     <None Include="res\levels\Level0.json" />
     <None Include="res\levels\Player0.json" />
+    <None Include="res\shaders\blur.frag" />
+    <None Include="res\shaders\blur.vert" />
+    <None Include="res\shaders\BrightFilter.frag" />
+    <None Include="res\shaders\BrightFilter.vert" />
     <None Include="res\shaders\depthBufferShader.frag" />
     <None Include="res\shaders\depthBufferShader.vert" />
     <None Include="res\shaders\framebuffer.frag" />
     <None Include="res\shaders\framebuffer.vert" />
     <None Include="res\shaders\framebufferScreen.frag" />
     <None Include="res\shaders\framebufferScreen.vert" />
+    <None Include="res\shaders\Glow.frag" />
+    <None Include="res\shaders\Glow.vert" />
     <None Include="res\shaders\grayScaleShader.frag" />
     <None Include="res\shaders\grayScaleShader.vert" />
     <None Include="res\shaders\inverseColorShader.frag" />

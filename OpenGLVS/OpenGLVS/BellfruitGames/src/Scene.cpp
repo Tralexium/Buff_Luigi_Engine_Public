@@ -39,14 +39,39 @@ Scene::Scene()
 
 	// --------------FBO initalisation ------//
 	framebufferShader = new ShaderComponent("frameBuffer"); // Instantiate new framebuffer shader
+
 	framebufferShader->createQuad(); // 1. create the quad
 	framebufferShader->use(); // 2. use the framebuffer
 	framebufferShader->setfboTexture(); // 3.  set the texture
+
+
+
+	// -- Shader for Glow --//
+	//BrightShader = new ShaderComponent("BrightFilter");
+	//BrightShader->createQuad(); // 1. create the quad
+///BrightShader->use(); // 2. use the framebuffer
+	//BrightShader->setfboTexture(); // 3.  set the texture
+	//BlurShader = new ShaderComponent("blur");
+	//BlurShader->createFBO(); // 3.  create fbos
+//	GlowShader = new ShaderComponent("GlowShader");
+	//GlowShader->createFBO(); // 3.  create fbos
+
+
+	//framebufferScreenShader = new ShaderComponent("BrightFilter"); //  Instantiate new screen framebuffer shader for PP -> for postprocessing
+	/*BlurShader = new ShaderComponent("blur"); //  Instantiate new screen framebuffer shader for PP -> for postprocessing
+	framebufferShader->createFBO(); // 3.  create fbos
+	BlurShader->use(); // 1.  use second framebuffer for postprocessing
+	BlurShader->setfboScreenTexture(); // 2.  set texture*/
 
 	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //  Instantiate new screen framebuffer shader for PP -> for postprocessing
 	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
+
+
+	
+	
+
 	
 	//---------------- Initialisation for model loading START---------------//
 	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
@@ -366,6 +391,8 @@ void Scene::render(CameraComponent* camera)
 	// So we can then do the shader rendering step with everything getting rendered directly from the FBO.
 	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	//BrightShader->bindFrameBuffer();
+	//BlurShader->bindFrameBuffer();
 
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
@@ -390,22 +417,38 @@ void Scene::render(CameraComponent* camera)
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
 		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
-		shaderptr->use(); // -> Step 2. use shaders specified in loader.
+		shaderptr->use(); // -> Step 2. use shaders specified in loader.	
 		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
+	
+		//BrightShader->use();
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 	}
 
-	
 
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
 
+	//BrightShader->blitFBO(); // -> Step 4. BLIT the fbo
+	//BrightShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
+
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
 	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
+
+	//BrightShader->blitFBO();
+	//BrightShader->unbindFrameBuffer();
+	//v_gameObjects[0];
+	//BrightShader->use(); 
+	//BrightShader-> unbindFrameBuffer();
+	
+	//BrightShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.*/
+	
+	//(Draw the object); 
+	///GlowShader.use(); 
+
 
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -428,9 +471,6 @@ Scene::~Scene()
 
 	delete framebufferScreenShader;
 	framebufferScreenShader = nullptr;
-
-
-
 
 	for (GameObject gameObject : v_gameObjects)
 	{
@@ -510,5 +550,4 @@ Scene::~Scene()
 	l_bodyPlayer = nullptr;
 
 
-}
-
+}	

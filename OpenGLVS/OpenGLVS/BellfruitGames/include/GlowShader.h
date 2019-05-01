@@ -15,7 +15,6 @@
 #include "WindowSettings.h"
 
 
-
 using namespace std;
 
 #define CONSTANT 0.8f
@@ -27,19 +26,21 @@ using namespace std;
 \class Scene
 \brief Handles shader creation and logic.
 */
-class ShaderComponent : public Component
+class GlowShader : public Component
 {
 private:
-	
+
 	unsigned int rbo; //!< Rendering Buffer Object
 	unsigned int textureColorBufferMultiSampled; //!< Texture Color Buffer Object.
+	unsigned int colorBuffers[2];
 	unsigned int quadVAO, quadVBO; //!< Quad vertex array object, and vertex buffer object.
-	unsigned int msFBO,hdrFBO, intermediateFBO; //!< Frame buffer object. (FBO)
+	unsigned int  hdrFBO, intermediateFBO; //!< Frame buffer object. (FBO)
 	unsigned int screenTexture;
 
 	float constant = CONSTANT;
 	float linear = LINEAR;
 	float quadratic = QUADRATIC;
+
 
 	string vertexFileName; //!< file name of vertex shader/
 	string fragmentFileName; //!< file name of fragment shader.
@@ -57,10 +58,10 @@ private:
 public:
 	WindowSettings& g_window = g_window.getInstance(); // Global instance
 
-	void setShaderComponentLightPos(glm::vec3 lp) { lightPos = lp; }
-	void setShaderComponentLightColour(glm::vec3 lc) { lightColour = lc; }
-	void setShaderComponentObjectColour(glm::vec3 oc) { objectColour = oc; }
-	void setShaderComponentLightDirection(glm::vec3 ld) { lightDirection = ld; }
+	void setGlowShaderLightPos(glm::vec3 lp) { lightPos = lp; }
+	void setGlowShaderLightColour(glm::vec3 lc) { lightColour = lc; }
+	void setGlowShaderObjectColour(glm::vec3 oc) { objectColour = oc; }
+	void setGlowShaderLightDirection(glm::vec3 ld) { lightDirection = ld; }
 
 	void setShaderLightAmbient(glm::vec3 amb) { ambient = amb; }
 	void setShaderLightDiffuse(glm::vec3 dif) { diffuse = dif; }
@@ -71,13 +72,13 @@ public:
 	void setShaderLightAttenuationQuadratic(float quad) { quadratic = quad; }
 
 	GLuint shaderProgram; //!< shader program id.
-	
+
 	//! Shader class Constructor.
 	/*!
 	\brief initialisation and creatino of shader.
 	\param shadername string that contains the name of the shader.
 	*/
-	ShaderComponent(std::string shadername);
+	GlowShader(std::string shadername);
 
 	//! Use Shader function.
 	/*!
@@ -132,7 +133,7 @@ public:
 	//! Shader class Destructor.
 	/*!
 	*/
-	~ShaderComponent();
+	~GlowShader();
 
 };
 

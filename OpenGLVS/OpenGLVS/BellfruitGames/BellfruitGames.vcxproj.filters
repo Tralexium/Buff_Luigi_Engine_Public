@@ -176,6 +176,9 @@
     <ClInclude Include="include\ParticleSystemRenderer.h">
       <Filter>Header Files\Renders</Filter>
     </ClInclude>
+    <ClInclude Include="include\GlowShader.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\levels\Level0.json">
@@ -258,6 +261,24 @@
     </None>
     <None Include="res\levels\Player0.json">
       <Filter>res\levels</Filter>
+    </None>
+    <None Include="res\shaders\blur.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\blur.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\BrightFilter.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\BrightFilter.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\Glow.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\Glow.vert">
+      <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

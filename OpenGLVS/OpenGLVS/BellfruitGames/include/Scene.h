@@ -12,6 +12,7 @@
 #include "CameraComponent.h"
 #include "SkyBox.h"
 #include "ShaderComponent.h"
+#include "GlowShader.h"
 #include "AudioComponent.h"
 
 #include "PhysicsBodyComponent.h"
@@ -55,6 +56,9 @@ public:
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
 	ShaderComponent* debugLineShader;
+	ShaderComponent* BrightShader;
+	ShaderComponent* BlurShader;
+	ShaderComponent* GlowShader;
 	// ------------------------------------------------//
 
 

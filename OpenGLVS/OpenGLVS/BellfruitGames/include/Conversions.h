@@ -34,11 +34,11 @@ inline glm::vec3 mouseToWorldPos(
 	// PROJECTION SPACE
 	glm::vec3 ray_eye = inverse(proj) * screenPos;
 
-	//glm::mat4 ray_model = model;
+	glm::mat4 ray_model = model;
 
 	ray_eye = vec4(ray_eye.x,ray_eye.y, -1.0, 0.0);
 
-	glm::vec3 ray_wor = glm::inverse(view) * glm::vec4(ray_eye.x, ray_eye.y, ray_eye.z, 0.0f);
+	glm::vec3 ray_wor = glm::inverse(view*  ray_model) * glm::vec4(ray_eye.x, ray_eye.y, ray_eye.z, 0.0f);
 
 	// don't forget to normalise the vector at some point
 	ray_wor = glm::normalize(ray_wor);
@@ -61,7 +61,7 @@ inline btVector3 glmVec3toBt(const glm::vec3& vec)
 
 inline btQuaternion glmQuatToBt(const glm::quat& vec) {
 
-	btQuaternion btvec(vec.w, vec.x, vec.y, vec.z);
+	btQuaternion btvec(vec.w, vec.x, vec.y, vec.z  );
 
 	return btvec;
 }

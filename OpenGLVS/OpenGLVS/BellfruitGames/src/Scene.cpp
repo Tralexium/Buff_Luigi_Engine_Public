@@ -14,7 +14,6 @@
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btQuaternion.h"
 
-
 #include "Conversions.h"
 #include "EngineCore.h"
 #include "MouseSettings.h"
@@ -91,7 +90,7 @@ bool Scene::loadSceneObjects(std::string level)
 		std::cout << gameObjects[i]["name"].asString() << " loaded\n";
 
 		//----> the ACTUAL modelname in json <------//
-		std::string modelName = gameObjects[i]["type"].asString();
+		std::string modelName = gameObjects[i]["model"].asString();
 
 		//----> the ACTUAL modelname in json <------//
 		std::string shaderName = gameObjects[i]["shader"].asString();
@@ -118,6 +117,7 @@ bool Scene::loadSceneObjects(std::string level)
 		z = oriNode[2].asFloat();
 		w = oriNode[3].asFloat();
 		glm::quat ori(x, y, z, w);
+		//ori = glm::inverse(ori);
 
 		const Json::Value scaNode = gameObjects[i]["scale"];
 		x = scaNode[0].asFloat(); // get float
@@ -138,6 +138,14 @@ bool Scene::loadSceneObjects(std::string level)
 		//----> the ACTUAL modelname in json <------//
 		std::string shapeName = gameObjects[i]["collisionshape"].asString();
 
+		const Json::Value sphereColSizeNode = gameObjects[i]["spherecolsize"];
+		if (sphereColSizeNode.type() != Json::nullValue)
+		{
+			x = sphereColSizeNode[0].asFloat(); // get float
+		}
+		else x = 1.0f;
+		btScalar sphereColSize(x);
+
 		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
 
 		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
@@ -148,11 +156,11 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new ShaderComponent(shaderName));
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName));
-	
-		
-			// Set particle effects for some objects (TESTING PURPOSES)
-			//v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
+		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
+		/*if (i == 4)
+		{
+			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
+		}*/
 		
 
 	}
@@ -329,6 +337,8 @@ void Scene::stepPhysicsSimulation() {
 
 		v_playerCharacterObjects[0].getComponent<CameraComponent>()->setPos(glm::vec3(l_pos));
 		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
+		v_playerCharacterObjects[0].getComponent<CameraComponent>()->setOri(BtQuattoglm(&l_bodyPlayer->getWorldTransform()));
+		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setOri(BtQuattoglm(&l_bodyPlayer->getWorldTransform()));
 
 		// TODO SET RIGID BODY ROTATION EQUAL TO CAMERA ROTATION
 		//btTransform l_playerTransform = btTransform(glmQuatToBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri(), glmVec3toBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos())));
@@ -421,27 +431,25 @@ void Scene::render()
 	// which is then used to put that texture onto a Quad shape, that Quad shape is then rendering the entire scene as a 800x600 texture
 	// or whichever dimension we set it to be in the WindowSettings.h singleton class.
 	for (int i = 0; i < v_gameObjects.size(); i++)
-	{
-	
-		
+	{		
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
 		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
-		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[1].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
+		shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 30.0f, 0.0f)); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
-		{
-			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
-			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
-			emitter->setEmitterPos(pos);
-			m_particleSystem->setEmitter(emitter);
-			m_particleSystem->setCamera(m_playerCameraComponent);
-			m_particleSystem->render();
-		}*/
+		//if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		//{
+		//	ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
+		//	glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
+		//	emitter->setEmitterPos(pos);
+		//	m_particleSystem->setEmitter(emitter);
+		//	m_particleSystem->setCamera(m_playerCameraComponent);
+		//	m_particleSystem->render();
+		//}
 	}
 
 	
@@ -449,7 +457,7 @@ void Scene::render()
 	//framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	//framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
 
-	// Here the texture will be set to the quad, and render the quads front face as a texture.
+	//// Here the texture will be set to the quad, and render the quads front face as a texture.
 	//framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	//framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
 

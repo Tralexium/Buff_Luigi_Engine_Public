@@ -262,8 +262,5 @@
     <None Include="res\levels\Player0.json">
       <Filter>res\levels</Filter>
     </None>
-    <None Include="res\levels\Level_Arena.json">
-      <Filter>res\levels</Filter>
-    </None>
   </ItemGroup>
 </Project>

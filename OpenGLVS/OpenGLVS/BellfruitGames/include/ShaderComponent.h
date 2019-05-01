@@ -46,7 +46,7 @@ private:
 
 	// Default values
 	glm::vec3 lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
-	glm::vec3 lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
+	glm::vec3 lightColour = glm::vec3(2.0f, 2.0f, 2.0f);
 	glm::vec3 objectColour = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightDirection = glm::vec3(0.1f, 1.0f, 0.1f);
 

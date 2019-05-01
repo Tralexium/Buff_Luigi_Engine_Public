@@ -99,15 +99,6 @@
     <ClCompile Include="src\EngineCore.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\AiBirdBoidComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AIFlockComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EculidanMovementComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Component.h">
@@ -117,9 +108,6 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="include\CameraComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ModelComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="include\ModelManager.h">
@@ -175,15 +163,6 @@
     </ClInclude>
     <ClInclude Include="include\DebugDrawPhysics.h">
       <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="include\AiBirdBoidComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\AIFlockComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EculidanMovementComponent.h">
-      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +245,27 @@
       <Filter>res\shaders</Filter>
     </None>
     <None Include="res\shaders\lineShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\levels\AIObjects.json">
+      <Filter>res\Players</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultOldShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\fontShader.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\fontShader.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultOldShader.frag">
       <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>

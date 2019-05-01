@@ -9,7 +9,6 @@
 #include "CameraComponent.h"
 #include "InputHandler.h"
 
-
 /*!
 \class BellfruitGame
 \brief Manages and generates all game related data.

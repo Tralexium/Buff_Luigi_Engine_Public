@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4CAE621A-4E36-4118-9F4B-B70DC7A7DDDA}</ProjectGuid>
     <RootNamespace>BellfruitGames</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,11 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\AiBirdBoidComponent.cpp" />
-    <ClCompile Include="src\AIFlockComponent.cpp" />
     <ClCompile Include="src\BellfruitGame.cpp" />
     <ClCompile Include="src\Bitmap.cpp" />
-    <ClCompile Include="src\EculidanMovementComponent.cpp" />
     <ClCompile Include="src\EngineCore.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\glslprogram.cpp" />
@@ -157,13 +154,10 @@
     <ClCompile Include="src\stb_image.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AiBirdBoidComponent.h" />
-    <ClInclude Include="include\AIFlockComponent.h" />
     <ClInclude Include="include\AudioComponent.h" />
     <ClInclude Include="include\BellfruitGame.h" />
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\DebugDrawPhysics.h" />
-    <ClInclude Include="include\EculidanMovementComponent.h" />
     <ClInclude Include="include\PhysicsBodyComponent.h" />
     <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\Component.h" />
@@ -174,7 +168,6 @@
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\Model.h" />
-    <ClInclude Include="include\ModelComponent.h" />
     <ClInclude Include="include\ModelManager.h" />
     <ClInclude Include="include\PhysicsWorld.h" />
     <ClInclude Include="include\Scene.h" />
@@ -184,7 +177,14 @@
     <ClInclude Include="include\WindowSettings.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultOldShader.frag" />
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultOldShader.vert" />
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultShader.frag" />
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\defaultShader.vert" />
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\fontShader.frag" />
+    <None Include="..\..\..\..\..\Assignment 1\Lab5\assets\shaders\fontShader.vert" />
     <None Include="res\configs\keyconfig.json" />
+    <None Include="res\levels\AIObjects.json" />
     <None Include="res\levels\Level0.json" />
     <None Include="res\levels\Player0.json" />
     <None Include="res\shaders\depthBufferShader.frag" />

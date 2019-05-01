@@ -128,6 +128,7 @@ public:
 	}
 
 
+
 	/*!
 	* \brief Returns the euler angles of the assosiated object.
 	*/

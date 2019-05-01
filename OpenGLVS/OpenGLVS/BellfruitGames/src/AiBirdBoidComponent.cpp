@@ -7,8 +7,7 @@
 // =====================================================//
 // ======== AIBirdBoid Functions from Boid.h =========== //
 // ===================================================== //
-#define w_height window_height
-#define w_width window_width
+
 #define PI 3.141592635
 
 AIBirdBoidComponent::AIBirdBoidComponent(float x, float y)

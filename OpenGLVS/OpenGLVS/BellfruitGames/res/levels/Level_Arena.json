@@ -733,7 +733,7 @@
       ], 
       "collisionshape": "btSphereShape", 
       "mass": [
-        1.0
+        0.1
       ], 
       "model": "ball_arena", 
       "name": "ball_arena", 

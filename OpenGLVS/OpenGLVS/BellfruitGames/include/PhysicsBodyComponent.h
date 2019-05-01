@@ -132,7 +132,7 @@ public:
 			btVector3 relativeForce = btVector3(10, 0, 0);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = boxRot * relativeForce;
-			body->applyCentralForce(correctedForce);
+			body->applyCentralForce(-correctedForce);
 			
 		}
 
@@ -145,7 +145,7 @@ public:
 			btVector3 relativeForce = btVector3(10, 0, 0);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = boxRot * relativeForce;
-			body->applyCentralForce(-correctedForce);
+			body->applyCentralForce(correctedForce);
 		}
 
 		else if (m == "moveForward")
@@ -179,7 +179,7 @@ public:
 			body->activate(1);
 			
 		
-			body->applyTorque(btVector3(0.0, 10.0, 0.0));
+			body->applyTorque(btVector3(0.0, -3.0, 0.0));
 	
 		}
 
@@ -188,7 +188,7 @@ public:
 			std::cout << "RightArrow: (Right) Pressed" << std::endl;
 			body->activate(1);
 		
-			body->applyTorque(btVector3(0.0, -10.0, 0.0));
+			body->applyTorque(btVector3(0.0, 3.0, 0.0));
 		}
 
 		else if (m == "moveForwardsArrow")
@@ -208,12 +208,12 @@ public:
 		}
 
 
-		else if (m == "speedBoost")
+		/*else if (m == "speedBoost")
 		{
 		std::cout << "SPACE: (Booster) Pressed" << std::endl;
 		body->activate(1);
-		body->applyForce(btVector3(0, 0, -50), btVector3(0, 0, 0));
-		}
+		body->applyForce(btVector3(0, 0, -30), btVector3(0, 0, 0));
+		}*/
 	}
 
 	
@@ -253,6 +253,7 @@ inline void PhysicsBodyComponent::createRigidBody()
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
 		body = new btRigidBody(rbInfo);
 		body->setFriction(0.5);
+		body->setRestitution(0.4);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}
 	else if (m_whatShape == "btSphereShape")
@@ -269,7 +270,8 @@ inline void PhysicsBodyComponent::createRigidBody()
 		m_myMotionState = new btDefaultMotionState(m_startTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
 		body = new btRigidBody(rbInfo);
-		body->setFriction(1.5);
+		body->setFriction(1.0);
+		body->setRestitution(1.4);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}	
 }

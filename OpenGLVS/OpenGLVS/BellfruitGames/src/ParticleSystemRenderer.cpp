@@ -128,7 +128,7 @@ void ParticleSystemRenderer::render()
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_FALSE);
+	//glDepthMask(GL_FALSE);
 
 	// Use our shader
 	glUseProgram(m_shaderID);
@@ -163,9 +163,9 @@ void ParticleSystemRenderer::render()
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
 
-	glDisable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_TRUE);
+	//glDisable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glDepthMask(GL_TRUE);
 }
 
 void ParticleSystemRenderer::resize(unsigned int newSize)

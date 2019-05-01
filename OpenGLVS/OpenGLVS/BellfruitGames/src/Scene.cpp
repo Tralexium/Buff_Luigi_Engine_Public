@@ -47,7 +47,7 @@ Scene::Scene()
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
 	
 	// ---------------- Initialisation for model loading START--------------- //
-	loadSceneObjects(levelLoadingfilePath + "Level0" + levelLoadingfileName);
+	loadSceneObjects(levelLoadingfilePath + "Level_Arena" + levelLoadingfileName);
 
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
@@ -91,7 +91,7 @@ bool Scene::loadSceneObjects(std::string level)
 		std::cout << gameObjects[i]["name"].asString() << " loaded\n";
 
 		//----> the ACTUAL modelname in json <------//
-		std::string modelName = gameObjects[i]["model"].asString();
+		std::string modelName = gameObjects[i]["type"].asString();
 
 		//----> the ACTUAL modelname in json <------//
 		std::string shaderName = gameObjects[i]["shader"].asString();
@@ -428,7 +428,7 @@ void Scene::render()
 		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
-		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
+		shaderptr->setShaderComponentLightPos(glm::vec3(v_gameObjects[1].getComponent<TransformComponent>()->getPosition())); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO

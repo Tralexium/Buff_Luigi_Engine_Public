@@ -184,6 +184,7 @@
   <ItemGroup>
     <None Include="res\configs\keyconfig.json" />
     <None Include="res\levels\Level0.json" />
+    <None Include="res\levels\Level_Arena.json" />
     <None Include="res\levels\Player0.json" />
     <None Include="res\shaders\depthBufferShader.frag" />
     <None Include="res\shaders\depthBufferShader.vert" />

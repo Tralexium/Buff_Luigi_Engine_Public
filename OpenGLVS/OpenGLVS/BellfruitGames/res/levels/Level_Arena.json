@@ -1,0 +1,704 @@
+{
+  "GameObjects": [
+    {
+      "colliderposition": [
+        0.0,
+        0.14116166825121423,
+        0.0
+      ],
+      "collisionboxsize": [
+        100,
+        1,
+        100
+      ],
+      "collisionshape": "btBoxShape",
+      "mass": [
+        0.0
+      ],
+      "name": "ground_arena",
+      "orientation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "position": [
+        0.0,
+        0.14116166825121423,
+        0.0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "shader": "normalMapShader2",
+      "type": "ground_arena"
+    }, 
+    {
+      "colliderposition": [
+        7.777497096400094, 
+        9.376228807166916, 
+        -7.819715284286133
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "field_lights", 
+      "orientation": [
+        0.8923991008325228, 
+        0.23911761839433449, 
+        -0.3696438106143861, 
+        0.09904576054128761
+      ], 
+      "position": [
+        7.777497096400094, 
+        9.376228807166916, 
+        -7.819715284286133
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "field_lights"
+    }, 
+    {
+      "colliderposition": [
+        -7.755467412162621, 
+        9.376228807166916, 
+        7.630557528812828
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "field_lights", 
+      "orientation": [
+        0.369643810614386, 
+        0.09904576054128768, 
+        0.8923991008325233, 
+        -0.23911761839433457
+      ], 
+      "position": [
+        -7.755467412162621, 
+        9.376228807166916, 
+        7.630557528812828
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "field_lights"
+    }, 
+    {
+      "colliderposition": [
+        -7.9305353593301025, 
+        9.376228807166916, 
+        -7.645917677097784
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "field_lights", 
+      "orientation": [
+        0.8923991008325228, 
+        0.23911761839433449, 
+        0.3696438106143861, 
+        -0.09904576054128761
+      ], 
+      "position": [
+        -7.9305353593301025, 
+        9.376228807166916, 
+        -7.645917677097784
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "field_lights"
+    }, 
+    {
+      "colliderposition": [
+        -8.158869782183551, 
+        0.0, 
+        -8.021535792195266
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_pillar_arena", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        -8.158869782183551, 
+        0.0, 
+        -8.021535792195266
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_pillar_arena"
+    }, 
+    {
+      "colliderposition": [
+        -8.158869782183551, 
+        0.0, 
+        8.188005019645805
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_pillar_arena", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        -8.158869782183551, 
+        0.0, 
+        8.188005019645805
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_pillar_arena"
+    }, 
+    {
+      "colliderposition": [
+        8.083307559514045, 
+        0.0, 
+        8.153809745947662
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_pillar_arena", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        8.083307559514045, 
+        0.0, 
+        8.153809745947662
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_pillar_arena"
+    }, 
+    {
+      "colliderposition": [
+        8.083307559514045, 
+        0.0, 
+        -8.019588568608135
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_pillar_arena", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        8.083307559514045, 
+        0.0, 
+        -8.019588568608135
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_pillar_arena"
+    }, 
+    {
+      "colliderposition": [
+        -1.0134802594556196, 
+        -0.010762341899855254, 
+        -9.964719370035288
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_back", 
+      "orientation": [
+        0.006170592427169219, 
+        -0.7070798567265761, 
+        0.006170592427164721, 
+        0.7070798567265764
+      ], 
+      "position": [
+        -1.0134802594556196, 
+        -0.010762341899855254, 
+        -9.964719370035288
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_back"
+    }, 
+    {
+      "colliderposition": [
+        -1.6478088813980905, 
+        0.0, 
+        -9.087641845313193
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_side", 
+      "orientation": [
+        0.7071067811865476, 
+        0.0, 
+        0.7071067811865475, 
+        0.0
+      ], 
+      "position": [
+        -1.6478088813980905, 
+        0.0, 
+        -9.087641845313193
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_side"
+    }, 
+    {
+      "colliderposition": [
+        1.6662010318546743, 
+        0.0, 
+        -9.046448296361827
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_side", 
+      "orientation": [
+        0.7071067811865476, 
+        0.0, 
+        -0.7071067811865475, 
+        0.0
+      ], 
+      "position": [
+        1.6662010318546743, 
+        0.0, 
+        -9.046448296361827
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_side"
+    }, 
+    {
+      "colliderposition": [
+        5.133154005104635, 
+        0.0, 
+        -8.070906546939689
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_side_small", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        5.133154005104635, 
+        0.0, 
+        -8.070906546939689
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_side_small"
+    }, 
+    {
+      "colliderposition": [
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": ""
+    }, 
+    {
+      "colliderposition": [
+        -5.033454089368553, 
+        0.0, 
+        -8.070906546939689
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_side_small", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        -5.033454089368553, 
+        0.0, 
+        -8.070906546939689
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_side_small"
+    }, 
+    {
+      "colliderposition": [
+        0.0, 
+        -1.8342225060159474, 
+        -8.83832982120733
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_top", 
+      "orientation": [
+        0.7071067811865476, 
+        0.0, 
+        -0.7071067811865475, 
+        0.0
+      ], 
+      "position": [
+        0.0, 
+        -1.8342225060159474, 
+        -8.83832982120733
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_top"
+    }, 
+    {
+      "colliderposition": [
+        -8.096461869762823, 
+        -0.08755543027576057, 
+        0.0
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_fence_arena", 
+      "orientation": [
+        0.7071067811865476, 
+        0.0, 
+        -0.7071067811865475, 
+        0.0
+      ], 
+      "position": [
+        -8.096461869762823, 
+        -0.08755543027576057, 
+        0.0
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_fence_arena"
+    }, 
+    {
+      "colliderposition": [
+        0.0, 
+        -0.07627582135437971, 
+        -8.914387741996162
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_goal_top", 
+      "orientation": [
+        0.7071067811865476, 
+        0.0, 
+        0.7071067811865475, 
+        0.0
+      ], 
+      "position": [
+        0.0, 
+        -0.07627582135437971, 
+        -8.914387741996162
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_goal_top"
+    }, 
+    {
+      "colliderposition": [
+        -0.032415535936038964, 
+        -0.08755543027576057, 
+        8.02893033426652
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_fence_arena", 
+      "orientation": [
+        1.0, 
+        0.0, 
+        0.0, 
+        0.0
+      ], 
+      "position": [
+        -0.032415535936038964, 
+        -0.08755543027576057, 
+        8.02893033426652
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_fence_arena"
+    }, 
+    {
+      "colliderposition": [
+        8.088854803392277, 
+        -0.08755543027576057, 
+        0.0
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "metal_fence_arena", 
+      "orientation": [
+        0.7071067811865476, 
+        0.0, 
+        -0.7071067811865475, 
+        0.0
+      ], 
+      "position": [
+        8.088854803392277, 
+        -0.08755543027576057, 
+        0.0
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "metal_fence_arena"
+    }, 
+    {
+      "colliderposition": [
+        7.7064516702019485, 
+        9.376228807166916, 
+        7.666039510370821
+      ], 
+      "collisionboxsize": [
+        1, 
+        1, 
+        1
+      ], 
+      "collisionshape": "btBoxShape", 
+      "mass": [
+        0.0
+      ], 
+      "name": "field_lights", 
+      "orientation": [
+        0.369643810614386, 
+        0.09904576054128768, 
+        -0.8923991008325233, 
+        0.23911761839433457
+      ], 
+      "position": [
+        7.7064516702019485, 
+        9.376228807166916, 
+        7.666039510370821
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "type": "field_lights"
+    }
+  ]
+}

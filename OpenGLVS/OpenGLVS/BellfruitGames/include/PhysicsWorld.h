@@ -139,7 +139,7 @@ public:
 		delete dispatcher;
 		delete collisionConfiguration;
 
-
+		delete m_debugDraw;
 	};
 
 

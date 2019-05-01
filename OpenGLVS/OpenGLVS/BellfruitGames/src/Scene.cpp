@@ -58,7 +58,7 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	//m_particleSystem = new ParticleSystemRenderer(100000);
+	m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -402,7 +402,7 @@ void Scene::update(float dt)
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	//m_particleSystem->update(dt);
+	m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -441,15 +441,15 @@ void Scene::render()
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		//if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
-		//{
-		//	ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
-		//	glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
-		//	emitter->setEmitterPos(pos);
-		//	m_particleSystem->setEmitter(emitter);
-		//	m_particleSystem->setCamera(m_playerCameraComponent);
-		//	m_particleSystem->render();
-		//}
+		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		{
+			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
+			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
+			emitter->setEmitterPos(pos);
+			m_particleSystem->setEmitter(emitter);
+			m_particleSystem->setCamera(m_playerCameraComponent);
+			m_particleSystem->render();
+		}*/
 	}
 
 	

@@ -13,6 +13,7 @@
 #include "Conversions.h"
 #include "MouseSettings.h"
 
+
 class PhysicsWorld
 {
 private:
@@ -84,10 +85,11 @@ public:
 			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
 			m_dynamicsWorld->rayTest(btFrom, btTo, res); // m_btWorld is btDiscreteDynamicsWorld
 
-			//if (res.hasHit()) // Debug in console for having hit 
-			//{
-			//	printf("Collision at: <%.2f, %.2f, %.2f>\n", res.m_hitPointWorld.getX(), res.m_hitPointWorld.getY(), res.m_hitPointWorld.getZ());
-			//}
+			if (res.hasHit()) // Debug in console for having hit 
+			{
+				 
+				printf("Collision at: <%.2f, %.2f, %.2f>\n", res.m_hitPointWorld.getX(), res.m_hitPointWorld.getY(), res.m_hitPointWorld.getZ());
+			}
 
 			//if (res.hasHit()) // Debug as drawing line (doesnt work..)
 			//{

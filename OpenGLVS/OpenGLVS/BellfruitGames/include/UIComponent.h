@@ -69,11 +69,14 @@ public:
 
 			ImGui::Begin("Game Menu");                          // Create a window called "Hello, world!" and append into it.
 
-														
+			ImGui::Button("New Game");
+			ImGui::Button("Options");
+			
 			if (ImGui::Button("Exit Game")) // Buttons return true when clicked (most widgets return true when edited/activated)
 			{
 				windowOpen = false;
 			}
+			
 
 		/*	ImGui::SameLine();
 			ImGui::Text("counter = %d", counter);*/
@@ -89,6 +92,8 @@ public:
 			ImGui::Begin("Score:", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
 			ImGui::SameLine();
 			ImGui::Text("Goals: %d", scoreCounter);
+
+
 			
 			
 			ImGui::End();

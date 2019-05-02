@@ -53,6 +53,9 @@ private:
 	// ----------------------------------------//
 
 public:
+
+	bool hasScored = false;
+
 	WindowSettings& g_window = g_window.getInstance();
 
 	//------------- Shader Components ---------------------------------------------//
@@ -89,6 +92,7 @@ public:
 
 	void drawCollisionDebugLines();
 
+	void checkIfScored(float dt);
 	
 	// --- ENTRY FOR LOADING OBJECTS --//
 	bool loadSceneObjects(std::string level);

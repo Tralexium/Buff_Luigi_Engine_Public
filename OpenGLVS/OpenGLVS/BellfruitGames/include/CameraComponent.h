@@ -100,6 +100,12 @@ public:
 
 	//! View matrix Getter Function.
 	/*!
+	\returns view matrix.
+	*/
+	glm::mat4 getInvertedViewMatrix() const { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), -m_pos); }
+
+	//! View matrix Getter Function.
+	/*!
 	\returns projection matrix.
 	*/
 	glm::mat4 getProjectionMatrix() const { return glm::perspective(glm::radians(m_fov), g_window.getScreenWidth() / g_window.getScreenHeight(), g_window.getNearPlane(), g_window.getFarPlane()); }

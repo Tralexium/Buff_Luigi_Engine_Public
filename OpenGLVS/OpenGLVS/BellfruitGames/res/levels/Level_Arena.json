@@ -1,15 +1,38 @@
 {
   "GameObjects": [
     {
-      "colliderposition": [-0.032415535936038964, -0.08755543027576057, 8.02893033426652], 
-      "collisionboxsize": [ 10, 2, 0.2], 
+      "colliderposition": [
+        -0.032415535936038964, 
+        -0.08755543027576057, 
+        8.02893033426652
+      ], 
+      "collisionboxsize": [
+        10, 
+        2, 
+        0.2
+      ], 
       "collisionshape": "btBoxShape", 
-      "mass": [ 0.0], 
+      "mass": [
+        0.0
+      ], 
       "model": "metal_fence_arena", 
       "name": "metal_fence_arena", 
-      "orientation": [ 0.0, 0.0, 0.0,  1.0], 
-      "position": [ -0.032415535936038964,  -0.08755543027576057,  8.02893033426652 ], 
-      "scale": [1, 1,  1], 
+      "orientation": [
+        0.0, 
+        0.0, 
+        0.0, 
+        1.0
+      ], 
+      "position": [
+        -0.032415535936038964, 
+        -0.08755543027576057, 
+        8.02893033426652
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
       "shader": "normalMapShader2", 
       "spherecolsize": [ 1.0 ]
     }, 
@@ -76,6 +99,43 @@
         8.088854803392277, 
         -0.08755543027576057, 
         0.0
+      ], 
+      "scale": [
+        1, 
+        1, 
+        1
+      ], 
+      "shader": "normalMapShader2", 
+      "spherecolsize": [ 1.0 ]
+    }, 
+    {
+      "colliderposition": [
+        -0.3,
+        0.5,
+        -7.9
+      ],
+      "collisionboxsize": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "collisionshape": "btBoxShape",
+
+      "mass": [
+        1.0
+      ], 
+      "model": "space_goal_keeper", 
+      "name": "space_goal_keeper", 
+      "orientation": [
+        0.0, 
+        0.0, 
+        0.0, 
+        0.1
+      ],
+      "position": [
+        0.1,
+        0.1,
+        0.1
       ], 
       "scale": [
         1, 
@@ -696,41 +756,41 @@
       ], 
       "shader": "normalMapShader2", 
       "spherecolsize": [ 1.0 ]
-    }, 
+    },
     {
       "colliderposition": [
-        0.12106834403270983, 
-        0.53834229259735, 
+        0.12106834403270983,
+        1.93834229259735,
         -1.9707322040897215
-      ], 
+      ],
       "collisionboxsize": [
-        0.2, 
-        0.2, 
+        0.2,
+        0.2,
         0.2
-      ], 
-      "collisionshape": "btSphereShape", 
+      ],
+      "collisionshape": "btSphereShape",
       "mass": [
         0.1
-      ], 
-      "model": "ball_arena", 
-      "name": "ball_arena", 
+      ],
+      "model": "ball_arena",
+      "name": "ball_arena",
       "orientation": [
-        0.0, 
-        0.0, 
-        0.0, 
+        0.0,
+        0.0,
+        0.0,
         1.0
-      ], 
+      ],
       "position": [
-        0.12106834403270983, 
-        0.53834229259735, 
+        0.12106834403270983,
+        1.93834229259735,
         -1.9707322040897215
-      ], 
+      ],
       "scale": [
-        1, 
-        1, 
+        1,
+        1,
         1
-      ], 
-      "shader": "normalMapShader2", 
+      ],
+      "shader": "normalMapShader2",
       "spherecolsize": [ 0.2 ]
     }
   ]

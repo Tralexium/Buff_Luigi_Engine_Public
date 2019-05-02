@@ -53,9 +53,13 @@ Scene::Scene()
 	// --------------------- Setting player camera pointer---------------- //
 	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera
 	
-	// --------------------- Audio stuff -------------------------------- //
+																					   // --------------------- Audio stuff --------------------------------//
+	m_audio_music = new AudioComponent("res/audio/SPACE BOY.mp3", -7.0f, -7.0f, 0.0f, 1.0f, 2.0f); // FOR AUDIO
+	m_audio_ambience = new AudioComponent("res/audio/space.mp3", 10.0f, 10.0f, 10.0f, 1.0f, 2.0f); // FOR AUDIO
 
-	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
+	m_audio_music->playSound();
+	m_audio_ambience->playSound();
+
 
 	// --------------------- Particle stuff ----------------------------- //
 	//m_particleSystem = new ParticleSystemRenderer(100000);
@@ -393,7 +397,13 @@ void Scene::drawCollisionDebugLines() {
 void Scene::update(float dt)
 {
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
-	//m_audio->playSound(); 
+	glm::vec3 campos = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos();
+	glm::quat camquat = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri();
+	glm::vec3 camori = { camquat.x, camquat.y, camquat.z };
+
+	m_audio_music->UpdateListener(campos, camori);
+	m_audio_ambience->UpdateListener(campos, camori);
+
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
@@ -472,8 +482,11 @@ Scene::~Scene()
 	delete m_modelmanager;
 	m_modelmanager = nullptr;
 
-	delete m_audio;
-	m_audio = nullptr;
+	delete m_audio_music;
+	m_audio_music = nullptr;
+
+	delete m_audio_ambience;
+	m_audio_ambience = nullptr;
 
 	delete m_skyboxCube;
 	m_skyboxCube = nullptr;

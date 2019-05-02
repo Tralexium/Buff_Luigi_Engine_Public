@@ -3,9 +3,11 @@
 \file AudioComponent.h
 */
 #include "Component.h"
+
 #include "fmod.hpp"
 #include "fmod_errors.h"
 #include "fmod_common.h"
+
 #include <iostream>
 
 /*!
@@ -15,37 +17,52 @@
 class AudioComponent : public Component
 {
 private:
-	FMOD::System     *system;
+	FMOD::System     *system; 
 	FMOD::Sound      *sound1, *sound2, *sound3;
 	FMOD::Channel    *channel = 0;
+	FMOD::Reverb3D   *reverb;
 	FMOD_RESULT       result;
 	unsigned int      version;
 	void             *extradriverdata = 0;
+	FMOD_VECTOR pos;
+	float mindist;
+	float maxdist;
 
 public:
+
 
 	//! Constructor
 	/*!
 	\param filepath filepath to the audio file.
 	\brief initializes FMOD, creates a sound and sets mode to 2D
 	*/
-	AudioComponent(const char* filepath) {
+	AudioComponent(const char* filepath, float posx, float posy, float posz, float mindis, float maxdis) {
 
 		result = FMOD::System_Create(&system);
-
 		result = system->getVersion(&version);
 
+		result = system->init(32, FMOD_INIT_3D_RIGHTHANDED, extradriverdata); //sets the coordinate system to right handed, same as opengl
+		result = system->createReverb3D(&reverb); //Creates a 'virtual reverb' object
 		if (version < FMOD_VERSION)
 		{
 			printf("FMOD lib version %08x doesn't match header version %08x", version, FMOD_VERSION);
 		}
 
-		result = system->init(32, FMOD_INIT_NORMAL, extradriverdata); // initialize fmod
+		FMOD_REVERB_PROPERTIES prop2 = FMOD_PRESET_GENERIC;
+		reverb->setProperties(&prop2);
+		pos = { posx, posy, posz };
 
-		result = system->createSound(filepath, FMOD_DEFAULT, 0, &sound1); // createsound
+		//std::cout << " Position: " << pos.x << pos.y << pos.z << std::endl;
+		mindist = mindis;
+		maxdist = maxdis;
+		reverb->set3DAttributes(&pos, mindist, maxdist);
 
-		result = sound1->setMode(FMOD_2D); //setmode to 2D sound
+		//std::cout << "reverb; " << mindist << "    " << maxdist << std::endl;
+		channel->set3DMinMaxDistance(mindist, maxdist);
 
+		result = system->createSound(filepath, FMOD_3D_INVERSEROLLOFF, 0, &sound1); // createsound
+		//result = sound1->setMode(FMOD_3D_INVERSEROLLOFF); //setmode to 2D sound
+		
 
 		FMODErrorCheck(result);
 
@@ -85,6 +102,17 @@ public:
 		}
 	}
 
+	//! UpdatePosition Function
+	/*!
+	\param pos position to update to
+	\brief updates position that the sound is emitted from
+	*/
+	void UpdatePosition(glm::vec3 pos) {
+		FMOD_VECTOR soundpos = { pos.x, pos.y, pos.z };
+
+		reverb->set3DAttributes(&soundpos, mindist, maxdist);
+	};
+
 
 	//! Update Function.
 	/*!
@@ -93,6 +121,7 @@ public:
 	void OnUpdate(float dt) override {
 
 	}
+
 	//! OnMessage Function.
 	/*!
 	\param m
@@ -102,6 +131,20 @@ public:
 
 	}
 
+	//! UpdateListener
+	/*!
+	\param pos position of the listener, forward forward orientation of the listener
+	\brief updates the listener position so that the 3D audio works correctly
+	*/
+	void UpdateListener(glm::vec3 pos, glm::vec3 forward)  {
+		FMOD_VECTOR listenerpos = { pos.x, pos.y, pos.z };
+		FMOD_VECTOR listenerup = {0, 0, 0 };
+		FMOD_VECTOR listenerforward = { forward.x, forward.y, forward.z };
+
+		//std::cout << "Listener Position: " << listenerpos.x << listenerpos.y << listenerpos.z << std::endl;
+		system->set3DListenerAttributes(0, &listenerpos, 0, &listenerforward, 0);
+		system->update(); // update sound
+	}
 
 };
 

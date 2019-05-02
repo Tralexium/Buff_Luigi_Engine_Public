@@ -27,7 +27,9 @@ private:
 	std::string levelLoadingfileName = ".json";
 	std::string levelLoadingfilePath = "res/levels/";
 
-	AudioComponent* m_audio; //!< Audio pointer
+	AudioComponent* m_audio_music; //!< Audio pointer
+	AudioComponent* m_audio_ambience; //!< Audio pointer
+
 	SkyBox* m_skyboxCube; //!< skybox object pointer.
 	CameraComponent* m_playerCameraComponent; //!< Player component pointer.
 	ModelManager* m_modelmanager; //!< ModelManager pointer.

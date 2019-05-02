@@ -53,8 +53,11 @@ Scene::Scene()
 	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera
 	
 	// --------------------- Audio stuff --------------------------------//
-	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
+	m_audio = new AudioComponent("res/audio/4. M.O.O.N. - Crystals.mp3", 10.0f, 10.0f, 0.0f, 1.0f, 7.0f); // FOR AUDIO
+	m_audio2 = new AudioComponent("res/audio/space.mp3", 10.0f, 10.0f, 0.0f, 100.0f, 1000.0f); // FOR AUDIO
 
+	m_audio->playSound();
+	m_audio2->playSound();
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -317,8 +320,11 @@ void Scene::update(float dt)
 
 
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
-
-	//m_audio->playSound(); 
+	glm::vec3 campos = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos();
+	glm::quat camquat = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri();
+	glm::vec3 camori = { camquat.x, camquat.y, camquat.z };
+	m_audio->UpdateListener(campos, camori);
+	m_audio2->UpdateListener(campos, camori);
 
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 

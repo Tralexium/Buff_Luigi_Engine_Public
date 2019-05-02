@@ -28,6 +28,8 @@ private:
 	std::string levelLoadingfilePath = "res/levels/";
 
 	AudioComponent* m_audio; //!< Audio pointer
+	AudioComponent* m_audio2; //!< Audio pointer
+
 	SkyBox* m_skyboxCube; //!< skybox object pointer.
 	CameraComponent* m_playerCameraComponent; //!< Player component pointer.
 	ModelManager* m_modelmanager; //!< ModelManager pointer.

@@ -167,6 +167,9 @@
     <ClInclude Include="include\DebugDrawPhysics.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="include\AudioManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\levels\Level0.json">

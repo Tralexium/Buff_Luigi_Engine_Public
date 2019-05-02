@@ -79,7 +79,7 @@ inline glm::vec3 BtVec3toglm(btTransform* btvec)
 inline glm::quat BtQuattoglm(btTransform* btvec)
 {
 
-	glm::quat vec(btvec->getRotation().getX(), btvec->getRotation().getY(), btvec->getRotation().getZ(), btvec->getRotation().getW());
+	glm::quat vec(btvec->getRotation().getW(), btvec->getRotation().getX(), btvec->getRotation().getY(), btvec->getRotation().getZ());
 	
 
 

@@ -129,10 +129,10 @@ public:
 			body->activate(1);
 		
 			
-			btVector3 relativeForce = btVector3(10, 0, 0);
+			btVector3 relativeForce = btVector3(-10, 0, 0);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = boxRot * relativeForce;
-			body->applyCentralForce(-correctedForce);
+			body->applyCentralForce(correctedForce);
 			
 		}
 
@@ -156,7 +156,7 @@ public:
 			
 			btVector3 relativeForce = btVector3(0, 0, 10);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
-			btVector3 correctedForce = boxRot * relativeForce;
+			btVector3 correctedForce = relativeForce * boxRot;
 			body->applyCentralForce(correctedForce);
 		}
 
@@ -166,10 +166,10 @@ public:
 			body->activate(1);
 			
 		
-			btVector3 relativeForce = btVector3(0, 0, 10);
+			btVector3 relativeForce = btVector3(0, 0, -10);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
-			btVector3 correctedForce = boxRot * relativeForce;
-			body->applyCentralForce(-correctedForce);
+			btVector3 correctedForce = relativeForce * boxRot;
+			body->applyCentralForce(correctedForce);
 		}
 
 

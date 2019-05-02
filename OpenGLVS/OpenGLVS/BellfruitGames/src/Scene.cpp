@@ -284,13 +284,14 @@ void Scene::stepPhysicsSimulation() {
 				(float)physicsWorld.m_transform.getOrigin().getZ());
 
 			glm::quat l_quat(
-				(float)physicsWorld.m_transform.getRotation().getW(),
+				
 				(float)physicsWorld.m_transform.getRotation().getX(),
 				(float)physicsWorld.m_transform.getRotation().getY(),
-				(float)physicsWorld.m_transform.getRotation().getZ());
+				(float)physicsWorld.m_transform.getRotation().getZ(),
+				(float)physicsWorld.m_transform.getRotation().getW());
 		
 			// Set position and orientation equal to the physics bodies positions and orientations
-			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
+			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3(-l_pos)); // set Minus pos here to fix some inverse stuff......
 			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat(l_quat));
 
 
@@ -349,27 +350,27 @@ void Scene::stepPhysicsSimulation() {
 		physicsWorld.m_transform = l_collisionObjectPlayer->getWorldTransform();
 	}
 
-	// TODO
-	// ATTEMPTING TO CAST RAYS FROM MOUSE
-	glm::mat4 proj = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getProjectionMatrix();
-	glm::mat4 view = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getViewMatrix();
+	//// TODO
+	//// ATTEMPTING TO CAST RAYS FROM MOUSE
+	//glm::mat4 proj = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getProjectionMatrix();
+	//glm::mat4 view = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getViewMatrix();
 
-	glm::mat4 model;
-	for (int i = 0; i < v_gameObjects.size(); i++)
-	{
-		model = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix();
-	}
-	
-	double l_mouseXpos, l_mouseYpos;
-	glfwGetCursorPos(enginecore->getWindow(), &l_mouseXpos, &l_mouseYpos);
+	//glm::mat4 model;
+	//for (int i = 0; i < v_gameObjects.size(); i++)
+	//{
+	//	model = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix();
+	//}
+	//
+	//double l_mouseXpos, l_mouseYpos;
+	//glfwGetCursorPos(enginecore->getWindow(), &l_mouseXpos, &l_mouseYpos);
 
-	//physicsWorld.castRays();
-	// CAST RAY FUNCTION 
-	physicsWorld.castRays(mouseToWorldPos
-	(
-		l_mouseXpos, l_mouseYpos, g_window.getScreenWidth(),
-		g_window.getScreenHeight(), proj, view, model
-	));
+	////physicsWorld.castRays();
+	//// CAST RAY FUNCTION 
+	//physicsWorld.castRays(mouseToWorldPos
+	//(
+	//	l_mouseXpos, l_mouseYpos, g_window.getScreenWidth(),
+	//	g_window.getScreenHeight(), proj, view, model
+	//));
 
 	//cout << l_mouseXpos << l_mouseYpos << endl;
 		
@@ -402,7 +403,7 @@ void Scene::update(float dt)
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	m_particleSystem->update(dt);
+	//m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 

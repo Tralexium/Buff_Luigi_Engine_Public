@@ -80,7 +80,7 @@ public:
 	/*!
 	\returns viewmatrix.
 	*/
-	glm::mat4 getViewMatrix() { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), -m_pos); }
+	glm::mat4 getViewMatrix() { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), m_pos); }
 
 
 	glm::quat calculateQuaternion(glm::vec3 axis, float angle) {

@@ -50,7 +50,7 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 	//m_screenWidth = width; // set screen width
 	//m_screenHeight = height; // set screen height
 
-	m_window = glfwCreateWindow(g_window.getScreenWidth(), g_window.getScreenHeight(), windowName.c_str(), glfwGetPrimaryMonitor() , nullptr); // create new window
+	m_window = glfwCreateWindow(g_window.getScreenWidth(), g_window.getScreenHeight(), windowName.c_str(), nullptr , nullptr); // create new window
 
 		if (m_window == nullptr)
 		{

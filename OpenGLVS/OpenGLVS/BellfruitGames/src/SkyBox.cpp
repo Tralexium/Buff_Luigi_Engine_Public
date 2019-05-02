@@ -103,8 +103,6 @@ SkyBox::SkyBox(int fvert, unsigned int shader)
 
 void SkyBox::render() const
 {
-	// Use our shader
-	glUseProgram(m_shaderID);
 	glUniform1i(glGetUniformLocation(m_shaderID, "cubemap"), 0);
 	g_window.GetOpenGLError();
 	glActiveTexture(GL_TEXTURE0); //! Sets active texture

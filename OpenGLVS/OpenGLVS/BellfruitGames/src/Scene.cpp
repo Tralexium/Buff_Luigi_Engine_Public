@@ -63,7 +63,7 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	//m_particleSystem = new ParticleSystemRenderer(100000);
+	m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -425,9 +425,9 @@ void Scene::render()
 	//drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
-	//skyShader.use();  //! Use skybox shader. 
-	//skyBoxShader->setUniforms(m_playerCameraComponent); //! Set matrices for skyshader
-	//m_skyboxCube->render(); //!Render Skyshader
+	skyBoxShader->use();  //! Use skybox shader. 
+	skyBoxShader->setUniforms(m_playerCameraComponent); //! Set matrices for skyshader
+	m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// -------------- Particle Drawing ------------------- //
 	

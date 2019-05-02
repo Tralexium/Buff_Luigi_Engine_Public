@@ -32,8 +32,10 @@ public:
 	AudioComponent(const char* filepath) {
 
 		result = FMOD::System_Create(&system);
+		FMODErrorCheck(result);
 
 		result = system->getVersion(&version);
+		FMODErrorCheck(result);
 
 		if (version < FMOD_VERSION)
 		{
@@ -41,8 +43,10 @@ public:
 		}
 
 		result = system->init(32, FMOD_INIT_NORMAL, extradriverdata); // initialize fmod
+		FMODErrorCheck(result);
 
 		result = system->createSound(filepath, FMOD_DEFAULT, 0, &sound1); // createsound
+		FMODErrorCheck(result);
 
 		result = sound1->setMode(FMOD_2D); //setmode to 2D sound
 
@@ -59,8 +63,10 @@ public:
 	void playSound() {
 
 		result = system->playSound(sound1, 0, false, &channel); // play sound
+		FMODErrorCheck(result);
 
 		result = system->update(); // update sound
+		FMODErrorCheck(result);
 	}
 
 	/*! Destructor
@@ -70,6 +76,7 @@ public:
 	~AudioComponent() {
 
 		result = sound1->release(); // release memory
+		FMODErrorCheck(result);
 	};
 
 	//! Error Check function

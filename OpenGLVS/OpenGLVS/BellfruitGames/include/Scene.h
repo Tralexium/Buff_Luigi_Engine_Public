@@ -17,6 +17,7 @@
 
 #include "PhysicsBodyComponent.h"
 #include "WindowSettings.h"
+
 /*!
 \class Scene
 \brief Handles scene logic.
@@ -24,6 +25,9 @@
 class Scene 
 {
 private:
+
+	int particleTimer = 0;
+
 	std::string levelLoadingfileName = ".json";
 	std::string levelLoadingfilePath = "res/levels/";
 

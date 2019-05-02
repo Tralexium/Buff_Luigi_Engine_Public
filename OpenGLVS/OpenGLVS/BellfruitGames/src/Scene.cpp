@@ -60,7 +60,7 @@ Scene::Scene()
 	
 	// --------------------- Audio stuff -------------------------------- //
 
-	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
+	m_audio = new AudioComponent("res/audio/powerglove.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
 	m_particleSystem = new ParticleSystemRenderer(100000);
@@ -408,19 +408,29 @@ void Scene::checkIfScored(float dt) {
 	glm::vec3 l_ball_pos = glm::vec3(v_gameObjects[21].getComponent<TransformComponent>()->getPosition());
 	glm::vec3 l_goalie_pos = glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition());
 
-	if (l_ball_pos.z >= l_goalie_pos.z)
+	if (l_ball_pos.z >= l_goalie_pos.z) // Check if the Z position of the ball is greater than or equal to goalie
 	{
-		hasScored = true;
+		hasScored = true; // set has scored bool to true
 		if (hasScored)
 		{
+			
+			particleTimer++; // start a timer if has scored goal
 			cout << "Score!" << endl;
-			m_particleSystem->update(dt);
+			
+			if (particleTimer < 1000) // run the particle emitter for a short duration
+			{
+				m_particleSystem->update(dt);
+			}
+				
+			cout << particleTimer << endl;
+			
 		}
 		
 	}
-	else if (l_ball_pos.z < l_goalie_pos.z)
+	else if (l_ball_pos.z < l_goalie_pos.z) // if the ball Z pos is lower than the goalies Z pos
 	{
-		hasScored = false;
+		hasScored = false; // set back score bool to false
+		particleTimer = 0; // set back particles to 0
 	}
 	
 	
@@ -430,7 +440,7 @@ void Scene::checkIfScored(float dt) {
 void Scene::update(float dt)
 {
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
-	//m_audio->playSound(); 
+	m_audio->playSound(); 
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	checkIfScored(dt);
 
@@ -492,6 +502,8 @@ void Scene::render()
 	}
 
 	
+
+
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0

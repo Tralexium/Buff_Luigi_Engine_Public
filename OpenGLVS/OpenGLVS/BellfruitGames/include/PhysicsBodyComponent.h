@@ -12,8 +12,8 @@
 #include "CommonInterfaces/CommonRigidBodyBase.h"
 
 #include "PhysicsWorld.h"
-
-
+#include "TransformComponent.h"
+#include "CameraComponent.h"
 
 
 #define ARRAY_SIZE_Y 5
@@ -32,7 +32,11 @@ private:
 	btQuaternion m_rotation;
 	
 	btCollisionShape* m_shape;
+
+	// Local Vars
+	btCollisionObject* l_collisionObjectPlayer;
 	
+
 	std::string m_whatShape = "";
 
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
@@ -50,6 +54,8 @@ public:
 
 	btTransform m_startTransform;
 
+	btRigidBody* body;
+	btRigidBody* m_playerRigidBody;
 	// Default Constructor
 	PhysicsBodyComponent() {};
 
@@ -57,6 +63,9 @@ public:
 	// Parameterized Constructor
 	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca)
 	{
+
+	
+		m_playerRigidBody = nullptr;
 		m_position = pos;
 		m_startTransform = btTransform(btQuaternion(rot), btVector3(pos));
 
@@ -67,6 +76,8 @@ public:
 	// Parameterized Constructor
 	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize, std::string whatshape)
 	{
+		
+		m_playerRigidBody = nullptr;
 		m_whatShape = whatshape;
 		m_collisionBoxSize = colSize;
 		m_position = pos;
@@ -83,6 +94,7 @@ public:
 	// Parameterized Constructor
 	PhysicsBodyComponent(const btVector3 pos, const btQuaternion rot, btVector3 sca, btScalar mass, btVector3 colSize, std::string whatshape, btScalar sphereColSize)
 	{
+		m_playerRigidBody = nullptr;
 		m_sphereRadius = sphereColSize;
 		m_whatShape = whatshape;
 		m_collisionBoxSize = colSize;
@@ -100,86 +112,112 @@ public:
 	void OnUpdate(float dt) { }
 
 	void OnMessage(const std::string m) {
-	
-		btCollisionObject* l_collisionObjectPlayer = physicsworld.getDynamicsWorld()->getCollisionObjectArray()[physicsworld.getDynamicsWorld()->getNumCollisionObjects() - 1];
-		btRigidBody* l_bodyPlayer = btRigidBody::upcast(l_collisionObjectPlayer);
+
+
+
+		l_collisionObjectPlayer = physicsworld.getDynamicsWorld()->getCollisionObjectArray()[physicsworld.getDynamicsWorld()->getNumCollisionObjects() - 1];
+		body = btRigidBody::upcast(l_collisionObjectPlayer);
 		btQuaternion l_onKeyQuat;
 		btTransform l_onKeyTransform;
+		l_onKeyTransform = l_collisionObjectPlayer->getWorldTransform();
+
+		//btTransform boxTrans;
 
 		if (m == "moveLeft")
 		{
 			std::cout << "A: (Left) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(-10, 0, 0), btVector3(0, 0, 0));
+			body->activate(1);
+		
+			
+			btVector3 relativeForce = btVector3(10, 0, 0);
+			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
+			btVector3 correctedForce = boxRot * relativeForce;
+			body->applyCentralForce(-correctedForce);
+			
 		}
 
 		else if (m == "moveRight")
 		{
 			std::cout << "D: (Right) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
+			body->activate(1);
+			
+			
+			btVector3 relativeForce = btVector3(10, 0, 0);
+			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
+			btVector3 correctedForce = boxRot * relativeForce;
+			body->applyCentralForce(correctedForce);
 		}
 
 		else if (m == "moveForward")
 		{
 			std::cout << "W: (Forward) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(0, 0, -10), btVector3(0, 0, 0));
+			body->activate(1);
+			
+			
+			btVector3 relativeForce = btVector3(0, 0, 10);
+			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
+			btVector3 correctedForce = boxRot * relativeForce;
+			body->applyCentralForce(correctedForce);
 		}
 
 		else if (m == "moveBackward")
 		{
 			std::cout << "S: (Backwards) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
-		}
-
-
-		else if (m == "speedBoost")
-		{
-			std::cout << "SPACE: (Booster) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(0, 0, -100), btVector3(0, 0, 0));
+			body->activate(1);
+			
+		
+			btVector3 relativeForce = btVector3(0, 0, 10);
+			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
+			btVector3 correctedForce = boxRot * relativeForce;
+			body->applyCentralForce(-correctedForce);
 		}
 
 
 		else if (m == "moveLeftArrow")
 		{
 			std::cout << "LeftArrow: (Left) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyTorque(btVector3(0.0, 2.0, 0.0));
-
-			std::cout << l_bodyPlayer->getOrientation().getX() << l_bodyPlayer->getOrientation().getY() << l_bodyPlayer->getOrientation().getZ() << l_bodyPlayer->getOrientation().getW() << std::endl;
-			/*l_onKeyTransform.setRotation(l_onKeyQuat);
-			l_bodyPlayer->setCenterOfMassTransform(l_onKeyTransform);*/
-			//l_bodyPlayer->applyForce(btVector3(-10, 0, 0), btVector3(0, 0, 0));
+			body->activate(1);
+			
+		
+			body->applyTorque(btVector3(0.0, -3.0, 0.0));
+	
 		}
 
 		else if (m == "moveRightArrow")
 		{
 			std::cout << "RightArrow: (Right) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
+			body->activate(1);
+		
+			body->applyTorque(btVector3(0.0, 3.0, 0.0));
 		}
 
 		else if (m == "moveForwardsArrow")
 		{
 			std::cout << "ForwardArrow: (Forward) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(0, 0, -10), btVector3(0, 0, 0));
+			body->activate(1);
+		
+			body->applyTorque(btVector3(0.0, 0.0, 10.0));
 		}
 
 		else if (m == "moveBackwardsArrow")
 		{
 			std::cout << "BackArrow: (Backwards) Pressed" << std::endl;
-			l_bodyPlayer->activate(1);
-			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
+			body->activate(1);
+		
+			body->applyTorque(btVector3(0.0, 0.0, -10.0));
 		}
 
+
+		/*else if (m == "speedBoost")
+		{
+		std::cout << "SPACE: (Booster) Pressed" << std::endl;
+		body->activate(1);
+		body->applyForce(btVector3(0, 0, -30), btVector3(0, 0, 0));
+		}*/
 	}
 
 	
-
+	btRigidBody* getRigidBody() { return m_playerRigidBody; }
 	btVector3* getPosition() { return &m_position; }
 	btVector3* getScale() { return &m_scale; }
 	btQuaternion* getRotation() { return &m_rotation; }
@@ -188,7 +226,10 @@ public:
 	void setScale(btVector3 scale) { m_scale = scale; }
 	void setRotation(btQuaternion ori) { m_rotation = ori; }
 
-	~PhysicsBodyComponent();
+	~PhysicsBodyComponent(
+	
+		
+	);
 };
 
 
@@ -210,8 +251,9 @@ inline void PhysicsBodyComponent::createRigidBody()
 		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 		m_myMotionState = new btDefaultMotionState(m_startTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
-		btRigidBody* body = new btRigidBody(rbInfo);
+		body = new btRigidBody(rbInfo);
 		body->setFriction(0.5);
+		body->setRestitution(0.4);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}
 	else if (m_whatShape == "btSphereShape")
@@ -227,8 +269,9 @@ inline void PhysicsBodyComponent::createRigidBody()
 		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 		m_myMotionState = new btDefaultMotionState(m_startTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
-		btRigidBody* body = new btRigidBody(rbInfo);
-		body->setFriction(1.5);
+		body = new btRigidBody(rbInfo);
+		body->setFriction(1.0);
+		body->setRestitution(1.4);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}	
 }
@@ -261,6 +304,11 @@ inline PhysicsBodyComponent::~PhysicsBodyComponent()
 
 	//next line is optional: it will be cleared by the destructor when the array goes out of scope
 	m_collisionShapes.clear();
+
+	delete l_collisionObjectPlayer;
+	l_collisionObjectPlayer = nullptr;
+	delete m_playerRigidBody;
+	m_playerRigidBody = nullptr;
 }
 
 

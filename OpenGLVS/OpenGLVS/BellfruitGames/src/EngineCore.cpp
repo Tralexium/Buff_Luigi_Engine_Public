@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -10,6 +11,9 @@
 #include "EngineCore.h"
 #include "WindowSettings.h"
 #include "MouseSettings.h"
+//#include "Conversions.h"
+
+
 
 
 // ------------------- DEFINITION MACROS -------------------------------------------//
@@ -17,7 +21,7 @@
 #define ROTATE_VELOCITY 0.001f // macro for rotate velocity multiplier
 //----------------------------------------------------------------------------------//
 
-
+#define M_PI 3.14159265358979323846
 
 EngineCore* EngineCore::m_pInstance = nullptr; // Initialize enginecore instance to null.
 
@@ -184,9 +188,13 @@ void EngineCore::framebuffer_size_callback(GLFWwindow * window, int width, int h
 void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 {
 
+	
+
 	// ------------------ Local Variables -----------------------------------------------------------------------------------------------------------------//
 	TransformComponent* pTransform = game->getcurrentScene()->getFirstPlayerObject()->getComponent<TransformComponent>(); // pointer to relevant transform.
 	CameraComponent* pCamera = game->getcurrentScene()->getFirstPlayerObject()->getComponent<CameraComponent>(); // pointer to camera.
+
+	
 
 	glm::quat orientation = pTransform->getOrientation();
 	glm::vec3 position = pTransform->getPosition();
@@ -197,14 +205,27 @@ void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 	float deltayPos = (float)(g_mouse.m_previousMouseYpos - g_mouse.m_currentMouseYpos); //! delta y mouse pos
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------//
 
-
-
+	//PhysicsBodyComponent* pPhysicsBody = game->getcurrentScene()->getFirstPlayerObject()->getComponent<PhysicsBodyComponent>();
+	//btRigidBody* l_rigidBody = pPhysicsBody->body;
+	//btTransform trans = btTransform(glmQuatToBt(orientation));
+	
+	//const btScalar RADIANS_PER_DEGREE = M_PI / btScalar(180.0);
+	//btQuaternion q = btQuaternion(5.0f * RADIANS_PER_DEGREE, 5.0f * RADIANS_PER_DEGREE, 0.0f);
+	
 	//----------------------- Mouse Operations -----------------------------------------------------------------------------------------------------------//
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT))
 	{
+
+		
+		
+
 		pTransform->quaternionRotation(deltayPos * ROTATE_VELOCITY, deltaxPos * ROTATE_VELOCITY); // calls rotation function based on x and y mouse positions.
 		position += orientation * relativePosition; //changes postition and orientation based on its relative position.
 		pCamera->setOri(orientation); // sets orientation of camera while we move x and y.
+
+		//trans.setRotation(glmQuatToBt(pCamera->getOri()));
+		
+		//l_rigidBody->setWorldTransform(btTransform(trans * glmQuatToBt(orientation)));
 	}
 
 	g_mouse.m_previousMouseXpos = g_mouse.m_currentMouseXpos; //stores mouse pos x

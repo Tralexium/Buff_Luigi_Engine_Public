@@ -61,7 +61,7 @@ inline btVector3 glmVec3toBt(const glm::vec3& vec)
 
 inline btQuaternion glmQuatToBt(const glm::quat& vec) {
 
-	btQuaternion btvec(vec.w, vec.x, vec.y, vec.z);
+	btQuaternion btvec(vec.w, vec.x, vec.y, vec.z  );
 
 	return btvec;
 }

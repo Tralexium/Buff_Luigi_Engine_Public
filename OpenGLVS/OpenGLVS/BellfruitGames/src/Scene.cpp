@@ -59,7 +59,8 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	m_particleSystem = new ParticleSystemRenderer(100000);
+	m_particleSystem = new ParticleSystemRenderer(1000);
+	m_particleSystem->setCamera(m_playerCameraComponent);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -158,7 +159,7 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
-		if (i == 4)
+		if (i == 9)
 		{
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
 		}
@@ -418,12 +419,11 @@ void Scene::render()
 	drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
-	skyShader.use();  //! Use skybox shader. 
-	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
-	m_skyboxCube->render(); //!Render Skyshader
+	//skyShader.use();  //! Use skybox shader. 
+	//enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
+	//m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// -------------- Particle Drawing ------------------- //
-	
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
@@ -432,13 +432,13 @@ void Scene::render()
 	for (int i = 0; i < v_gameObjects.size(); i++)
 	{		
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
-		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+		//GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
 		shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 30.0f, 0.0f)); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+		//enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
 		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
@@ -446,7 +446,6 @@ void Scene::render()
 			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
 			emitter->setEmitterPos(pos);
 			m_particleSystem->setEmitter(emitter);
-			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();
 		}
 	}

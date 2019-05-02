@@ -34,6 +34,8 @@ void ParticleSystemRenderer::initialise()
 	m_particleShader = new ShaderComponent("particleShader");
 	m_shaderID = m_particleShader->shaderProgram;
 
+	m_particleShader->GetError();
+
 	// create buffers/arrays
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
@@ -52,17 +54,28 @@ void ParticleSystemRenderer::initialise()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_billboard);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
+	m_particleShader->GetError();
+
 	// The VBO containing the positions and sizes of the particles
 	glGenBuffers(1, &VBO_positionAndSize);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positionAndSize);
 	// Initialize with empty (NULL) buffer : it will be updated later, each frame.
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLfloat) * 4, NULL, GL_STREAM_DRAW);
 
+	m_particleShader->GetError();
+
 	// The VBO containing the colors of the particles
 	glGenBuffers(1, &VBO_color);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_color);
 	// Initialize with empty (NULL) buffer : it will be updated later, each frame.
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLubyte) * 4, NULL, GL_STREAM_DRAW);
+
+	m_particleShader->GetError();
+
+	// Generate a texture
+	glGenTextures(1, &m_textureID);
+
+	m_particleShader->GetError();
 }
 
 void ParticleSystemRenderer::update(float dt)
@@ -74,9 +87,6 @@ void ParticleSystemRenderer::update(float dt)
 
 		// Shortcut for the emmiter's particle array
 		Particle* partContainer = m_particleEmitter->getParticles();
-
-		// Keeps track of how many live particles get updated
-		partCounter = 0;
 
 		for (int i = 0; i < m_maxParticles; i++)
 		{
@@ -119,26 +129,36 @@ void ParticleSystemRenderer::render()
 {
 	// Update the buffers that OpenGL uses for rendering.
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positionAndSize);
-	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(Particle), NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
+	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLfloat) * 4, NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
 	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLfloat) * 4, g_particalPosSizeData);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_color);
-	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(Particle), NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
+	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLubyte) * 4, NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
 	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLubyte) * 4, g_particalColorData);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glDepthMask(GL_FALSE);
+	glDepthMask(GL_FALSE);
 
 	// Use our shader
 	glUseProgram(m_shaderID);
 
-	glm::mat4 ViewMatrix = m_camera->getViewMatrix();
-	glm::mat4 ViewProjectionMatrix = m_camera->getProjectionMatrix() * ViewMatrix;
+	ViewMatrix = m_camera->getViewMatrix();
+	ViewProjectionMatrix = m_camera->getProjectionMatrix() * ViewMatrix;
 
 	// Fragment Attributes
-	glUniform1i(glGetUniformLocation(m_shaderID, "myTextureSampler"), 0);
 
+	GLuint idz = glGetUniformLocation(m_shaderID, "myTextureSampler");
+
+
+	if (idz != -1)
+	{
+		glUniform1i(idz, 0);
+	}
+	else
+	{
+		DebugBreak();
+	}
 	// Vertex Attributes
 	glUniform3f(glGetUniformLocation(m_shaderID, "CameraRight_worldspace"), ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 	glUniform3f(glGetUniformLocation(m_shaderID, "CameraUp_worldspace"), ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
@@ -155,6 +175,11 @@ void ParticleSystemRenderer::render()
 	glVertexAttribDivisor(1, 1); // positions : one per quad (its center) -> 1
 	glVertexAttribDivisor(2, 1); // color : one per quad -> 1
 
+	if (glGetError() != GL_NO_ERROR)
+	{
+		DebugBreak();
+	}
+
 	//glBindVertexArray(VAO);
 	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, partCounter);
 	//glBindVertexArray(0);
@@ -163,9 +188,12 @@ void ParticleSystemRenderer::render()
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
 
-	//glDisable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glDepthMask(GL_TRUE);
+	// Keeps track of how many live particles get updated, we reset it after we drew all emitters
+	partCounter = 0;
+
+	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_TRUE);
 }
 
 void ParticleSystemRenderer::resize(unsigned int newSize)
@@ -184,10 +212,10 @@ void ParticleSystemRenderer::updateParticle(Particle& particleData, float dt)
 
 void ParticleSystemRenderer::interpolateColor(Particle& particleData)
 {
-	glm::vec4 colX = particleData.colour;
-	glm::vec4 colY = particleData.finalColour;
-	float life = particleData.life;
-	glm::vec4 increment = (colY - colX) / life;
+	colX = particleData.colour;
+	colY = particleData.finalColour;
+	life = particleData.life;
+	increment = (colY - colX) / life;
 
 	colX.x += increment.x; // Red Colour
 	colX.y += increment.y; // Green Colour
@@ -212,11 +240,10 @@ void ParticleSystemRenderer::setCamera(CameraComponent* camera)
 void ParticleSystemRenderer::setTexture(const std::string & textureFilepath)
 {
 	// Bind to a Texture ID
-	glGenTextures(1, &m_textureID);
 	glBindTexture(GL_TEXTURE_2D, m_textureID);
 
 	// Load image data and store it to the bound texture ID
-	std::string TextureDir = "res/particles/" + textureFilepath + ".png"; //! takes image from filepath, then set neccesary values for 2d texture image
+	TextureDir = "res/particles/" + textureFilepath + ".png"; //! takes image from filepath, then set neccesary values for 2d texture image
 	Bitmap bmp = Bitmap::bitmapFromFile(TextureDir);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, bmp.width(), bmp.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, bmp.pixelBuffer());
 

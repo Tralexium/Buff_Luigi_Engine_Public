@@ -114,6 +114,9 @@ public:
 
 	void blitFBO();
 
+	//!< Checks for OpenGL Errors
+	string GetError();
+
 	//! Overridden Update function.
 	/*!
 	\brief updates game logic.

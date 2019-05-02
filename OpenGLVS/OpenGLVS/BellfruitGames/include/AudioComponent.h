@@ -17,14 +17,14 @@
 class AudioComponent : public Component
 {
 private:
-	FMOD::System     *system; 
+	FMOD::System     *system = 0; 
 	FMOD::Sound      *sound1, *sound2, *sound3;
 	FMOD::Channel    *channel = 0;
-	FMOD::Reverb3D   *reverb;
+	FMOD::Reverb3D   *reverb = 0;
 	FMOD_RESULT       result;
 	unsigned int      version;
 	void             *extradriverdata = 0;
-	FMOD_VECTOR pos;
+	FMOD_VECTOR		 *pos;
 	float mindist;
 	float maxdist;
 
@@ -39,30 +39,31 @@ public:
 	AudioComponent(const char* filepath, float posx, float posy, float posz, float mindis, float maxdis) {
 
 		result = FMOD::System_Create(&system);
+
 		result = system->getVersion(&version);
 
 		result = system->init(32, FMOD_INIT_3D_RIGHTHANDED, extradriverdata); //sets the coordinate system to right handed, same as opengl
+
+		result = system->createSound(filepath, FMOD_3D_INVERSEROLLOFF, 0, &sound1); // createsound
+
 		result = system->createReverb3D(&reverb); //Creates a 'virtual reverb' object
+
 		if (version < FMOD_VERSION)
 		{
 			printf("FMOD lib version %08x doesn't match header version %08x", version, FMOD_VERSION);
 		}
 
-		FMOD_REVERB_PROPERTIES prop2 = FMOD_PRESET_GENERIC;
-		reverb->setProperties(&prop2);
-		pos = { posx, posy, posz };
+		FMOD_REVERB_PROPERTIES prop2 = FMOD_PRESET_CONCERTHALL;
+		result = reverb->setProperties(&prop2);
+
+		pos = new FMOD_VECTOR{ posx, posy, posz };
 
 		//std::cout << " Position: " << pos.x << pos.y << pos.z << std::endl;
 		mindist = mindis;
 		maxdist = maxdis;
-		reverb->set3DAttributes(&pos, mindist, maxdist);
-
-		//std::cout << "reverb; " << mindist << "    " << maxdist << std::endl;
-		channel->set3DMinMaxDistance(mindist, maxdist);
-
-		result = system->createSound(filepath, FMOD_3D_INVERSEROLLOFF, 0, &sound1); // createsound
-		//result = sound1->setMode(FMOD_3D_INVERSEROLLOFF); //setmode to 2D sound
-		
+		result = reverb->set3DAttributes(pos, mindist, maxdist);
+		FMODErrorCheck(result);
+		std::cout << "reverb; " << mindist << "    " << maxdist << std::endl;
 
 		FMODErrorCheck(result);
 
@@ -76,8 +77,10 @@ public:
 	void playSound() {
 
 		result = system->playSound(sound1, 0, false, &channel); // play sound
+		FMODErrorCheck(result);
 
 		result = system->update(); // update sound
+		FMODErrorCheck(result);
 	}
 
 	/*! Destructor
@@ -87,6 +90,8 @@ public:
 	~AudioComponent() {
 
 		result = sound1->release(); // release memory
+		FMODErrorCheck(result);
+
 	};
 
 	//! Error Check function
@@ -107,10 +112,12 @@ public:
 	\param pos position to update to
 	\brief updates position that the sound is emitted from
 	*/
-	void UpdatePosition(glm::vec3 pos) {
-		FMOD_VECTOR soundpos = { pos.x, pos.y, pos.z };
+	void UpdatePosition(glm::vec3 position) {
+		FMOD_VECTOR soundpos = { position.x, position.y, position.z };
 
-		reverb->set3DAttributes(&soundpos, mindist, maxdist);
+		result = reverb->set3DAttributes(&soundpos, mindist, maxdist);
+		FMODErrorCheck(result);
+
 	};
 
 
@@ -136,14 +143,20 @@ public:
 	\param pos position of the listener, forward forward orientation of the listener
 	\brief updates the listener position so that the 3D audio works correctly
 	*/
-	void UpdateListener(glm::vec3 pos, glm::vec3 forward)  {
-		FMOD_VECTOR listenerpos = { pos.x, pos.y, pos.z };
-		FMOD_VECTOR listenerup = {0, 0, 0 };
+	void UpdateListener(glm::vec3 position, glm::vec3 forward, glm::vec3 up)  {
+		FMOD_VECTOR listenerpos = { position.x, position.y, position.z };
+		//FMOD_VECTOR listenerup = {0, 0, 0 };
+		//glm::vec3 uForward = glm::sqrt(forward);
 		FMOD_VECTOR listenerforward = { forward.x, forward.y, forward.z };
+		FMOD_VECTOR listenerup = { up.x, up.y, up.z };
 
-		//std::cout << "Listener Position: " << listenerpos.x << listenerpos.y << listenerpos.z << std::endl;
-		system->set3DListenerAttributes(0, &listenerpos, 0, &listenerforward, 0);
-		system->update(); // update sound
+		std::cout << "Listener Position: " << listenerpos.x << " " << listenerpos.y << " " << listenerpos.z << std::endl;
+		result = system->set3DListenerAttributes(0, &listenerpos, 0, &listenerforward, &listenerup);
+		FMODErrorCheck(result);
+
+		result = system->update(); // update sound
+		FMODErrorCheck(result);
+
 	}
 
 };

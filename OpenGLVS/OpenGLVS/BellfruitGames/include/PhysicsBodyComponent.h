@@ -129,7 +129,7 @@ public:
 			body->activate(1);
 		
 			
-			btVector3 relativeForce = btVector3(-10, 0, 0);
+			btVector3 relativeForce = btVector3(7, 0, 0);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = boxRot * relativeForce;
 			body->applyCentralForce(correctedForce);
@@ -142,7 +142,7 @@ public:
 			body->activate(1);
 			
 			
-			btVector3 relativeForce = btVector3(10, 0, 0);
+			btVector3 relativeForce = btVector3(-7, 0, 0);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = boxRot * relativeForce;
 			body->applyCentralForce(correctedForce);

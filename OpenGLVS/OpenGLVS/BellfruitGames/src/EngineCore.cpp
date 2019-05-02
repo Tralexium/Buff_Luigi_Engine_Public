@@ -102,7 +102,6 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 	while (!glfwWindowShouldClose(m_window)) // main game loop
 	{
 
-
 		// ---------Debug check ms/frame code----------------------------------------------------//
 		double l_currentTime = glfwGetTime(); // Measure performance
 		l_deltaTime += (l_currentTime - l_lastTime) /l_limitFPS;
@@ -116,9 +115,6 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 				l_previousTime += 1.0;
 			}
 		//--------------------------------------------------------------------------------------//
-
-		
-			
 
 			//Mouse move function
 			mouseCameraView(game, m_window); // see mouse position.

@@ -14,6 +14,7 @@
 #include "Model.h"
 #include "CameraComponent.h"
 #include "BellfruitGame.h"
+#include "UIComponent.h"
 //#include "PhysicsBodyComponent.h"
 
 /*!
@@ -23,6 +24,9 @@
 class EngineCore
 {	
 private:
+
+	UIComponent * m_UIComponent;
+
 
 	EngineCore() {};  // Private so that it can  not be called
 
@@ -70,8 +74,10 @@ public:
 	GLFWwindow* m_window;  //!< GLFWwindow pointer variable.
 	mat4 model; //!< Model Matrix.
 
-	int m_screenWidth;  //!< screen width.
-	int m_screenHeight; //!< screen height.
+	//int m_screenWidth;  //!< screen width.
+	//int m_screenHeight; //!< screen height.
+
+
 
 	//! Initializes window.
 	/*!
@@ -127,6 +133,8 @@ public:
 	void resize(CameraComponent* camera, int w, int h);
 
 	GLFWwindow* getWindow() { return m_window; }
+
+	UIComponent* getUIComponent() { return m_UIComponent; }
 
 	//! Virtual Destructor.
 	/*!

@@ -27,8 +27,10 @@ private:
 
 	/*float screenHeight = 768.0f;
 	float screenWidth = 1366.0f;*/
-	float screenHeight = 600.0f;
-	float screenWidth = 800.0f;
+	float screenHeight = 1080.0f;
+	float screenWidth = 1920.0f;
+	//float screenHeight = 600.0f;
+	//float screenWidth = 800.0f;
 
 	float nearPlane = 0.1f;
 	float farPlane = 1000.0f;

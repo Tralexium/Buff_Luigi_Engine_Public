@@ -139,6 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\ImGui\imgui.cpp" />
+    <ClCompile Include="include\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="include\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="include\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="include\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="include\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="src\BellfruitGame.cpp" />
     <ClCompile Include="src\Bitmap.cpp" />
     <ClCompile Include="src\EngineCore.cpp" />
@@ -160,6 +166,14 @@
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\CameraComponent.h" />
     <ClInclude Include="include\DebugDrawPhysics.h" />
+    <ClInclude Include="include\ImGui\imconfig.h" />
+    <ClInclude Include="include\ImGui\imgui.h" />
+    <ClInclude Include="include\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="include\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="include\ImGui\imgui_internal.h" />
+    <ClInclude Include="include\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="include\ImGui\imstb_textedit.h" />
+    <ClInclude Include="include\ImGui\imstb_truetype.h" />
     <ClInclude Include="include\MouseSettings.h" />
     <ClInclude Include="include\ParticleEmitterComponent.h" />
     <ClInclude Include="include\ParticleSystemRenderer.h" />
@@ -179,6 +193,7 @@
     <ClInclude Include="include\ShaderComponent.h" />
     <ClInclude Include="include\SkyBox.h" />
     <ClInclude Include="include\TransformComponent.h" />
+    <ClInclude Include="include\UIComponent.h" />
     <ClInclude Include="include\WindowSettings.h" />
   </ItemGroup>
   <ItemGroup>

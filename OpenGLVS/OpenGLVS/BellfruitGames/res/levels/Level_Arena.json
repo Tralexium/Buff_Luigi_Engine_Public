@@ -1,38 +1,15 @@
 {
   "GameObjects": [
     {
-      "colliderposition": [
-        -0.032415535936038964, 
-        -0.08755543027576057, 
-        8.02893033426652
-      ], 
-      "collisionboxsize": [
-        10, 
-        2, 
-        0.2
-      ], 
+      "colliderposition": [-0.032415535936038964, -0.08755543027576057, 8.02893033426652], 
+      "collisionboxsize": [ 10, 2, 0.2], 
       "collisionshape": "btBoxShape", 
-      "mass": [
-        0.0
-      ], 
+      "mass": [ 0.0], 
       "model": "metal_fence_arena", 
       "name": "metal_fence_arena", 
-      "orientation": [
-        0.0, 
-        0.0, 
-        0.0, 
-        1.0
-      ], 
-      "position": [
-        -0.032415535936038964, 
-        -0.08755543027576057, 
-        8.02893033426652
-      ], 
-      "scale": [
-        1, 
-        1, 
-        1
-      ], 
+      "orientation": [ 0.0, 0.0, 0.0,  1.0], 
+      "position": [ -0.032415535936038964,  -0.08755543027576057,  8.02893033426652 ], 
+      "scale": [1, 1,  1], 
       "shader": "normalMapShader2", 
       "spherecolsize": [ 1.0 ]
     }, 

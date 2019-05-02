@@ -7,13 +7,9 @@
 #include <glm/glm.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 #include "EngineCore.h"
 #include "WindowSettings.h"
 #include "MouseSettings.h"
-//#include "Conversions.h"
-
-
 
 
 // ------------------- DEFINITION MACROS -------------------------------------------//
@@ -21,18 +17,15 @@
 #define ROTATE_VELOCITY 0.001f // macro for rotate velocity multiplier
 //----------------------------------------------------------------------------------//
 
-#define M_PI 3.14159265358979323846
-
+// ------------------- GLOBAL Instances --------------------------------------------//
 EngineCore* EngineCore::m_pInstance = nullptr; // Initialize enginecore instance to null.
-
-// ------------------- GLOBAL VARIABLES --------------------------------------------//
 WindowSettings& g_window = g_window.getInstance();
 MouseSettings& g_mouse = g_mouse.getInstance();
-
+//---------------------------------------------------------------------------------//
 
 std::vector<bool> EngineCore::m_keyBuffer; // Global key buffer variable.
-double previousMousePosX, previousMousePosY, currentMousePosX, currentMousePosY; // Global mouse positions for calculating delta position.
-//---------------------------------------------------------------------------------//
+
+
 
 
 using namespace std; // using namespace
@@ -54,10 +47,10 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
 
-	m_screenWidth = width; // set screen width
-	m_screenHeight = height; // set screen height
+	//m_screenWidth = width; // set screen width
+	//m_screenHeight = height; // set screen height
 
-	m_window = glfwCreateWindow(g_window.getScreenWidth(), g_window.getScreenHeight(), windowName.c_str(), nullptr , nullptr); // create new window
+	m_window = glfwCreateWindow(g_window.getScreenWidth(), g_window.getScreenHeight(), windowName.c_str(), glfwGetPrimaryMonitor() , nullptr); // create new window
 
 		if (m_window == nullptr)
 		{
@@ -73,6 +66,12 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 			std::cout << "Failed to initialise GLAD" << std::endl;
 			return false;
 		}
+
+	// Wang UI start --
+	m_UIComponent = new UIComponent(); // make new UI componen
+	m_UIComponent->initGUI(m_window); //make initialize
+	// Wang UI end -
+
 
 	glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 	glfwSetKeyCallback(m_window, keyCallbackEvent);
@@ -102,6 +101,8 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 	while (!glfwWindowShouldClose(m_window)) // main game loop
 	{
 
+		m_UIComponent->createGUI(); // create GUI context
+
 		// ---------Debug check ms/frame code----------------------------------------------------//
 		double l_currentTime = glfwGetTime(); // Measure performance
 		l_deltaTime += (l_currentTime - l_lastTime) /l_limitFPS;
@@ -117,16 +118,23 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 		//--------------------------------------------------------------------------------------//
 
 			//Mouse move function
-			mouseCameraView(game, m_window); // see mouse position.
+		mouseCameraView(game, m_window); // see mouse position.
 
-			// Main Update
-			game->update(0.1f); // Main Game,  60 Fps Limited Update function
+		// Main Update
+		game->update(0.1f); // Main Game,  60 Fps Limited Update function
 	
-			// Main Render
-			game->render(); 
+		// Main Render
+		game->render(); 
 
-			//Input handler
-			game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
+		//Input handler
+		game->getPlayerInputHandler()->handleInputs(m_keyBuffer);
+
+
+		m_UIComponent->renderGUI(); // draw GUI
+		if (m_UIComponent->windowOpen == false)
+		{
+			return false;  // if windowbool is false on exit button, then close window
+		}
 
 
 		glfwSwapBuffers(m_window); // Swap buffers	
@@ -201,27 +209,15 @@ void EngineCore::mouseCameraView(BellfruitGame* game, GLFWwindow * window)
 	float deltayPos = (float)(g_mouse.m_previousMouseYpos - g_mouse.m_currentMouseYpos); //! delta y mouse pos
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	//PhysicsBodyComponent* pPhysicsBody = game->getcurrentScene()->getFirstPlayerObject()->getComponent<PhysicsBodyComponent>();
-	//btRigidBody* l_rigidBody = pPhysicsBody->body;
-	//btTransform trans = btTransform(glmQuatToBt(orientation));
-	
-	//const btScalar RADIANS_PER_DEGREE = M_PI / btScalar(180.0);
-	//btQuaternion q = btQuaternion(5.0f * RADIANS_PER_DEGREE, 5.0f * RADIANS_PER_DEGREE, 0.0f);
 	
 	//----------------------- Mouse Operations -----------------------------------------------------------------------------------------------------------//
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT))
 	{
 
-		
-		
-
 		pTransform->quaternionRotation(deltayPos * ROTATE_VELOCITY, deltaxPos * ROTATE_VELOCITY); // calls rotation function based on x and y mouse positions.
 		position += orientation * relativePosition; //changes postition and orientation based on its relative position.
 		pCamera->setOri(orientation); // sets orientation of camera while we move x and y.
 
-		//trans.setRotation(glmQuatToBt(pCamera->getOri()));
-		
-		//l_rigidBody->setWorldTransform(btTransform(trans * glmQuatToBt(orientation)));
 	}
 
 	g_mouse.m_previousMouseXpos = g_mouse.m_currentMouseXpos; //stores mouse pos x
@@ -238,10 +234,10 @@ void EngineCore::keyCallbackEvent(GLFWwindow* window, int key, int scancode, int
 	}
 	m_keyBuffer[key] = ((action == GLFW_PRESS || action == GLFW_REPEAT));
 
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	/*if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, true);
-	}
+	}*/
 
 }
 

@@ -413,11 +413,11 @@ void Scene::render()
 	//------------ BINDING FBO BEFORE RENDERING ANYTHING ---------------------------------------------------------------------------------------------------------------------//
 	// Here we bind the framebuffer before we do any rendering, this renders everything into the FBO,
 	// So we can then do the shader rendering step with everything getting rendered directly from the FBO.
-	//framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
+	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
-	drawCollisionDebugLines();
+	//drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyShader.use();  //! Use skybox shader. 
@@ -437,7 +437,7 @@ void Scene::render()
 		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
-		shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 30.0f, 0.0f)); // Move light to fourth object whcih is lamp box 
+		shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 12.0f, -5.0f)); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
@@ -455,12 +455,12 @@ void Scene::render()
 
 	
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
-	//framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
-	//framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
+	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
+	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
 
-	//// Here the texture will be set to the quad, and render the quads front face as a texture.
-	//framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
-	//framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
+	// Here the texture will be set to the quad, and render the quads front face as a texture.
+	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
+	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
 
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 

@@ -154,7 +154,7 @@ public:
 			body->activate(1);
 			
 			
-			btVector3 relativeForce = btVector3(0, 0, 10);
+			btVector3 relativeForce = btVector3(0, 0, 7);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = relativeForce * boxRot;
 			body->applyCentralForce(correctedForce);
@@ -166,7 +166,7 @@ public:
 			body->activate(1);
 			
 		
-			btVector3 relativeForce = btVector3(0, 0, -10);
+			btVector3 relativeForce = btVector3(0, 0, -7);
 			btMatrix3x3& boxRot = body->getWorldTransform().getBasis();
 			btVector3 correctedForce = relativeForce * boxRot;
 			body->applyCentralForce(correctedForce);
@@ -179,7 +179,7 @@ public:
 			body->activate(1);
 			
 		
-			body->applyTorque(btVector3(0.0, -3.0, 0.0));
+			body->applyTorque(btVector3(0.0, -5.0, 0.0));
 	
 		}
 
@@ -188,7 +188,7 @@ public:
 			std::cout << "RightArrow: (Right) Pressed" << std::endl;
 			body->activate(1);
 		
-			body->applyTorque(btVector3(0.0, 3.0, 0.0));
+			body->applyTorque(btVector3(0.0, 5.0, 0.0));
 		}
 
 		else if (m == "moveForwardsArrow")

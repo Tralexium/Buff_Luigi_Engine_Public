@@ -38,7 +38,8 @@ private:
 	ParticleSystemRenderer* m_particleSystem; //!< Manages particles logic and renders them.
 
 	std::vector<GameObject> v_gameObjects; //!< Vector of gameObjects.
-
+	
+	std::vector<GameObject> v_spaceobjects; //!< Vector of gameObjects.
 	std::vector<GameObject> v_playerCharacterObjects; //!< Vector of player objects.
 
 	GLSLProgram skyShader; //!< skybox shader.
@@ -99,8 +100,8 @@ public:
 	
 	// --- ENTRY FOR LOADING OBJECTS --//
 	bool loadSceneObjects(std::string level);
+	bool loadSpaceObjects(std::string level);
 
-	
 
 	// --- ENTRY FOR LOADING PLAYER  --//
 	bool loadPlayerObjects(std::string player);

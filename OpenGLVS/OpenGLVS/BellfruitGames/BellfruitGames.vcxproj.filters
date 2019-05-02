@@ -313,5 +313,8 @@
     <None Include="res\levels\Level_Arena.json">
       <Filter>res\levels</Filter>
     </None>
+    <None Include="res\levels\SpaceObjects.json">
+      <Filter>res\levels</Filter>
+    </None>
   </ItemGroup>
 </Project>

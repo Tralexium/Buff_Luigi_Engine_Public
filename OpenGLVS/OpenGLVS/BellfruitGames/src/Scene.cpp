@@ -168,7 +168,7 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
-		if (i == 4)
+		if (i == 5)
 		{
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
 		}

@@ -8,7 +8,7 @@
 struct Particle
 {
 	// initialised to dead particle (-1.0f life)
-	Particle() : life(0.0f), size(1.0f), colour(1.0f, 0.0f, 0.0f, 1.0f), velocity(0.0f, 0.0f, 0.0f) {}
+	Particle() : life(0.0f), size(1.0f), colour(255.0f, 0.0f, 0.0f, 255.0f), velocity(0.0f, 0.0f, 0.0f) {}
 
 	// variables that need passing to the shader
 	float life, size, cameraSqDistance;
@@ -68,12 +68,12 @@ public:
 				//float randomXStart = ((rand() % RAND_MAX) / (float)RAND_MAX) * 50000.0f - 25000.0f;
 				//float randomZStart = ((rand() % RAND_MAX) / (float)RAND_MAX) * 50000.0f - 25000.0f;
 				//m_particles[particleIndex].position = glm::vec3(randomXStart, 5000, randomZStart);
-				float randVelX = randomNumRange(1.0f);
-				float randVelZ = randomNumRange(1.0f);
+				float randVelX = randomNumRange(0.5f);
+				float randVelZ = randomNumRange(0.5f);
 				m_particles[particleIndex].position = glm::vec3(m_emitterPos.x, m_emitterPos.y, m_emitterPos.z);
-				m_particles[particleIndex].velocity = glm::vec3(randVelX, 2.0f, randVelZ);
-				m_particles[particleIndex].colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-				m_particles[particleIndex].finalColour = glm::vec4(1.0f, 0.0f, 0.0f, 0.0f);
+				m_particles[particleIndex].velocity = -glm::vec3(randVelX, 1.0f, randVelZ);
+				m_particles[particleIndex].colour = glm::vec4(255.0f, 255.0f, 0.0f, 255.0f);
+				m_particles[particleIndex].finalColour = glm::vec4(255.0f, 0.0f, 0.0f, 0.0f);
 				m_particles[particleIndex].size = 1;
 			}
 

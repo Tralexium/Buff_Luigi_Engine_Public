@@ -142,9 +142,9 @@ void ParticleSystemRenderer::render()
 
 	m_particleShader->GetError();
 
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glDepthMask(GL_FALSE);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_FALSE);
 
 	m_particleShader->GetError();
 
@@ -193,7 +193,7 @@ void ParticleSystemRenderer::render()
 
 	//glDisable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glDepthMask(GL_TRUE);
+	glDepthMask(GL_TRUE);
 }
 
 void ParticleSystemRenderer::resize(unsigned int newSize)
@@ -206,7 +206,7 @@ void ParticleSystemRenderer::updateParticle(Particle& particleData, float dt)
 	interpolateColor(particleData);
 
 	particleData.position += particleData.velocity * dt;
-	particleData.velocity -= glm::vec3(0.0f, 0.1f, 0.0f) * dt;
+	particleData.velocity += glm::vec3(0.0f, 0.05f, 0.0f) * dt;
 	particleData.cameraSqDistance = glm::length2(particleData.position - m_camera->getPos());
 }
 

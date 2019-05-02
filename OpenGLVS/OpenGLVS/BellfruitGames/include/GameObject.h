@@ -3,6 +3,7 @@
 \file GameObject.h
 */
 
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -12,6 +13,9 @@
 #include <iostream>
 #include <cstdlib>
 #include "Component.h"
+
+
+
 //#include "CameraComponent.h"
 //#include "TransformComponent.h"
 
@@ -64,7 +68,11 @@ public:
 	/*!
 	\param m const string which takes a message from components.
 	*/
-	void OnMessage(const std::string m) {}
+	void OnMessage(const std::string m) {
+	
+		
+		
+	}
 
 	//! Getter for Relative Position.
 	/*!
@@ -73,3 +81,4 @@ public:
 	inline glm::vec3 getRelativePos() { return relativePosition; }
 	
 };
+

@@ -59,7 +59,7 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	m_particleSystem = new ParticleSystemRenderer(100000);
+	//m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -139,7 +139,6 @@ bool Scene::loadSceneObjects(std::string level)
 		std::string shapeName = gameObjects[i]["collisionshape"].asString();
 
 		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
-
 		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
 		// Because we do v_gameObjects[i] and not a specific one, this will set the components to all objects
 		// that this loop goes through, which is every object in the JSON file 
@@ -151,8 +150,8 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName));
 	
 		
-			// Set particle effects for some objects (TESTING PURPOSES)
-			v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
+		// Set particle effects for some objects (TESTING PURPOSES)
+		//v_gameObjects[i].addComponent(new ParticleEmitterComponent(10000, 1, 0.1f, pos, "spark"));
 		
 
 	}
@@ -392,7 +391,7 @@ void Scene::update(float dt)
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	m_particleSystem->update(dt);
+	//m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -402,18 +401,19 @@ void Scene::render()
 	//------------ BINDING FBO BEFORE RENDERING ANYTHING ---------------------------------------------------------------------------------------------------------------------//
 	// Here we bind the framebuffer before we do any rendering, this renders everything into the FBO,
 	// So we can then do the shader rendering step with everything getting rendered directly from the FBO.
-	//framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
+	framebufferShader->bindFrameBuffer(); //-> Step 1: Bind framebuffer
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
 	drawCollisionDebugLines();
 	// ------------------------------------------------------/
+
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyShader.use();  //! Use skybox shader. 
 	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
 	m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-	// -------------- Particle Drawing ------------------- //
+
 	
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
@@ -433,7 +433,7 @@ void Scene::render()
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
 			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
@@ -441,17 +441,17 @@ void Scene::render()
 			m_particleSystem->setEmitter(emitter);
 			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();
-		}
+		}*/
 	}
 
 	
-	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
-	//framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
-	//framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
+	 //After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
+	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
+	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
 
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
-	//framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
-	//framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
+	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
+	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
 
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -474,8 +474,6 @@ Scene::~Scene()
 
 	delete framebufferScreenShader;
 	framebufferScreenShader = nullptr;
-
-
 
 
 	for (GameObject gameObject : v_gameObjects)

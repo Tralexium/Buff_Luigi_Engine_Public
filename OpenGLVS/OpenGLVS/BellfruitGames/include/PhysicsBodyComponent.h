@@ -12,8 +12,9 @@
 #include "CommonInterfaces/CommonRigidBodyBase.h"
 
 #include "PhysicsWorld.h"
-#include "TransformComponent.h"
-#include "CameraComponent.h"
+
+
+
 
 #define ARRAY_SIZE_Y 5
 #define ARRAY_SIZE_X 5
@@ -99,7 +100,7 @@ public:
 	void OnUpdate(float dt) { }
 
 	void OnMessage(const std::string m) {
-
+	
 		btCollisionObject* l_collisionObjectPlayer = physicsworld.getDynamicsWorld()->getCollisionObjectArray()[physicsworld.getDynamicsWorld()->getNumCollisionObjects() - 1];
 		btRigidBody* l_bodyPlayer = btRigidBody::upcast(l_collisionObjectPlayer);
 		btQuaternion l_onKeyQuat;
@@ -146,9 +147,11 @@ public:
 		{
 			std::cout << "LeftArrow: (Left) Pressed" << std::endl;
 			l_bodyPlayer->activate(1);
-			l_onKeyQuat.setEuler(10.0, 0.0, 0.0);
-			l_onKeyTransform.setRotation(l_onKeyQuat);
-			l_bodyPlayer->setCenterOfMassTransform(l_onKeyTransform);
+			l_bodyPlayer->applyTorque(btVector3(0.0, 2.0, 0.0));
+
+			std::cout << l_bodyPlayer->getOrientation().getX() << l_bodyPlayer->getOrientation().getY() << l_bodyPlayer->getOrientation().getZ() << l_bodyPlayer->getOrientation().getW() << std::endl;
+			/*l_onKeyTransform.setRotation(l_onKeyQuat);
+			l_bodyPlayer->setCenterOfMassTransform(l_onKeyTransform);*/
 			//l_bodyPlayer->applyForce(btVector3(-10, 0, 0), btVector3(0, 0, 0));
 		}
 
@@ -159,19 +162,20 @@ public:
 			l_bodyPlayer->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
 		}
 
-		else if (m == "moveForwardArrow")
+		else if (m == "moveForwardsArrow")
 		{
 			std::cout << "ForwardArrow: (Forward) Pressed" << std::endl;
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, -10), btVector3(0, 0, 0));
 		}
 
-		else if (m == "moveBackwardArrow")
+		else if (m == "moveBackwardsArrow")
 		{
 			std::cout << "BackArrow: (Backwards) Pressed" << std::endl;
 			l_bodyPlayer->activate(1);
 			l_bodyPlayer->applyForce(btVector3(0, 0, 10), btVector3(0, 0, 0));
 		}
+
 	}
 
 	

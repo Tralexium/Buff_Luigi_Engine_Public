@@ -7,8 +7,6 @@
 #include "LinearMath/btQuaternion.h"
 #include "CommonInterfaces/CommonRigidBodyBase.h"
 
-
-
 #include "DebugDrawPhysics.h"
 #include "Conversions.h"
 #include "MouseSettings.h"
@@ -73,12 +71,8 @@ public:
 			btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
 			btVector3 btTo(mousepos.x, mousepos.y, -(mousepos.z+5000));
 			
-			
-			//btVector3 btTo(tr.getOrigin().getX(), tr.getOrigin().getY(), tr.getOrigin().getZ());
-			//btVector3 btFrom(tr.getOrigin().getX(), tr.getOrigin().getY(), -(tr.getOrigin().getZ()+5000));
 
-
-			cout << mousepos.x << mousepos.y << mousepos.z << endl;
+			//cout << mousepos.x << mousepos.y << mousepos.z << endl;
 
 			btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
 			res.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
@@ -86,7 +80,7 @@ public:
 
 			if (res.hasHit()) // Debug in console for having hit 
 			{
-				printf("Collision at: <%.2f, %.2f, %.2f>\n", res.m_hitPointWorld.getX(), res.m_hitPointWorld.getY(), res.m_hitPointWorld.getZ());
+				//printf("Collision at: <%.2f, %.2f, %.2f>\n", res.m_hitPointWorld.getX(), res.m_hitPointWorld.getY(), res.m_hitPointWorld.getZ());
 			}
 
 			if (res.hasHit()) // Debug as drawing line (doesnt work..)

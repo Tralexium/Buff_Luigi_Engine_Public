@@ -23,7 +23,8 @@ public:
 	btTransform m_transform;
 
 
-	DebugDrawPhysics() {
+	DebugDrawPhysics() 
+	{
 
 
 	}

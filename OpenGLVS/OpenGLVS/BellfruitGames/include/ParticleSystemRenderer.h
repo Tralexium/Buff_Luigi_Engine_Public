@@ -43,6 +43,15 @@ private:
 	GLfloat* g_particalPosSizeData;
 	GLubyte* g_particalColorData;
 
+	// Saves memory
+	glm::mat4 ViewMatrix;
+	glm::mat4 ViewProjectionMatrix;
+	std::string TextureDir;
+	glm::vec4 colX;
+	glm::vec4 colY;
+	float life;
+	glm::vec4 increment;
+
 	ParticleEmitterComponent* m_particleEmitter;
 	CameraComponent* m_camera;
 	ShaderComponent* m_particleShader;

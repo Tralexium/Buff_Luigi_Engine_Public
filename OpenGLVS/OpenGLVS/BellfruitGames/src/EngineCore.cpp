@@ -79,11 +79,11 @@ bool EngineCore::initWindow(int width, int height, std::string windowName)
 	m_keyBuffer.resize(m_keyBufferSize); // make space for the keybuffer
 	std::fill(m_keyBuffer.begin(), m_keyBuffer.end(), false);
 	// enable depth test
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
 	// enable alpha transparency
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	return true;
 }
 

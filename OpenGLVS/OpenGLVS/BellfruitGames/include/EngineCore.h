@@ -132,7 +132,6 @@ public:
 	*/
 	void resize(CameraComponent* camera, int w, int h);
 
-
 	GLFWwindow* getWindow() { return m_window; }
 
 	UIComponent* getUIComponent() { return m_UIComponent; }

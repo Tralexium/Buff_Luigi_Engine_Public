@@ -127,18 +127,26 @@ void ParticleSystemRenderer::update(float dt)
 
 void ParticleSystemRenderer::render()
 {
+	m_particleShader->GetError();
+
 	// Update the buffers that OpenGL uses for rendering.
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positionAndSize);
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLfloat) * 4, NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
 	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLfloat) * 4, g_particalPosSizeData);
 
+	m_particleShader->GetError();
+
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_color);
 	glBufferData(GL_ARRAY_BUFFER, m_maxParticles * sizeof(GLubyte) * 4, NULL, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf.
 	glBufferSubData(GL_ARRAY_BUFFER, 0, partCounter * sizeof(GLubyte) * 4, g_particalColorData);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_FALSE);
+	m_particleShader->GetError();
+
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glDepthMask(GL_FALSE);
+
+	m_particleShader->GetError();
 
 	// Use our shader
 	glUseProgram(m_shaderID);
@@ -147,38 +155,30 @@ void ParticleSystemRenderer::render()
 	ViewProjectionMatrix = m_camera->getProjectionMatrix() * ViewMatrix;
 
 	// Fragment Attributes
+	glUniform1i(glGetUniformLocation(m_shaderID, "myTextureSampler"), 0);
+	m_particleShader->GetError();
 
-	GLuint idz = glGetUniformLocation(m_shaderID, "myTextureSampler");
-
-
-	if (idz != -1)
-	{
-		glUniform1i(idz, 0);
-	}
-	else
-	{
-		DebugBreak();
-	}
 	// Vertex Attributes
 	glUniform3f(glGetUniformLocation(m_shaderID, "CameraRight_worldspace"), ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
+	m_particleShader->GetError();
 	glUniform3f(glGetUniformLocation(m_shaderID, "CameraUp_worldspace"), ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
+	m_particleShader->GetError();
 	glUniformMatrix4fv(glGetUniformLocation(m_shaderID, "VP"), 1, GL_FALSE, &ViewProjectionMatrix[0][0]);
-
-	// pass the updated VBO info to the VAO
-	setupVAO();
+	m_particleShader->GetError();
 
 	// Bind our texture in Texture Unit 0
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_textureID);
 
-	glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
-	glVertexAttribDivisor(1, 1); // positions : one per quad (its center) -> 1
-	glVertexAttribDivisor(2, 1); // color : one per quad -> 1
+	// pass the updated VBO info to the VAO
+	setupVAO();
 
-	if (glGetError() != GL_NO_ERROR)
-	{
-		DebugBreak();
-	}
+	glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
+	m_particleShader->GetError();
+	glVertexAttribDivisor(1, 1); // positions : one per quad (its center) -> 1
+	m_particleShader->GetError();
+	glVertexAttribDivisor(2, 1); // color : one per quad -> 1
+	m_particleShader->GetError();
 
 	//glBindVertexArray(VAO);
 	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, partCounter);
@@ -191,9 +191,9 @@ void ParticleSystemRenderer::render()
 	// Keeps track of how many live particles get updated, we reset it after we drew all emitters
 	partCounter = 0;
 
-	glDisable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_TRUE);
+	//glDisable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glDepthMask(GL_TRUE);
 }
 
 void ParticleSystemRenderer::resize(unsigned int newSize)
@@ -256,9 +256,12 @@ void ParticleSystemRenderer::setTexture(const std::string & textureFilepath)
 
 void ParticleSystemRenderer::setupVAO()
 {
+	glBindVertexArray(VAO);
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_billboard);
+	m_particleShader->GetError();
 	glVertexAttribPointer(
 		0, // attribute for vertex info.
 		3, // size
@@ -268,9 +271,12 @@ void ParticleSystemRenderer::setupVAO()
 		(void*)0 // array buffer offset
 	);
 
+	m_particleShader->GetError();
+
 	// 2nd attribute buffer : positions of particles' centers
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positionAndSize);
+	m_particleShader->GetError();
 	glVertexAttribPointer(
 		1, // attribute for position and size.
 		4, // size : x + y + z + size => 4
@@ -280,9 +286,12 @@ void ParticleSystemRenderer::setupVAO()
 		(void*)0 // array buffer offset
 	);
 
+	m_particleShader->GetError();
+
 	// 3rd attribute buffer : particles' colors
 	glEnableVertexAttribArray(2);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_color);
+	m_particleShader->GetError();
 	glVertexAttribPointer(
 		2, // attribute for color.
 		4, // size : r + g + b + a => 4
@@ -291,4 +300,6 @@ void ParticleSystemRenderer::setupVAO()
 		0, // stride
 		(void*)0 // array buffer offset
 	);
+
+	m_particleShader->GetError();
 }

@@ -59,6 +59,7 @@ public:
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
 	ShaderComponent* debugLineShader;
+	ShaderComponent* skyBoxShader;
 	//----------------------------------------------------------------------------//
 
 	//! Scene default constructor.

@@ -28,19 +28,24 @@ Scene::Scene()
 	m_modelmanager = new ModelManager();  // creating model manager
 
 	//------------ Skybox initialisation -------------//
-	enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
-	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
+	//enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
+	skyBoxShader = new ShaderComponent("skyboxShader");
+	m_skyboxCube = new SkyBox(350.0f, skyBoxShader->shaderProgram); //!Instantiate skybox object
+	g_window.GetOpenGLError();
 	
 	// -- Shader for debug drawing -------------------//
 	debugLineShader = new ShaderComponent("lineShader");
+	g_window.GetOpenGLError();
 
 	// --------------FBO initalisation --------------------------------------------------------//
 	framebufferShader = new ShaderComponent("frameBuffer"); //Instantiate new framebuffer shader
+	g_window.GetOpenGLError();
 	framebufferShader->createQuad(); // 1. create the quad
 	framebufferShader->use(); // 2. use the framebuffer
 	framebufferShader->setfboTexture(); // 3.  set the texture
 
 	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //Instantiate new screen framebuffer shader for PP -> for postprocessing
+	g_window.GetOpenGLError();
 	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
@@ -157,10 +162,10 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
-		/*if (i == 4)
+		if (i == 4)
 		{
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
-		}*/
+		}
 		
 
 	}
@@ -403,7 +408,7 @@ void Scene::update(float dt)
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	//m_particleSystem->update(dt);
+	m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -420,9 +425,9 @@ void Scene::render()
 	drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
-	skyShader.use();  //! Use skybox shader. 
-	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
-	m_skyboxCube->render(); //!Render Skyshader
+	//skyShader.use();  //! Use skybox shader. 
+	//skyBoxShader->setUniforms(m_playerCameraComponent); //! Set matrices for skyshader
+	//m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// -------------- Particle Drawing ------------------- //
 	
@@ -442,7 +447,7 @@ void Scene::render()
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
 			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
@@ -450,7 +455,7 @@ void Scene::render()
 			m_particleSystem->setEmitter(emitter);
 			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();
-		}*/
+		}
 	}
 
 	

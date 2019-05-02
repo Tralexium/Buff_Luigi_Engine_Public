@@ -58,9 +58,12 @@ Scene::Scene()
 	// --------------------- Setting player camera pointer---------------- //
 	m_playerCameraComponent = getFirstPlayerObject()->getComponent<CameraComponent>(); // set pointer player camera
 	
-	// --------------------- Audio stuff -------------------------------- //
+																					   // --------------------- Audio stuff --------------------------------//
+	m_audio_music = new AudioComponent("res/audio/SPACE BOY.mp3", -7.0f, -14.0f, 0.0f, 0.01f, 0.02f); // FOR AUDIO
+	m_audio_ambience = new AudioComponent("res/audio/space.mp3", 100.0f, 100.0f, 100.0f, 1.0f, 1.15f); // FOR AUDIO
 
-	m_audio = new AudioComponent("res/audio/powerglove.mp3"); // FOR AUDIO
+	m_audio_music->playSound();
+	m_audio_ambience->playSound();
 
 	// --------------------- Particle stuff ----------------------------- //
 	m_particleSystem = new ParticleSystemRenderer(100000);
@@ -515,7 +518,14 @@ void Scene::checkIfScored(float dt) {
 void Scene::update(float dt)
 {
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
-	m_audio->playSound(); 
+	glm::vec3 campos = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos();
+	glm::quat camquat = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri();
+	camquat = glm::inverse(camquat);
+	glm::vec3 oriforward = camquat * vec3(0, 0, 1);
+	glm::vec3 oriup = camquat * vec3(0, 1, 0);
+
+	m_audio_music->UpdateListener(campos, oriforward, oriup);
+	m_audio_ambience->UpdateListener(campos, oriforward, oriup);
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
@@ -609,8 +619,11 @@ Scene::~Scene()
 	delete m_modelmanager;
 	m_modelmanager = nullptr;
 
-	delete m_audio;
-	m_audio = nullptr;
+	delete m_audio_music;
+	m_audio_music = nullptr;
+
+	delete m_audio_ambience;
+	m_audio_ambience = nullptr;
 
 	delete m_skyboxCube;
 	m_skyboxCube = nullptr;

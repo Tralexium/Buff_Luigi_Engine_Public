@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AudioComponent.h" />
+    <ClInclude Include="include\AudioManager.h" />
     <ClInclude Include="include\BellfruitGame.h" />
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\CameraComponent.h" />

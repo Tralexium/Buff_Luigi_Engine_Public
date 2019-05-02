@@ -122,9 +122,8 @@
       "collisionshape": "btBoxShape",
 
       "mass": [
-        1.0
+        0.0
       ],
-
       "model": "space_goal_keeper",
       "name": "space_goal_keeper",
       "orientation": [
@@ -506,50 +505,11 @@
       "shader": "normalMapShader2",
       "spherecolsize": [ 1.0 ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "colliderposition": [
-        7.777497096400094,
+        -7.755467412162621,
         9.376228807166916,
-        -7.819715284286133
+        7.630557528812828
       ],
       "collisionboxsize": [
         0.5,
@@ -563,58 +523,15 @@
       "model": "field_lights",
       "name": "field_lights",
       "orientation": [
-        0.23911761839433449,
-        -0.3696438106143861,
-        0.09904576054128761,
-        0.8923991008325228
+        0.09904576054128768,
+        0.8923991008325233,
+        -0.23911761839433457,
+        0.369643810614386
       ],
       "position": [
-        7.777497096400094,
+        -7.755467412162621,
         9.376228807166916,
-        -7.819715284286133
-      ],
-      "scale": [
-        1,
-        1,
-        1
-      ],
-      "shader": "normalMapShader2",
-      "spherecolsize": [ 1.0 ]
-    },
-
-
-
-
-
-
-
-    {
-      "colliderposition": [
-        -5.3,
-        1.5,
-        -15.9
-      ],
-      //"collisionboxsize": [
-      //  0.1,
-      //  0.1,
-      //  0.1
-      //],
-      "collisionshape": "btBoxShape",
-
-      "mass": [
-        1.0
-      ],
-    
-      "orientation": [
-        0.0,
-        0.0,
-        0.0,
-        0.1
-      ],
-      "position": [
-        0.1,
-        0.1,
-        0.1
+        7.630557528812828
       ],
       "scale": [
         1,
@@ -626,14 +543,14 @@
     },
     {
       "colliderposition": [
-        -5.033454089368553,
+        -0.038687107405537935,
         0.0,
-        -8.070906546939689
+        -9.951949085799743
       ],
       "collisionboxsize": [
-        3.5,
+        0.1,
         2,
-        0.2
+        2
       ],
       "collisionshape": "btBoxShape",
       "mass": [

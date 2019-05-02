@@ -6,48 +6,13 @@
       "model": "SpaceShip",
       "shader": "normalMapShader2",
       "position": [ -9, -6, 1 ],
-
       "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      
-      "collisionshape": "btBoxShape"
-
-
-    },
-
-    
-
-    {
-      "name": "box2",
-      "model": "box2",
-      "shader": "normalMapShader2",
-      "position": [ -4, 20, -8 ],
-      "colliderposition": [ -4, -20, -8 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 4, 4, 4 ],
-      "mass": [ 0.5 ],
-      "collisionboxsize": [ 1, 1, 1 ],
-      "collisionshape": "btBoxShape"
-
-    },
-
-
-
-
-    {
-      "name": "spaceball",
-      "model": "spaceball",
-      "shader": "normalMapShader2",
-      "position": [ 2, -5, -5 ],
-      "colliderposition": [ 2, -5, -5 ],
-      "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 1, 1, 1 ],
-      "mass": [ 1.0 ],
-      "collisionboxsize": [ 1, 1, 1 ],
-      "collisionshape": "btSphereShape",
-      "spherecolsize": [ 2.0 ]
+      "scale": [ 1, 1, 1 ]
 
     }
+
+
+
+
   ]
 }

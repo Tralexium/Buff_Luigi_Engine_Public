@@ -68,20 +68,6 @@ Scene::Scene()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Main Object Loading Function, handled in Level0.json
 bool Scene::loadSpaceObjects(std::string level)
 {
@@ -125,12 +111,6 @@ bool Scene::loadSpaceObjects(std::string level)
 		z = posNode[2].asFloat();
 		glm::vec3 pos(x, y, z);
 
-		// get the position node
-		const Json::Value colliderPosNode = gameObjects[i]["colliderposition"];
-		x = colliderPosNode[0].asFloat(); // get float
-		y = colliderPosNode[1].asFloat();
-		z = colliderPosNode[2].asFloat();
-		glm::vec3 colpos(x, y, z);
 
 		const Json::Value oriNode = gameObjects[i]["orientation"];
 		x = oriNode[0].asFloat(); // get float
@@ -146,35 +126,8 @@ bool Scene::loadSpaceObjects(std::string level)
 		z = scaNode[2].asFloat();
 		glm::vec3 sca(x, y, z);
 
-		const Json::Value massNode = gameObjects[i]["mass"];
-		x = massNode[0].asFloat(); // get float
-		btScalar mass(x);
-
-		const Json::Value colSize = gameObjects[i]["collisionboxsize"];
-		x = colSize[0].asFloat(); // get float
-		y = colSize[1].asFloat();
-		z = colSize[2].asFloat();
-		glm::vec3 col(x, y, z);
-		const Json::Value NodeX = gameObjects[i]["getX"];
-		x = NodeX[0].asFloat(); // get float
-		btScalar getX(x);
-
-		const Json::Value NodeY = gameObjects[i]["getY"];
-		y = NodeY[0].asFloat(); // get float
-		btScalar getY(y);
-		//----> the ACTUAL modelname in json <------//
-		std::string shapeName = gameObjects[i]["collisionshape"].asString();
-
-		const Json::Value sphereColSizeNode = gameObjects[i]["spherecolsize"];
-		if (sphereColSizeNode.type() != Json::nullValue)
-		{
-			x = sphereColSizeNode[0].asFloat(); // get float
-		}
-		else x = 1.0f;
-		btScalar sphereColSize(x);
-
+	
 		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
-
 		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
 		// Because we do v_gameObjects[i] and not a specific one, this will set the components to all objects
 		// that this loop goes through, which is every object in the JSON file 
@@ -183,22 +136,11 @@ bool Scene::loadSpaceObjects(std::string level)
 		v_spaceobjects[i].addComponent(new ShaderComponent(shaderName));
 		v_spaceobjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_spaceobjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
-		
-
 
 	}
 	return true;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -308,8 +250,6 @@ bool Scene::loadSceneObjects(std::string level)
 		{
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
 		}
-		
-
 	}
 	return true;
 
@@ -582,11 +522,12 @@ void Scene::update(float dt)
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 	stepPhysicsSimulation();
 	// --------------------------------------------------------------------------------------------------------------------//
-	v_gameObjects[3].OnUpdate(dt);
-	v_spaceobjects[0].OnUpdate2(dt);
+	//v_gameObjects[3].OnUpdate(dt);
+	//v_spaceobjects[0].OnUpdate2(dt);
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	m_particleSystem->update(dt);
+	checkIfScored(dt);
+	//m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -607,20 +548,21 @@ void Scene::render()
 	//skyBoxShader->setUniforms(m_playerCameraComponent); //! Set matrices for skyshader
 	//m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-	// -------------- Particle Drawing ------------------- //
-	for (int i = 0; i < v_spaceobjects.size(); i++)
-	{
-		Model* model = v_spaceobjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
-		GLuint& shader = v_spaceobjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
-		shaderptr = v_spaceobjects[i].getComponent<ShaderComponent>();
-		shaderptr->use(); // -> Step 2. use shaders specified in loader.
-		shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 12.0f, -5.0f)); // Move light to fourth object whcih is lamp box 
-		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
-		glm::mat4 l_modelMatrix = v_spaceobjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		
-	}
+
+	// -------------- RENDER SPACE OBJECT ------------------- //
+	//for (int i = 0; i < v_spaceobjects.size(); i++)
+	//{
+	//	Model* model = v_spaceobjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
+	//	GLuint& shader = v_spaceobjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+	//	shaderptr = v_spaceobjects[i].getComponent<ShaderComponent>();
+	//	shaderptr->use(); // -> Step 2. use shaders specified in loader.
+	//	shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 12.0f, -5.0f)); // Move light to fourth object whcih is lamp box 
+	//	shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
+	//	glm::mat4 l_modelMatrix = v_spaceobjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
+	//	enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+	//	
+	//}
 
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
@@ -650,8 +592,6 @@ void Scene::render()
 	}
 
 	
-
-
 	// After we have rendered everything and drawn it, we do some additional operations to the FBO, then unbind it.
 	framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
@@ -659,7 +599,6 @@ void Scene::render()
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
 	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
-
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 }

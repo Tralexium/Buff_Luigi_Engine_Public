@@ -395,6 +395,7 @@ void Scene::drawCollisionDebugLines() {
 		btCollisionObject* l_collisionObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[j];
 
 		debugLineShader->use(); // Use debug shader
+
 		debugLineShader->setUniforms(m_playerCameraComponent); // set uniforms
 	}
 	physicsWorld.drawWorld(); // draw the world
@@ -429,7 +430,7 @@ void Scene::render()
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
-	//drawCollisionDebugLines();
+	drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyBoxShader->use();  //! Use skybox shader. 

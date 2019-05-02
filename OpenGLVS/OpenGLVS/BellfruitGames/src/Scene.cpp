@@ -476,7 +476,8 @@ void Scene::drawCollisionDebugLines() {
 	physicsWorld.drawWorld(); // draw the world
 }
 
-void Scene::checkIfScored(float dt) {
+void Scene::checkIfScored(float dt) 
+{
 
 
 	//btCollisionObject* ballColliderObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[21];

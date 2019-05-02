@@ -122,7 +122,7 @@
       "collisionshape": "btBoxShape",
 
       "mass": [
-        1.0
+        0.0
       ], 
       "model": "space_goal_keeper", 
       "name": "space_goal_keeper", 

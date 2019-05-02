@@ -401,22 +401,47 @@ void Scene::drawCollisionDebugLines() {
 	physicsWorld.drawWorld(); // draw the world
 }
 
+void Scene::checkIfScored(float dt) {
+
+
+	//btCollisionObject* ballColliderObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[21];
+	glm::vec3 l_ball_pos = glm::vec3(v_gameObjects[21].getComponent<TransformComponent>()->getPosition());
+	glm::vec3 l_goalie_pos = glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition());
+
+	if (l_ball_pos.z >= l_goalie_pos.z)
+	{
+		hasScored = true;
+		if (hasScored)
+		{
+			cout << "Score!" << endl;
+			m_particleSystem->update(dt);
+		}
+		
+	}
+	else if (l_ball_pos.z < l_goalie_pos.z)
+	{
+		hasScored = false;
+	}
+	
+	
+}
+
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)
 void Scene::update(float dt)
 {
 	//----------------------- Audio Update Logic --------------------------------------------------------------------------------------------------------------------------------------//
 	//m_audio->playSound(); 
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
+	checkIfScored(dt);
 
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 	stepPhysicsSimulation();
 	// --------------------------------------------------------------------------------------------------------------------//
-	v_gameObjects[3].OnUpdate(dt);
-	v_gameObjects[1].OnUpdate2(dt);
+	//v_gameObjects[3].OnUpdate(dt);
+	//v_gameObjects[1].OnUpdate2(dt);
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	m_particleSystem->update(dt);
+	
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -430,7 +455,7 @@ void Scene::render()
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
-	drawCollisionDebugLines();
+	//drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	skyBoxShader->use();  //! Use skybox shader. 

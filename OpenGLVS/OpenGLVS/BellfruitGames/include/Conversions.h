@@ -61,7 +61,7 @@ inline btVector3 glmVec3toBt(const glm::vec3& vec)
 
 inline btQuaternion glmQuatToBt(const glm::quat& vec) {
 
-	btQuaternion btvec(vec.w, vec.x, vec.y, vec.z);
+	btQuaternion btvec(vec.w, vec.x, vec.y, vec.z  );
 
 	return btvec;
 }
@@ -79,7 +79,7 @@ inline glm::vec3 BtVec3toglm(btTransform* btvec)
 inline glm::quat BtQuattoglm(btTransform* btvec)
 {
 
-	glm::quat vec(btvec->getRotation().getX(), btvec->getRotation().getY(), btvec->getRotation().getZ(), btvec->getRotation().getW());
+	glm::quat vec(btvec->getRotation().getW(), btvec->getRotation().getX(), btvec->getRotation().getY(), btvec->getRotation().getZ());
 	
 
 

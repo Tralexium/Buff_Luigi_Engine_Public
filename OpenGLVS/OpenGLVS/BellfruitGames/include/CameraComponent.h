@@ -96,7 +96,7 @@ public:
 	/*!
 	\returns view matrix.
 	*/
-	glm::mat4 getViewMatrix() const { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), -m_pos); }
+	glm::mat4 getViewMatrix() const { return glm::translate(glm::mat4_cast(glm::inverse(m_ori)), m_pos); }
 
 	//! View matrix Getter Function.
 	/*!

@@ -7,9 +7,9 @@
       "position": [ 2, 15, 0 ],
       "colliderposition": [ 2, 15, 0 ],
       "orientation": [ 1, 0, 0, 0 ],
-      "scale": [ 4, 4, 4 ],
+      "scale": [ 2, 2, 2 ],
       "mass": [ 1.0 ],
-      "collisionboxsize": [ 1, 1, 1 ],
+      "collisionboxsize": [ 0.5, 0.5, 0.5 ],
       "collisionshape": "btBoxShape"
     }
   ]

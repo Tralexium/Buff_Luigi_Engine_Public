@@ -14,7 +14,6 @@
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btQuaternion.h"
 
-
 #include "Conversions.h"
 #include "EngineCore.h"
 #include "MouseSettings.h"
@@ -59,8 +58,7 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	m_particleSystem = new ParticleSystemRenderer(1000);
-	m_particleSystem->setCamera(m_playerCameraComponent);
+	m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -159,10 +157,10 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
-		if (i == 9)
+		/*if (i == 4)
 		{
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
-		}
+		}*/
 		
 
 	}
@@ -286,13 +284,14 @@ void Scene::stepPhysicsSimulation() {
 				(float)physicsWorld.m_transform.getOrigin().getZ());
 
 			glm::quat l_quat(
-				(float)physicsWorld.m_transform.getRotation().getW(),
+				
 				(float)physicsWorld.m_transform.getRotation().getX(),
 				(float)physicsWorld.m_transform.getRotation().getY(),
-				(float)physicsWorld.m_transform.getRotation().getZ());
+				(float)physicsWorld.m_transform.getRotation().getZ(),
+				(float)physicsWorld.m_transform.getRotation().getW());
 		
 			// Set position and orientation equal to the physics bodies positions and orientations
-			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
+			v_gameObjects[j].getComponent<TransformComponent>()->setPos(glm::vec3(-l_pos)); // set Minus pos here to fix some inverse stuff......
 			v_gameObjects[j].getComponent<TransformComponent>()->setOri(glm::quat(l_quat));
 
 
@@ -339,6 +338,8 @@ void Scene::stepPhysicsSimulation() {
 
 		v_playerCharacterObjects[0].getComponent<CameraComponent>()->setPos(glm::vec3(l_pos));
 		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setPos(glm::vec3(l_pos));
+		v_playerCharacterObjects[0].getComponent<CameraComponent>()->setOri(BtQuattoglm(&l_bodyPlayer->getWorldTransform()));
+		v_playerCharacterObjects[0].getComponent<TransformComponent>()->setOri(BtQuattoglm(&l_bodyPlayer->getWorldTransform()));
 
 		// TODO SET RIGID BODY ROTATION EQUAL TO CAMERA ROTATION
 		//btTransform l_playerTransform = btTransform(glmQuatToBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getOri(), glmVec3toBt(v_playerCharacterObjects[0].getComponent<CameraComponent>()->getPos())));
@@ -349,27 +350,27 @@ void Scene::stepPhysicsSimulation() {
 		physicsWorld.m_transform = l_collisionObjectPlayer->getWorldTransform();
 	}
 
-	// TODO
-	// ATTEMPTING TO CAST RAYS FROM MOUSE
-	glm::mat4 proj = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getProjectionMatrix();
-	glm::mat4 view = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getViewMatrix();
+	//// TODO
+	//// ATTEMPTING TO CAST RAYS FROM MOUSE
+	//glm::mat4 proj = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getProjectionMatrix();
+	//glm::mat4 view = v_playerCharacterObjects[0].getComponent<CameraComponent>()->getViewMatrix();
 
-	glm::mat4 model;
-	for (int i = 0; i < v_gameObjects.size(); i++)
-	{
-		model = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix();
-	}
-	
-	double l_mouseXpos, l_mouseYpos;
-	glfwGetCursorPos(enginecore->getWindow(), &l_mouseXpos, &l_mouseYpos);
+	//glm::mat4 model;
+	//for (int i = 0; i < v_gameObjects.size(); i++)
+	//{
+	//	model = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix();
+	//}
+	//
+	//double l_mouseXpos, l_mouseYpos;
+	//glfwGetCursorPos(enginecore->getWindow(), &l_mouseXpos, &l_mouseYpos);
 
-	//physicsWorld.castRays();
-	// CAST RAY FUNCTION 
-	physicsWorld.castRays(mouseToWorldPos
-	(
-		l_mouseXpos, l_mouseYpos, g_window.getScreenWidth(),
-		g_window.getScreenHeight(), proj, view, model
-	));
+	////physicsWorld.castRays();
+	//// CAST RAY FUNCTION 
+	//physicsWorld.castRays(mouseToWorldPos
+	//(
+	//	l_mouseXpos, l_mouseYpos, g_window.getScreenWidth(),
+	//	g_window.getScreenHeight(), proj, view, model
+	//));
 
 	//cout << l_mouseXpos << l_mouseYpos << endl;
 		
@@ -402,7 +403,7 @@ void Scene::update(float dt)
 
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
-	m_particleSystem->update(dt);
+	//m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
 
@@ -419,11 +420,12 @@ void Scene::render()
 	drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
-	//skyShader.use();  //! Use skybox shader. 
-	//enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
-	//m_skyboxCube->render(); //!Render Skyshader
+	skyShader.use();  //! Use skybox shader. 
+	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
+	m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// -------------- Particle Drawing ------------------- //
+	
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
@@ -432,22 +434,23 @@ void Scene::render()
 	for (int i = 0; i < v_gameObjects.size(); i++)
 	{		
 		Model* model = v_gameObjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
-		//GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+		GLuint& shader = v_gameObjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
 		shaderptr = v_gameObjects[i].getComponent<ShaderComponent>();
 		shaderptr->use(); // -> Step 2. use shaders specified in loader.
 		shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 30.0f, 0.0f)); // Move light to fourth object whcih is lamp box 
 		shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
-		//enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
 			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
 			emitter->setEmitterPos(pos);
 			m_particleSystem->setEmitter(emitter);
+			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();
-		}
+		}*/
 	}
 
 	
@@ -455,7 +458,7 @@ void Scene::render()
 	//framebufferShader->blitFBO(); // -> Step 4. BLIT the fbo
 	//framebufferShader->unbindFrameBuffer(); // -> Step 5. Unbind the framebuffer, set location back to 0
 
-	// Here the texture will be set to the quad, and render the quads front face as a texture.
+	//// Here the texture will be set to the quad, and render the quads front face as a texture.
 	//framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	//framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
 

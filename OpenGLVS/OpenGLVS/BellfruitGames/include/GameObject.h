@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include "Component.h"
 
+#include "TransformComponent.h"
 
 
 //#include "CameraComponent.h"
@@ -30,6 +31,11 @@
 class GameObject : public Component
 {
 private:
+	int counter = 1;
+
+
+
+	float movement = 0.01f;//speed of cube
 	std::unordered_map<std::type_index, Component*> m_components; //!< map of components.
 	glm::vec3 relativePosition;
 
@@ -62,17 +68,59 @@ public:
 	/*!
 	\param dt, float for delta time.
 	*/
-	void OnUpdate(float dt) {}
+	void OnUpdate(float dt)//GoalKeeper movement
+	{
 
+
+		TransformComponent* tc = getComponent<TransformComponent>(); // Local pointer variable
+
+		tc->translate(movement, 0, 0);
+		counter++;
+
+		if (counter == 500)
+		{
+			movement = movement * -1;
+
+			counter = 1;
+		}
+		/*else if (counter == 200)
+		{
+			tc->translate(movement, 1, 0);
+		}
+		else if (counter == 300)
+		{
+			tc->translate(movement, -1, 0);
+		}*/
+
+	}
+
+	void OnUpdate2(float dt)//Spaceship Movement
+	{
+
+
+		TransformComponent* tc = getComponent<TransformComponent>(); // local pointer variable
+
+		tc->translate(movement, 0, 0);
+		counter++;
+
+		if (counter == 1000)
+		{
+			movement = movement * -1;
+
+			counter = 1;
+		}
+
+	}
 	//! OnMessage Function Override.
 	/*!
 	\param m const string which takes a message from components.
 	*/
 	void OnMessage(const std::string m) {
-	
-		
-		
+
+
+
 	}
+
 
 	//! Getter for Relative Position.
 	/*!

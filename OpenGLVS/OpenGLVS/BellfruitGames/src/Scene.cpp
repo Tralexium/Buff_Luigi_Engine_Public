@@ -139,7 +139,13 @@ bool Scene::loadSceneObjects(std::string level)
 		y = colSize[1].asFloat();
 		z = colSize[2].asFloat();
 		glm::vec3 col(x, y, z);
+		const Json::Value NodeX = gameObjects[i]["getX"];
+		x = NodeX[0].asFloat(); // get float
+		btScalar getX(x);
 
+		const Json::Value NodeY = gameObjects[i]["getY"];
+		y = NodeY[0].asFloat(); // get float
+		btScalar getY(y);
 		//----> the ACTUAL modelname in json <------//
 		std::string shapeName = gameObjects[i]["collisionshape"].asString();
 
@@ -405,7 +411,8 @@ void Scene::update(float dt)
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 	stepPhysicsSimulation();
 	// --------------------------------------------------------------------------------------------------------------------//
-
+	v_gameObjects[3].OnUpdate(dt);
+	v_gameObjects[1].OnUpdate2(dt);
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
 	m_particleSystem->update(dt);

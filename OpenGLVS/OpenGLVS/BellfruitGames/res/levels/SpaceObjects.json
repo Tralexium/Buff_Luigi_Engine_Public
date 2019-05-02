@@ -1,0 +1,18 @@
+{
+  "GameObjects": [
+
+    {
+      "name": "SpaceShip",
+      "model": "SpaceShip",
+      "shader": "normalMapShader2",
+      "position": [ -9, -6, 1 ],
+      "orientation": [ 1, 0, 0, 0 ],
+      "scale": [ 1, 1, 1 ]
+
+    }
+
+
+
+
+  ]
+}

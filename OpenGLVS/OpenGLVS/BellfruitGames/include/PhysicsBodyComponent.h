@@ -270,8 +270,8 @@ inline void PhysicsBodyComponent::createRigidBody()
 		m_myMotionState = new btDefaultMotionState(m_startTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
 		body = new btRigidBody(rbInfo);
-		body->setFriction(1.0);
-		body->setRestitution(1.4);
+		body->setFriction(0.1);
+		body->setRestitution(0.2);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}	
 }

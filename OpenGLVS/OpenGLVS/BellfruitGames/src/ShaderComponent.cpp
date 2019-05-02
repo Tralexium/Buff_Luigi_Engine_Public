@@ -18,11 +18,15 @@ ShaderComponent::ShaderComponent(std::string shadername)
 		exit(1);
 	}
 
+	GetError();
+
 	std::stringstream code;
 	code << inFile.rdbuf();
 	inFile.close();
 	std::string codeStr(code.str());
 	const GLchar* vertex_shader[] = { codeStr.c_str() };
+
+	GetError();
 
 	// Load contents of fragment file
 	std::ifstream inFile2(fragmentFileName);
@@ -32,16 +36,22 @@ ShaderComponent::ShaderComponent(std::string shadername)
 		exit(1);
 	}
 
+	GetError();
+
 	std::stringstream code2;
 	code2 << inFile2.rdbuf();
 	inFile2.close();
 	std::string codeStr2(code2.str());
 	const GLchar* fragment_shader[] = { codeStr2.c_str() };
 
+	GetError();
+
 	// vertex shader
 	int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, vertex_shader, NULL);
+	GetError();
 	glCompileShader(vertexShader);
+	GetError();
 	// check for shader compile errors
 	int success;
 	char infoLog[512];
@@ -51,12 +61,16 @@ ShaderComponent::ShaderComponent(std::string shadername)
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
+	GetError();
 	// fragment shader
 	int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 1, fragment_shader, NULL);
+	GetError();
 	glCompileShader(fragmentShader);
+	GetError();
 	// check for shader compile errors
 	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+	GetError();
 	if (!success)
 	{
 		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
@@ -64,11 +78,16 @@ ShaderComponent::ShaderComponent(std::string shadername)
 	}
 	// link shaders
 	shaderProgram = glCreateProgram();
+	GetError();
 	glAttachShader(shaderProgram, vertexShader);
+	GetError();
 	glAttachShader(shaderProgram, fragmentShader);
+	GetError();
 	glLinkProgram(shaderProgram);
+	GetError();
 	// check for linking errors
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+	GetError();
 	if (!success) {
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
@@ -217,6 +236,28 @@ void ShaderComponent::setUniforms(const CameraComponent * cam)
 	// set the view and projection components of our shader to the CameraComponent values
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(cam->getProjectionMatrix()));
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(cam->getViewMatrix()));
+
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.objectColour"), objectColour.x, objectColour.y, objectColour.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightColour"), lightColour.x, lightColour.y, lightColour.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z);
+	glUniform3fv(glGetUniformLocation(shaderProgram, "viewPos"), 0, glm::value_ptr(cam->getPos()));
+
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.ambient"), ambient.x, ambient.y, ambient.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.diffuse"), diffuse.x, diffuse.y, diffuse.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.specular"), specular.x, specular.y, specular.z);
+
+	glUniform1f(glGetUniformLocation(shaderProgram, "light.constant"), constant);
+	glUniform1f(glGetUniformLocation(shaderProgram, "light.linear"), linear);
+	glUniform1f(glGetUniformLocation(shaderProgram, "light.quadratic"), quadratic);
+}
+
+void ShaderComponent::setUniformsInvertedViewMatrix(const CameraComponent * cam)
+{
+	// set the view and projection components of our shader to the CameraComponent values
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(cam->getProjectionMatrix()));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(cam->getInvertedViewMatrix()));
 
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.objectColour"), objectColour.x, objectColour.y, objectColour.z);
 	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightColour"), lightColour.x, lightColour.y, lightColour.z);

@@ -13,7 +13,11 @@
 #include <string>
 #include <cstdio>
 
+#include "WindowSettings.h"
+
+
 using glm::vec3;
+using glm::vec4;
 using glm::mat3;
 using glm::mat4;
 
@@ -28,9 +32,12 @@ private:
 
 	unsigned int vaoHandle; //!< unsigned vaoHandle integer.
 	int faces = 6; //!< faces integer.
+	GLuint m_shaderID;
 	GLuint textureID; //!< opengl integer for textureID.
 
 public:
+
+	WindowSettings & g_window = g_window.getInstance();
 
 	//! Default Constructor.
 	/*!

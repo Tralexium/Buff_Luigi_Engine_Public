@@ -46,13 +46,13 @@ private:
 
 	// Default values
 	glm::vec3 lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
-	glm::vec3 lightColour = glm::vec3(2.0f, 2.0f, 2.0f);
+	glm::vec3 lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 objectColour = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightDirection = glm::vec3(0.1f, 1.0f, 0.1f);
 
 	glm::vec3 ambient = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
-	glm::vec3 specular = glm::vec3(0.1f, 0.1f, 0.1f);
+	glm::vec3 specular = glm::vec3(0.2f, 0.2f, 0.2f);
 
 public:
 	WindowSettings& g_window = g_window.getInstance(); // Global instance
@@ -90,6 +90,13 @@ public:
 	\brief to set or alter different uniforms in the shader program.
 	*/
 	void setUniforms(const CameraComponent* cam);
+
+
+	//! Set uniforms function.
+	/*!
+	\brief to set or alter different uniforms in the shader program.
+	*/
+	void setUniformsInvertedViewMatrix(const CameraComponent* cam);
 
 	//! Set fbo screen texture function.
 	/*!

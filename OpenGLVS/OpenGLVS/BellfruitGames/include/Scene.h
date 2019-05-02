@@ -17,6 +17,7 @@
 
 #include "PhysicsBodyComponent.h"
 #include "WindowSettings.h"
+
 /*!
 \class Scene
 \brief Handles scene logic.
@@ -24,6 +25,9 @@
 class Scene 
 {
 private:
+
+	int particleTimer = 0;
+
 	std::string levelLoadingfileName = ".json";
 	std::string levelLoadingfilePath = "res/levels/";
 
@@ -36,7 +40,8 @@ private:
 	ParticleSystemRenderer* m_particleSystem; //!< Manages particles logic and renders them.
 
 	std::vector<GameObject> v_gameObjects; //!< Vector of gameObjects.
-
+	
+	std::vector<GameObject> v_spaceobjects; //!< Vector of gameObjects.
 	std::vector<GameObject> v_playerCharacterObjects; //!< Vector of player objects.
 
 	GLSLProgram skyShader; //!< skybox shader.
@@ -54,6 +59,9 @@ private:
 	// ----------------------------------------//
 
 public:
+
+	bool hasScored = false;
+
 	WindowSettings& g_window = g_window.getInstance();
 
 	//------------- Shader Components ---------------------------------------------//
@@ -61,6 +69,7 @@ public:
 	ShaderComponent* framebufferScreenShader; // Screen texture FBO
 	ShaderComponent* shaderptr; // Pointer used to  point to all shaders in objects.
 	ShaderComponent* debugLineShader;
+	ShaderComponent* skyBoxShader;
 	//----------------------------------------------------------------------------//
 
 	//! Scene default constructor.
@@ -89,11 +98,12 @@ public:
 
 	void drawCollisionDebugLines();
 
+	void checkIfScored(float dt);
 	
 	// --- ENTRY FOR LOADING OBJECTS --//
 	bool loadSceneObjects(std::string level);
+	bool loadSpaceObjects(std::string level);
 
-	
 
 	// --- ENTRY FOR LOADING PLAYER  --//
 	bool loadPlayerObjects(std::string player);

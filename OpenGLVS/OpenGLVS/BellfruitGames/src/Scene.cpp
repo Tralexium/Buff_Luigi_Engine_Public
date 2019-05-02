@@ -28,26 +28,31 @@ Scene::Scene()
 	m_modelmanager = new ModelManager();  // creating model manager
 
 	//------------ Skybox initialisation -------------//
-	enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
-	m_skyboxCube = new SkyBox(350.0f, skyShader.getHandle()); //!Instantiate skybox object
+	//enginecore->compileAndLinkSkyBoxShader(&skyShader, "skyboxShader"); //!Compile and link the skyboxshader
+	skyBoxShader = new ShaderComponent("skyboxShader");
+	m_skyboxCube = new SkyBox(350.0f, skyBoxShader->shaderProgram); //!Instantiate skybox object
+	g_window.GetOpenGLError();
 	
 	// -- Shader for debug drawing -------------------//
 	debugLineShader = new ShaderComponent("lineShader");
+	g_window.GetOpenGLError();
 
 	// --------------FBO initalisation --------------------------------------------------------//
 	framebufferShader = new ShaderComponent("frameBuffer"); //Instantiate new framebuffer shader
+	g_window.GetOpenGLError();
 	framebufferShader->createQuad(); // 1. create the quad
 	framebufferShader->use(); // 2. use the framebuffer
 	framebufferShader->setfboTexture(); // 3.  set the texture
 
 	framebufferScreenShader = new ShaderComponent("framebufferScreen"); //Instantiate new screen framebuffer shader for PP -> for postprocessing
+	g_window.GetOpenGLError();
 	framebufferShader->createFBO(); // 3.  create fbos
 	framebufferScreenShader->use(); // 1.  use second framebuffer for postprocessing
 	framebufferScreenShader->setfboScreenTexture(); // 2.  set texture
 	
 	// ---------------- Initialisation for model loading START--------------- //
 	loadSceneObjects(levelLoadingfilePath + "Level_Arena" + levelLoadingfileName);
-
+	loadSpaceObjects(levelLoadingfilePath + "SpaceObjects" + levelLoadingfileName);
 	loadPlayerObjects(levelLoadingfilePath + "Player0" + levelLoadingfileName);
 
 	// --------------------- Setting player camera pointer---------------- //
@@ -60,10 +65,87 @@ Scene::Scene()
 	m_audio_music->playSound();
 	m_audio_ambience->playSound();
 
-
 	// --------------------- Particle stuff ----------------------------- //
-	//m_particleSystem = new ParticleSystemRenderer(100000);
+	m_particleSystem = new ParticleSystemRenderer(100000);
 }
+
+
+
+// Main Object Loading Function, handled in Level0.json
+bool Scene::loadSpaceObjects(std::string level)
+{
+
+	std::fstream jsonData;
+	Json::Value root;
+	Json::Reader reader;
+	jsonData.open(level.c_str());
+
+	// check for errors
+	if (!reader.parse(jsonData, root))
+	{
+		std::cout << "Failed to parse data from: "
+			<< level
+			<< reader.getFormattedErrorMessages();
+		return false;
+	}
+
+	const Json::Value gameObjects = root["GameObjects"];
+
+	v_spaceobjects.resize(gameObjects.size());
+
+	// size() tells us how large the array is
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		//----> name in json file <----//
+		std::cout << gameObjects[i]["name"].asString() << " loaded\n";
+
+		//----> the ACTUAL modelname in json <------//
+		std::string modelName = gameObjects[i]["model"].asString();
+
+		//----> the ACTUAL modelname in json <------//
+		std::string shaderName = gameObjects[i]["shader"].asString();
+
+		//----> the values pos or scale in json <------//
+		float x, y, z, w;
+		// get the position node
+		const Json::Value posNode = gameObjects[i]["position"];
+		x = posNode[0].asFloat(); // get float
+		y = posNode[1].asFloat();
+		z = posNode[2].asFloat();
+		glm::vec3 pos(x, y, z);
+
+
+		const Json::Value oriNode = gameObjects[i]["orientation"];
+		x = oriNode[0].asFloat(); // get float
+		y = oriNode[1].asFloat();
+		z = oriNode[2].asFloat();
+		w = oriNode[3].asFloat();
+		glm::quat ori(x, y, z, w);
+		//ori = glm::inverse(ori);
+
+		const Json::Value scaNode = gameObjects[i]["scale"];
+		x = scaNode[0].asFloat(); // get float
+		y = scaNode[1].asFloat();
+		z = scaNode[2].asFloat();
+		glm::vec3 sca(x, y, z);
+
+	
+		//------------------------- WE LOAD IN OBJECTS THROUGH THE JSON FILE Level0.json----------------------------------------------//
+		//--------------- WE ADD IN DEFAULT COMPONENTS TO ALL THESE OBJECTS HERE--- --------------------------------------------------//
+		// Because we do v_gameObjects[i] and not a specific one, this will set the components to all objects
+		// that this loop goes through, which is every object in the JSON file 
+
+		// All game objects wnats to have these different things such as shaders, models, transforms wants to have a shader, a model
+		v_spaceobjects[i].addComponent(new ShaderComponent(shaderName));
+		v_spaceobjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
+		v_spaceobjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
+
+	}
+	return true;
+
+}
+
+
 
 // Main Object Loading Function, handled in Level0.json
 bool Scene::loadSceneObjects(std::string level)
@@ -138,7 +220,13 @@ bool Scene::loadSceneObjects(std::string level)
 		y = colSize[1].asFloat();
 		z = colSize[2].asFloat();
 		glm::vec3 col(x, y, z);
+		const Json::Value NodeX = gameObjects[i]["getX"];
+		x = NodeX[0].asFloat(); // get float
+		btScalar getX(x);
 
+		const Json::Value NodeY = gameObjects[i]["getY"];
+		y = NodeY[0].asFloat(); // get float
+		btScalar getY(y);
 		//----> the ACTUAL modelname in json <------//
 		std::string shapeName = gameObjects[i]["collisionshape"].asString();
 
@@ -161,12 +249,10 @@ bool Scene::loadSceneObjects(std::string level)
 		v_gameObjects[i].addComponent(createModelComponent(m_modelmanager->getModel(modelName))); // get model from manager
 		v_gameObjects[i].addComponent(new TransformComponent(pos, ori, sca)); // pass poss ori scale
 		v_gameObjects[i].addComponent(new PhysicsBodyComponent(glmVec3toBt(colpos), glmQuatToBt(ori), glmVec3toBt(sca), mass, glmVec3toBt(col), shapeName, sphereColSize));
-		/*if (i == 4)
+		if (i == 4)
 		{
 			v_gameObjects[i].addComponent(new ParticleEmitterComponent(100, 1, 0.1f, pos, "spark"));
-		}*/
-		
-
+		}
 	}
 	return true;
 
@@ -393,6 +479,41 @@ void Scene::drawCollisionDebugLines() {
 	physicsWorld.drawWorld(); // draw the world
 }
 
+void Scene::checkIfScored(float dt) {
+
+
+	//btCollisionObject* ballColliderObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[21];
+	glm::vec3 l_ball_pos = glm::vec3(v_gameObjects[21].getComponent<TransformComponent>()->getPosition());
+	glm::vec3 l_goalie_pos = glm::vec3(v_gameObjects[4].getComponent<TransformComponent>()->getPosition());
+
+	if (l_ball_pos.z >= l_goalie_pos.z) // Check if the Z position of the ball is greater than or equal to goalie
+	{
+		hasScored = true; // set has scored bool to true
+		if (hasScored)
+		{
+			
+			particleTimer++; // start a timer if has scored goal
+			cout << "Score!" << endl;
+			
+			if (particleTimer < 1000) // run the particle emitter for a short duration
+			{
+				m_particleSystem->update(dt);
+			}
+				
+			cout << particleTimer << endl;
+			
+		}
+		
+	}
+	else if (l_ball_pos.z < l_goalie_pos.z) // if the ball Z pos is lower than the goalies Z pos
+	{
+		hasScored = false; // set back score bool to false
+		particleTimer = 0; // set back particles to 0
+	}
+	
+	
+}
+
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)
 void Scene::update(float dt)
 {
@@ -405,16 +526,17 @@ void Scene::update(float dt)
 
 	m_audio_music->UpdateListener(campos, oriforward, oriup);
 	m_audio_ambience->UpdateListener(campos, oriforward, oriup);
-
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
 	// ---------------------- Physics Update Logic ------------------------------------------------------------------------------------------------------------------------------------//
 	stepPhysicsSimulation();
 	// --------------------------------------------------------------------------------------------------------------------//
-
+	//v_gameObjects[3].OnUpdate(dt);
+	//v_spaceobjects[0].OnUpdate2(dt);
 
 	// ---------------------- Particle Logic ----------------------------------------------------------------------- //
+	checkIfScored(dt);
 	//m_particleSystem->update(dt);
 	// ------------------------------------------------------------------------------------------------------------- //
 }
@@ -432,12 +554,26 @@ void Scene::render()
 	//drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
-	skyShader.use();  //! Use skybox shader. 
-	enginecore->setSkyBoxMatrices(m_playerCameraComponent, &skyShader); //! Set matrices for skyshader
-	m_skyboxCube->render(); //!Render Skyshader
+	//skyShader.use();  //! Use skybox shader. 
+	//skyBoxShader->setUniforms(m_playerCameraComponent); //! Set matrices for skyshader
+	//m_skyboxCube->render(); //!Render Skyshader
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-	// -------------- Particle Drawing ------------------- //
-	
+
+
+	// -------------- RENDER SPACE OBJECT ------------------- //
+	//for (int i = 0; i < v_spaceobjects.size(); i++)
+	//{
+	//	Model* model = v_spaceobjects[i].getComponent<ModelComponent>()->getModel(); // pointer to the other models
+	//	GLuint& shader = v_spaceobjects[i].getComponent<ShaderComponent>()->shaderProgram; // get shader program
+	//	shaderptr = v_spaceobjects[i].getComponent<ShaderComponent>();
+	//	shaderptr->use(); // -> Step 2. use shaders specified in loader.
+	//	shaderptr->setShaderComponentLightPos(glm::vec3(0.0f, 12.0f, -5.0f)); // Move light to fourth object whcih is lamp box 
+	//	shaderptr->setUniforms(m_playerCameraComponent); // set uniforms for shader
+	//	glm::mat4 l_modelMatrix = v_spaceobjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
+	//	enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
+	//	
+	//}
+
 
 	// ------------------------ Shader Rendering ----------------------------------------------------------------------------------------------------------------------------//
 	// This block of code is responsible for a specific order of rendering the scene into an FBO and then making it a screen texture
@@ -454,7 +590,7 @@ void Scene::render()
 		glm::mat4 l_modelMatrix = v_gameObjects[i].getComponent<TransformComponent>()->getModelMatrix(); // get modelMatrix
 		enginecore->drawModel(shader, model, l_modelMatrix);	// -> Step3. Draw all models with previous shaders, will be drawn into FBO
 
-		/*if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
+		if (v_gameObjects[i].getComponent<ParticleEmitterComponent>())
 		{
 			ParticleEmitterComponent* emitter = v_gameObjects[i].getComponent<ParticleEmitterComponent>();
 			glm::vec3 pos = v_gameObjects[i].getComponent<TransformComponent>()->getPosition();
@@ -462,7 +598,7 @@ void Scene::render()
 			m_particleSystem->setEmitter(emitter);
 			m_particleSystem->setCamera(m_playerCameraComponent);
 			m_particleSystem->render();
-		}*/
+		}
 	}
 
 	
@@ -473,7 +609,6 @@ void Scene::render()
 	// Here the texture will be set to the quad, and render the quads front face as a texture.
 	framebufferScreenShader->use();  // -> Step 6. Use the use the framebuffer for the screen texture
 	framebufferShader->bindAndDrawFBOQuad(); // -> Step 7. Last step, bind and draw the screen texture FBO.
-
 	// ------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 }

@@ -39,8 +39,10 @@ public:
 	AudioComponent(const char* filepath, float posx, float posy, float posz, float mindis, float maxdis) {
 
 		result = FMOD::System_Create(&system);
+		FMODErrorCheck(result);
 
 		result = system->getVersion(&version);
+		FMODErrorCheck(result);
 
 		result = system->init(32, FMOD_INIT_3D_RIGHTHANDED, extradriverdata); //sets the coordinate system to right handed, same as opengl
 

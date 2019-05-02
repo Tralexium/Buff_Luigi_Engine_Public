@@ -103,19 +103,19 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 
 		m_UIComponent->createGUI(); // create GUI context
 
-		// ---------Debug check ms/frame code----------------------------------------------------//
-		double l_currentTime = glfwGetTime(); // Measure performance
-		l_deltaTime += (l_currentTime - l_lastTime) /l_limitFPS;
-		l_lastTime = l_nowTime;
-		l_frames++;
+		//// ---------Debug check ms/frame code----------------------------------------------------//
+		//double l_currentTime = glfwGetTime(); // Measure performance
+		//l_deltaTime += (l_currentTime - l_lastTime) /l_limitFPS;
+		//l_lastTime = l_nowTime;
+		//l_frames++;
 
-			if (l_currentTime - l_previousTime >= 1.0) //if currenttime- previoustime more than 1 sec ago
-			{ 
-				printf("%f ms/frame\n", 1000.0 / double(l_frames)); // print to console and reset timer.
-				l_frames = 0;
-				l_previousTime += 1.0;
-			}
-		//--------------------------------------------------------------------------------------//
+		//	if (l_currentTime - l_previousTime >= 1.0) //if currenttime- previoustime more than 1 sec ago
+		//	{ 
+		//		printf("%f ms/frame\n", 1000.0 / double(l_frames)); // print to console and reset timer.
+		//		l_frames = 0;
+		//		l_previousTime += 1.0;
+		//	}
+		////--------------------------------------------------------------------------------------//
 
 			//Mouse move function
 		mouseCameraView(game, m_window); // see mouse position.
@@ -145,17 +145,17 @@ bool EngineCore::runEngine(BellfruitGame* game)	// was Game&
 	}
 
 
-	// Update loop!
-	while (l_deltaTime >= 1.0)
-	{
-		{
-			game->update(0.1f); // Main Game Update Function!
+	//// Update loop!
+	//while (l_deltaTime >= 1.0)
+	//{
+	//	{
+	//		game->update(0.1f); // Main Game Update Function!
 
-			l_updates++; // Increment update
-			l_deltaTime--; // decrement delta time
-		}
-			//l_frames++;
-	}
+	//		l_updates++; // Increment update
+	//		l_deltaTime--; // decrement delta time
+	//	}
+	//		//l_frames++;
+	//}
 
 
 	return true;

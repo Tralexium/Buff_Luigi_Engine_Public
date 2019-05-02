@@ -253,6 +253,28 @@ void ShaderComponent::setUniforms(const CameraComponent * cam)
 	glUniform1f(glGetUniformLocation(shaderProgram, "light.quadratic"), quadratic);
 }
 
+void ShaderComponent::setUniformsInvertedViewMatrix(const CameraComponent * cam)
+{
+	// set the view and projection components of our shader to the CameraComponent values
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(cam->getProjectionMatrix()));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(cam->getInvertedViewMatrix()));
+
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.objectColour"), objectColour.x, objectColour.y, objectColour.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightColour"), lightColour.x, lightColour.y, lightColour.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z);
+	glUniform3fv(glGetUniformLocation(shaderProgram, "viewPos"), 0, glm::value_ptr(cam->getPos()));
+
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.ambient"), ambient.x, ambient.y, ambient.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.diffuse"), diffuse.x, diffuse.y, diffuse.z);
+	glUniform3f(glGetUniformLocation(shaderProgram, "light.specular"), specular.x, specular.y, specular.z);
+
+	glUniform1f(glGetUniformLocation(shaderProgram, "light.constant"), constant);
+	glUniform1f(glGetUniformLocation(shaderProgram, "light.linear"), linear);
+	glUniform1f(glGetUniformLocation(shaderProgram, "light.quadratic"), quadratic);
+}
+
 ShaderComponent::~ShaderComponent()
 {
 

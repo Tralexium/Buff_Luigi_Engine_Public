@@ -63,7 +63,7 @@ Scene::Scene()
 	m_audio = new AudioComponent("res/audio/space1.mp3"); // FOR AUDIO
 
 	// --------------------- Particle stuff ----------------------------- //
-	//m_particleSystem = new ParticleSystemRenderer(100000);
+	m_particleSystem = new ParticleSystemRenderer(100000);
 }
 
 // Main Object Loading Function, handled in Level0.json
@@ -389,6 +389,7 @@ void Scene::drawCollisionDebugLines() {
 		btCollisionObject* l_collisionObject = physicsWorld.getDynamicsWorld()->getCollisionObjectArray()[j];
 
 		debugLineShader->use(); // Use debug shader
+
 		debugLineShader->setUniforms(m_playerCameraComponent); // set uniforms
 	}
 	physicsWorld.drawWorld(); // draw the world
@@ -422,7 +423,7 @@ void Scene::render()
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	// ---FOR DRAWING DEBUG LINES AROUND COLLISION BOXES--- //
-	//drawCollisionDebugLines();
+	drawCollisionDebugLines();
 	// ------------------------------------------------------/
 	// ---------- THIS SKYBOX  RENDERING IS SEPERATED, DONT CHANGE ------------------------------------------------------------------------------------------------------------//    
 	//skyShader.use();  //! Use skybox shader. 

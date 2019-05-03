@@ -53,9 +53,11 @@ private:
 
 	// ----------------------------------------//
 
+	int m_score = -1;
+
 public:
 
-	bool hasScored = false;
+	bool hasScored = true;
 
 	WindowSettings& g_window = g_window.getInstance();
 

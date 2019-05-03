@@ -18,7 +18,7 @@ public:
 	void setTexture(const std::string& textureFilepath);
 	void setupVAO();
 
-	void update(float dt);
+	void update(float dt, bool spawnParts);
 	void render();
 
 	void resize(unsigned int newSize); // New maximum ammount of particles [globally]

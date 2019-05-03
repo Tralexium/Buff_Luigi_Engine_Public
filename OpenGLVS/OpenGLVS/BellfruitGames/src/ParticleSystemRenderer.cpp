@@ -78,12 +78,15 @@ void ParticleSystemRenderer::initialise()
 	m_particleShader->GetError();
 }
 
-void ParticleSystemRenderer::update(float dt)
+void ParticleSystemRenderer::update(float dt, bool spawnParts)
 {
 	if (m_particleEmitter != NULL)
 	{
-		// Emit new particles
-		m_particleEmitter->OnUpdate(dt);
+		if (spawnParts)
+		{
+			// Emit new particles
+			m_particleEmitter->OnUpdate(dt);
+		}
 
 		// Shortcut for the emmiter's particle array
 		Particle* partContainer = m_particleEmitter->getParticles();

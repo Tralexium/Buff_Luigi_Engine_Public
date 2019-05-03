@@ -487,12 +487,17 @@ void Scene::checkIfScored(float dt) {
 
 	if (l_ball_pos.z >= l_goalie_pos.z)
 	{
-		hasScored = true;
-		if (hasScored)
+		if (!hasScored)
 		{
 			cout << "Score!" << endl;
-			m_particleSystem->update(dt);
+			m_score++;
+
+			hasScored = true;
 		}
+
+		enginecore->getUIComponent()->setScore(m_score);
+		glm::vec3 resetBallPos{ 0.0f, -1.0f, 0.0f };
+		v_gameObjects[21].getComponent<TransformComponent>()->setPos(resetBallPos);
 		
 	}
 	else if (l_ball_pos.z < l_goalie_pos.z)
@@ -500,7 +505,7 @@ void Scene::checkIfScored(float dt) {
 		hasScored = false;
 	}
 	
-	
+	m_particleSystem->update(dt, hasScored);
 }
 
 // Main Update logic function for scene - Goes on locked 60 FPS instead of maximum cpu framerate (keeps update same across all machines)

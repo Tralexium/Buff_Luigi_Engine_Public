@@ -71,15 +71,15 @@ public:
 
 			ImGui::Button("New Game");
 			ImGui::Button("Options");
-			
+
 			if (ImGui::Button("Exit Game")) // Buttons return true when clicked (most widgets return true when edited/activated)
 			{
 				windowOpen = false;
 			}
-			
 
-		/*	ImGui::SameLine();
-			ImGui::Text("counter = %d", counter);*/
+
+			/*	ImGui::SameLine();
+				ImGui::Text("counter = %d", counter);*/
 
 			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 			ImGui::End();
@@ -94,8 +94,8 @@ public:
 			ImGui::Text("Goals: %d", scoreCounter);
 
 
-			
-			
+
+
 			ImGui::End();
 		}
 	}
@@ -104,6 +104,11 @@ public:
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
+
+	void setScore(int newScore)
+	{
+		scoreCounter = newScore;
 	}
 
 

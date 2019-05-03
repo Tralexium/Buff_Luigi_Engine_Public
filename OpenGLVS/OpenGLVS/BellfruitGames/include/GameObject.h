@@ -40,7 +40,7 @@ private:
 	glm::vec3 relativePosition;
 
 public:
-	
+
 	/*! Component Getter Function
 	\brief retrieves a pointer to a component stored in a map by index.
 	*/
@@ -77,7 +77,7 @@ public:
 		tc->translate(movement, 0, 0);
 		counter++;
 
-		if (counter == 500)
+		if (counter == 50)
 		{
 			movement = movement * -1;
 
@@ -103,7 +103,7 @@ public:
 		tc->translate(movement, 0, 0);
 		counter++;
 
-		if (counter == 1000)
+		if (counter == 2000)
 		{
 			movement = movement * -1;
 
@@ -127,6 +127,6 @@ public:
 	\brief might be needed in other functions.
 	*/
 	inline glm::vec3 getRelativePos() { return relativePosition; }
-	
+
 };
 

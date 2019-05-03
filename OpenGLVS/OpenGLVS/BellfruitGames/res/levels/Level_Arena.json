@@ -660,10 +660,11 @@
         0.1, 
         0.1
       ], 
-      "collisionshape": "btBoxShape", 
+      "collisionshape": "btBoxShape",
       "mass": [
         0.0
       ], 
+
       "model": "metal_pillar_arena", 
       "name": "metal_pillar_arena", 
       "orientation": [
@@ -772,6 +773,7 @@
       "mass": [
         0.1
       ],
+
       "model": "ball_arena",
       "name": "ball_arena",
       "orientation": [

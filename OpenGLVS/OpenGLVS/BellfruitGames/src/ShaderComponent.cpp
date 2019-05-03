@@ -105,6 +105,7 @@ void ShaderComponent::use() // loading some default shaders to get things up and
 void ShaderComponent::setfboScreenTexture() 
 {
 	glUniform1i(glGetUniformLocation(shaderProgram, "screenTexture"), 0);
+	glUniform1i(glGetUniformLocation(shaderProgram, "image"), 0);
 }
 
 void ShaderComponent::setfboTexture() 

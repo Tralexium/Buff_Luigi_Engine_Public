@@ -179,7 +179,7 @@ public:
 			body->activate(1);
 			
 		
-			body->applyTorque(btVector3(0.0, -5.0, 0.0));
+			body->applyTorque(btVector3(0.0, -3.0, 0.0));
 	
 		}
 
@@ -188,7 +188,7 @@ public:
 			std::cout << "RightArrow: (Right) Pressed" << std::endl;
 			body->activate(1);
 		
-			body->applyTorque(btVector3(0.0, 5.0, 0.0));
+			body->applyTorque(btVector3(0.0, 3.0, 0.0));
 		}
 
 		else if (m == "moveForwardsArrow")
@@ -271,7 +271,7 @@ inline void PhysicsBodyComponent::createRigidBody()
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(m_mass, m_myMotionState, m_shape, localInertia);
 		body = new btRigidBody(rbInfo);
 		body->setFriction(1.0);
-		body->setRestitution(0.4);
+		body->setRestitution(2.0);
 		physicsworld.getDynamicsWorld()->addRigidBody(body);
 	}	
 }

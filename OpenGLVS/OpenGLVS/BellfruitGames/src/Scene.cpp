@@ -496,8 +496,6 @@ void Scene::checkIfScored(float dt) {
 		}
 
 		enginecore->getUIComponent()->setScore(m_score);
-		glm::vec3 resetBallPos{ 0.0f, -1.0f, 0.0f };
-		v_gameObjects[21].getComponent<TransformComponent>()->setPos(resetBallPos);
 		
 	}
 	else if (l_ball_pos.z < l_goalie_pos.z)

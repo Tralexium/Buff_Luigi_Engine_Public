@@ -53,7 +53,7 @@ private:
 
 	// ----------------------------------------//
 
-	int m_score = -1;
+	int m_score = 0;
 
 public:
 
